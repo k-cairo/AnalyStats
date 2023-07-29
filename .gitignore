@@ -1,0 +1,5 @@
+.idea
+env
+src/AnalyStats/.env
+src/E5AppConf.json
+__pycache__/
