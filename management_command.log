@@ -1,9 +1,0 @@
-2023-07-28 15:51:50,660 - INFO - 2023-07-28 15:51:50.660070 : GetCountries start -----
-2023-07-28 15:52:24,590 - INFO - 2023-07-28 15:52:24.590794 : GetCountries end -----
-2023-07-28 17:29:23,794 - INFO - 2023-07-28 17:29:23.794926 : GetCompetitions start -----
-2023-07-28 18:17:52,614 - INFO - 2023-07-28 18:17:52.600024 : GetCompetitions end -----
-2023-07-28 21:16:41,502 - INFO - 2023-07-28 21:16:41.502615 : GetChampionships start -----
-2023-07-28 21:16:42,499 - WARNING - Error getting version of chromedriver 115. Retrying with chromedriver 114 (attempt 1/5)
-2023-07-28 22:07:13,308 - INFO - 2023-07-28 22:07:13.297897 : GetChampionships end -----
-2023-07-28 22:46:04,147 - INFO - 2023-07-28 22:46:04.147078 : GetTeams start -----
-2023-07-28 23:05:16,715 - INFO - 2023-07-28 23:05:16.706120 : GetTeams end -----

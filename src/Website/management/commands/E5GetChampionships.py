@@ -50,8 +50,8 @@ class E5GetChampionships:
                                 championship.name = tr_league.find_element(
                                     By.CSS_SELECTOR, "th").text.replace('"', "").replace("'", "")
                                 championship.gender = tr_league.find_element(By.CSS_SELECTOR, "td.center").text
-                                championship.url = tr_league.find_elements(
-                                    By.CSS_SELECTOR, "td.left a")[1].get_attribute("href")
+                                championship.url = tr_league.find_element(
+                                    By.CSS_SELECTOR, "th.left a").get_attribute("href")
 
                                 # Check championship is valid (Any blank field)
                                 if not championship.check_not_empty():

@@ -47,11 +47,34 @@ class E5Championship(models.Model):
 
 
 # E5
+class E5Season(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    championship = models.ForeignKey(E5Championship, on_delete=models.CASCADE, blank=True, null=True)
+    squads = models.IntegerField(default=0)
+    url = models.URLField(default="")
+
+    objects = models.Manager()
+
+    # E5
+    def __str__(self):
+        return self.name
+
+    # E5
+    def check_not_empty(self) -> bool:
+        return self.name != "" and self.squads != 0 and self.url != ""
+
+    # E5
+    def check_if_exists(self) -> bool:
+        return E5Season.objects.filter(
+            name=self.name, url=self.url, championship=self.championship, squads=self.squads).exists()
+
+
+# E5
 class E5Team(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    championship = models.ForeignKey(E5Championship, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=10)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE, blank=True, null=True)
     url = models.URLField()
 
     objects = models.Manager()
@@ -62,8 +85,8 @@ class E5Team(models.Model):
 
     # E5
     def check_not_empty(self) -> bool:
-        return self.name != "" and self.gender != "" and self.url != ""
+        return self.name != "" and self.url != ""
 
     # E5
     def check_if_exists(self) -> bool:
-        return E5Team.objects.filter(name=self.name, url=self.url, championship=self.championship).exists()
+        return E5Team.objects.filter(name=self.name, url=self.url, season=self.season).exists()

@@ -7,7 +7,7 @@ from django.core.management.base import BaseCommand
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-from Website.models import E5Team, E5Season
+from Website.models import E5Championship, E5Season
 from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver, E5SeleniumWebdriverError
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
@@ -16,50 +16,49 @@ logging.basicConfig(level=logging.INFO, filename="management_command.log", filem
 
 # E5
 @dataclasses.dataclass
-class E5GetTeams:
+class E5GetSeasons:
     selenium_driver: E5SeleniumWebDriver
 
     # E5
     @classmethod
-    def get_teams(cls, season: E5Season) -> None:
+    def get_seasons(cls, championship: E5Championship) -> None:
         # Check connection
         cls.selenium_driver.check_is_connected()
 
         if cls.selenium_driver.status.success:
             try:
                 # Get Url
-                cls.selenium_driver.driver.get(season.url)
+                cls.selenium_driver.driver.get(championship.url)
 
                 # Accept Cookies
                 cls.selenium_driver.accept_cookies()
 
-                # Get Teams
-                teams_table = cls.selenium_driver.driver.find_element(
-                    By.CSS_SELECTOR, "table.stats_table.sortable.min_width.force_mobilize.now_sortable")
-                teams_trs = teams_table.find_elements(By.CSS_SELECTOR, "tbody tr")
+                # Get Seasons
+                seasons_table = cls.selenium_driver.driver.find_element(By.CSS_SELECTOR, "table#seasons tbody")
+                seasons_trs = seasons_table.find_elements(By.CSS_SELECTOR, "tr")
 
-                for teams_tr in teams_trs:
+                for season_tr in seasons_trs:
                     with contextlib.suppress(NoSuchElementException):
-                        team: E5Team = E5Team()
-                        team.name = teams_tr.find_element(
-                            By.CSS_SELECTOR, "td.left a").text.replace('"', "").replace("'", "")
-                        team.season = season
-                        team.url = teams_tr.find_element(By.CSS_SELECTOR, "td.left a").get_attribute("href")
+                        season: E5Season = E5Season()
+                        season.championship = championship
+                        season.name = season_tr.find_element(By.CSS_SELECTOR, "th.left a").text
+                        season.squads = int(season_tr.find_elements(By.CSS_SELECTOR, "td.right")[0].text)
+                        season.url = season_tr.find_element(By.CSS_SELECTOR, "th.left a").get_attribute("href")
 
-                        # Check team is valid (Any blank field)
-                        if not team.check_not_empty():
+                        # Check season is valid (Any blank field)
+                        if not season.check_not_empty():
                             logging.warning(
-                                msg=f"GetTeams.execute() - {cls.selenium_driver.status.error_context} : "
+                                msg=f"GetSeasons.get_seasons() - {cls.selenium_driver.status.error_context} : "
                                     f"{cls.selenium_driver.status.error_type} : {cls.selenium_driver.status.exception}")
                             continue
 
-                        if not team.check_if_exists():
-                            team.save()
+                        if not season.check_if_exists():
+                            season.save()
 
             except Exception as ex:
                 cls.selenium_driver.status.success = False
-                cls.selenium_driver.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_GET_CHAMPIONSHIPS_FAILED
-                cls.selenium_driver.status.error_context = "GetChampionships.get_championships()"
+                cls.selenium_driver.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_GET_SEASONS_FAILED
+                cls.selenium_driver.status.error_context = "GetSeasons.get_seasons()"
                 cls.selenium_driver.status.exception = ex
 
     # E5
@@ -68,46 +67,46 @@ class E5GetTeams:
         cls.selenium_driver = E5SeleniumWebDriver()
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : GetTeams start -----")
+        logging.info(msg=f"{datetime.now()} : GetSeasons start -----")
 
-        # Query Seasons
-        seasons = E5Season.objects.all()
+        # Query Countries
+        championships = E5Championship.objects.all()
 
         # Loop Through Championships
-        for season in seasons:
+        for championship in championships:
             # Init driver
             if cls.selenium_driver.status.success:
                 cls.selenium_driver.init()
                 if not cls.selenium_driver.status.success:
                     logging.warning(
-                        msg=f"GetTeams.execute() - {cls.selenium_driver.status.error_context} : "
+                        msg=f"GetSeasons.execute() - {cls.selenium_driver.status.error_context} : "
                             f"{cls.selenium_driver.status.error_type} : {cls.selenium_driver.status.exception}")
 
-            # Get Teams
+            # Get Seasons
             if cls.selenium_driver.status.success:
-                cls.get_teams(season=season)
+                cls.get_seasons(championship=championship)
                 if not cls.selenium_driver.status.success:
                     logging.warning(
-                        msg=f"GetTeams.execute() - {cls.selenium_driver.status.error_context} : "
+                        msg=f"GetSeasons.execute() - {cls.selenium_driver.status.error_context} : "
                             f"{cls.selenium_driver.status.error_type} : {cls.selenium_driver.status.exception}")
 
             # Close driver
             cls.selenium_driver.quit()
             if not cls.selenium_driver.status.success:
                 logging.warning(
-                    msg=f"GetTeams.execute() - {cls.selenium_driver.status.error_context} : "
+                    msg=f"GetSeasons.execute() - {cls.selenium_driver.status.error_context} : "
                         f"{cls.selenium_driver.status.error_type} : {cls.selenium_driver.status.exception}")
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : GetTeams end -----")
+        logging.info(msg=f"{datetime.now()} : GetSeasons end -----")
 
 
 # E5
 class Command(BaseCommand):
-    help = "Get all teams"
+    help = "Get all seasons"
 
     def handle(self, *args, **options):
-        # GET TEAMS
-        E5GetTeams.execute()
+        # GET SEASONS
+        E5GetSeasons.execute()
 
-        self.stdout.write('Teams Updated Successfully')
+        self.stdout.write('Seasons Updated Successfully')
