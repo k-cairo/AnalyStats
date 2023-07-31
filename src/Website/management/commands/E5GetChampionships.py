@@ -32,6 +32,17 @@ class E5GetChampionships:
                 # Accept Cookies
                 cls.selenium_driver.accept_cookies()
 
+                # Get Logo
+                if cls.selenium_driver.status.success:
+                    try:
+                        country.logo = cls.selenium_driver.driver.find_element(
+                            By.CSS_SELECTOR, "img.teamlogo").get_attribute("src")
+                        country.save()
+                    except NoSuchElementException:
+                        logging.warning(msg=f"GetChampionships.get_championships() - "
+                                            f"Country {country} logo not found")
+                        pass
+
                 # Get Championships
                 if cls.selenium_driver.status.success:
                     divs_table_wrapper = cls.selenium_driver.driver.find_elements(By.CSS_SELECTOR, "div.table_wrapper")
@@ -77,7 +88,7 @@ class E5GetChampionships:
         logging.info(msg=f"{datetime.now()} : GetChampionships start -----")
 
         # Query Countries
-        countries = E5Country.objects.all()
+        countries = E5Country.objects.filter(parse_country=True)
 
         # Loop Through Countries
         for country in countries:

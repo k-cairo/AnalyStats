@@ -21,6 +21,8 @@ class E5SeleniumWebdriverError(Enum):
     ERROR_TYPE_GET_COUNTRY_FAILED = "get_country_failed"
     ERROR_TYPE_GET_CHAMPIONSHIPS_FAILED = "get_championships_failed"
     ERROR_TYPE_GET_SEASONS_FAILED = "get_seasons_failed"
+    ERROR_TYPE_GET_TEAMS_FAILED = "get_teams_failed"
+    ERROR_TYPE_GET_UPCOMING_MATCHS_FAILED = "get_upcoming_matchs_failed"
 
     # Not Connected
     ERROR_TYPE_NOT_CONNECTED = "not_connected"

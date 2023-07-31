@@ -9,6 +9,7 @@ class E5AppConf:
     confjson: dict = dataclasses.field(default_factory=dict)
 
     get_countries_url: str = ""
+    get_upcoming_matchs_url: str = ""
 
     # E5
     def load(self, pathfile: str) -> (bool, str):
@@ -41,6 +42,14 @@ class E5AppConf:
             else:
                 success = False
                 message = "get_countries_url must be present and type or string"
+
+            # Get Upcoming Matchs Url Section
+            if success:
+                if "get_upcoming_matchs_url" in self.confjson and isinstance(self.confjson["get_upcoming_matchs_url"], str):
+                    self.get_upcoming_matchs_url = self.confjson["get_upcoming_matchs_url"]
+                else:
+                    success = False
+                    message = "get_upcoming_matchs_url must be present and type or string"
 
         except Exception as ex:
             success = False

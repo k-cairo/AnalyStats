@@ -58,8 +58,8 @@ class E5GetTeams:
 
             except Exception as ex:
                 cls.selenium_driver.status.success = False
-                cls.selenium_driver.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_GET_CHAMPIONSHIPS_FAILED
-                cls.selenium_driver.status.error_context = "GetChampionships.get_championships()"
+                cls.selenium_driver.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAMS_FAILED
+                cls.selenium_driver.status.error_context = "GetTeams.get_teams()"
                 cls.selenium_driver.status.exception = ex
 
     # E5
@@ -75,6 +75,9 @@ class E5GetTeams:
 
         # Loop Through Championships
         for season in seasons:
+            if not season.championship.country.parse_country:
+                continue
+
             # Init driver
             if cls.selenium_driver.status.success:
                 cls.selenium_driver.init()

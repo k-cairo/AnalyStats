@@ -33,6 +33,17 @@ class E5GetSeasons:
                 # Accept Cookies
                 cls.selenium_driver.accept_cookies()
 
+                # Get Logo
+                if cls.selenium_driver.status.success:
+                    try:
+                        championship.logo = cls.selenium_driver.driver.find_element(
+                            By.CSS_SELECTOR, "img.teamlogo").get_attribute("src")
+                        championship.save()
+                    except NoSuchElementException:
+                        logging.warning(msg=f"GetSeasons.get_seasons() - "
+                                            f"Championship {championship} logo not found")
+                        pass
+
                 # Get Seasons
                 seasons_table = cls.selenium_driver.driver.find_element(By.CSS_SELECTOR, "table#seasons tbody")
                 seasons_trs = seasons_table.find_elements(By.CSS_SELECTOR, "tr")
@@ -74,6 +85,9 @@ class E5GetSeasons:
 
         # Loop Through Championships
         for championship in championships:
+            if not championship.country.parse_country:
+                continue
+
             # Init driver
             if cls.selenium_driver.status.success:
                 cls.selenium_driver.init()
