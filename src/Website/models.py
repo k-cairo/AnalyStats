@@ -56,6 +56,7 @@ class E5Season(models.Model):
     championship = models.ForeignKey(E5Championship, on_delete=models.CASCADE, blank=True, null=True)
     squads = models.IntegerField(default=None)
     url = models.URLField(default="")
+    active = models.BooleanField(default=False)
 
     objects = models.Manager()
 
@@ -97,6 +98,21 @@ class E5Team(models.Model):
 
 
 # E5
+class E5TeamStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    goals = models.IntegerField()
+    xg = models.FloatField(null=True, blank=True)
+    shots = models.IntegerField()
+    shots_on_target = models.IntegerField()
+    corners = models.IntegerField(null=True, blank=True)
+    tackles = models.IntegerField()
+    fouls = models.IntegerField()
+    yellow_cards = models.IntegerField()
+    red_cards = models.IntegerField()
+    offsides = models.IntegerField()
+
+
+# E5
 class E5Match(models.Model):
     id = models.AutoField(primary_key=True)
     championship = models.ForeignKey(E5Championship, on_delete=models.CASCADE)
@@ -104,6 +120,8 @@ class E5Match(models.Model):
     home_team = models.ForeignKey(E5Team, on_delete=models.CASCADE, related_name='home_team')
     away_team = models.ForeignKey(E5Team, on_delete=models.CASCADE, related_name='away_team')
     date = models.CharField(max_length=40)
+    ht_stats = models.ForeignKey(E5TeamStats, on_delete=models.CASCADE, blank=True, null=True, related_name='ht_stats')
+    at_stats = models.ForeignKey(E5TeamStats, on_delete=models.CASCADE, blank=True, null=True, related_name='at_stats')
 
     objects = models.Manager()
 

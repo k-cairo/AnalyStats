@@ -58,7 +58,7 @@ class E5GetUpcomingMatchs:
                             championship_url: str = div_championship.find_element(By.CSS_SELECTOR,
                                                                                   "h2 a").get_attribute("href")
                         except NoSuchElementException:
-                            logging.warning(f"GetUpcomingMatchs.get_upcoming_matchs(): No championship url found")
+                            logging.warning("GetUpcomingMatchs.get_upcoming_matchs(): No championship url found")
                             continue
 
                         try:
@@ -67,7 +67,7 @@ class E5GetUpcomingMatchs:
                             continue
 
                         if season is None:
-                            logging.warning(f"GetUpcomingMatchs.get_upcoming_matchs(): No season found")
+                            logging.warning("GetUpcomingMatchs.get_upcoming_matchs(): No season found")
                             continue
 
                         if not season.championship.country.parse_country:
@@ -86,7 +86,7 @@ class E5GetUpcomingMatchs:
                                 away_team_url: str = upcoming_match_tr.find_element(By.CSS_SELECTOR,
                                                                                     "td.left a").get_attribute("href")
                             except NoSuchElementException:
-                                logging.warning(f"GetUpcomingMatchs.get_upcoming_matchs(): No match found")
+                                logging.warning("GetUpcomingMatchs.get_upcoming_matchs(): No match found")
                                 continue
 
                             # Get E5Team - Home
