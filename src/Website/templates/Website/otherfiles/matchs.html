@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block page-infos %}
+<h1 class="text-white">Upcoming Matches</h1>
+<p>Below you will find the list of upcoming matches for the next 7 days.</p>
+{% endblock %}
+
+{% block upcoming-matchs %}
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Title Section -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Upcoming Matches</h2>
+            </div>
+
+            <!-- Check if there is upcoming match-->
+            {% if not matchs %}
+            <div class="col-12">
+                <h5 class="heading">No upcoming match</h5>
+            </div>
+            {% endif %}
+
+            {% for match in matchs %}
+            <!-- Div Upcoming Match-->
+            <div class="col-lg-6 mb-4">
+                <div class="bg-light p-4 rounded">
+                    <div class="widget-body">
+                        <div class="widget-vs">
+                            <div class="d-flex align-items-center justify-content-around justify-content-between w-100">
+                                <div class="team-1 text-center">
+                                    <a href="{% url 'Website-team' team_id=match.home_team.id %}">
+                                        <img src="{{ match.home_team.logo }}" alt="home team logo">
+                                        <h3>{{ match.home_team.name }}</h3>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span class="vs"><span>VS</span></span>
+                                </div>
+                                <div class="team-2 text-center">
+                                    <a href="{% url 'Website-team' team_id=match.away_team.id %}">
+                                        <img src="{{ match.away_team.logo }}" alt="away team logo">
+                                        <h3>{{ match.away_team.name }}</h3>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center widget-vs-contents mb-4">
+                        <a href="#">
+                            <h4>{{ match.championship.name }}</h4>
+                        </a>
+                        <p class="mb-5">
+                            <span class="d-block">{{ match.date }}</span>
+                            <span class="d-block">9:30 AM GMT+0</span>
+                            <strong class="text-primary">New Euro Arena</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

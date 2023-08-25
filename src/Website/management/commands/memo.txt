@@ -1,0 +1,21 @@
+OK / 01 -> E5GetLeagues
+OK / 02 -> E5GetSeasons
+OK / 03  -> E5GetActiveSeasonsLeaguesTablesIframes
+OK / 04 -> E5GetActiveSeasonsTeams
+OK / 05 -> E5GetActiveSeasonsTeamsRanking
+OK / 06 -> E5GetActiveSeasonsBTTSIframes
+OK / 07 -> E5GetActiveSeasonsOver05GoalsIframes
+OK / 08 -> E5GetActiveSeasonsOver15GoalsIframes
+OK / 09 -> E5GetActiveSeasonsOver25GoalsIframes
+OK / 10 -> E5GetActiveSeasonsOver35GoalsIframes
+OK / 11 -> E5GetActiveSeasonsCornersIframes
+OK / 12 -> E5ParseActiveSeasonsOver05GoalsIframes
+OK / 13 -> E5ParseActiveSeasonsOver15GoalsIframes
+OK / 14 -> E5ParseActiveSeasonsOver25GoalsIframes
+OK / 15 -> E5ParseActiveSeasonsOver35GoalsIframes
+OK / 16 -> E5ParseActiveSeasonsCornersIframes
+OK / 17 -> E5ParseActiveSeasonsCardsIframes
+TODO / 18 -> Template HTML Includes All Stats
+TODO -> URL in AppConf
+TODO -> Ranking for MLS
+TODO -> In model, change auto_now_add to auto_now

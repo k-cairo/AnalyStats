@@ -14,8 +14,10 @@ class E5SeleniumWebdriverTest(unittest.TestCase):
         e5webdriver.init()
 
         # Assert
-        self.assertTrue(expr=e5webdriver.status.success)
-        self.assertTrue(expr=e5webdriver.is_connected)
+        self.assertTrue(expr=e5webdriver.status.success,
+                        msg=f"{e5webdriver.status.error_context} : {e5webdriver.status.exception}")
+        self.assertTrue(expr=e5webdriver.is_connected,
+                        msg=f"{e5webdriver.status.error_context} : {e5webdriver.status.exception}")
 
         # Quit
         e5webdriver.quit()
@@ -29,5 +31,7 @@ class E5SeleniumWebdriverTest(unittest.TestCase):
         e5webdriver.quit()
 
         # Assert
-        self.assertTrue(e5webdriver.status.success)
-        self.assertFalse(e5webdriver.is_connected)
+        self.assertTrue(e5webdriver.status.success,
+                        msg=f"{e5webdriver.status.error_context} : {e5webdriver.status.exception}")
+        self.assertFalse(e5webdriver.is_connected,
+                         msg=f"{e5webdriver.status.error_context} : {e5webdriver.status.exception}")

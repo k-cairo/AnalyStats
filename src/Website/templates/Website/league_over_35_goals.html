@@ -1,0 +1,414 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Over 3.5 Goals</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'change_league_stat.html' %}
+
+<!-- Over 3.5 Goals Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 title-section">
+                <h2 class="heading">Over 3.5 Goals</h2>
+            </div>
+
+            <!-- Table Over 3.5 Goals Home Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.home_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.home_over_35_goals }}</td>
+                            <td>{{ over_35_goals_stat.home_over_35_goals_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Over 3.5 Goals Away Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.away_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.away_over_35_goals }}</td>
+                            <td>{{ over_35_goals_stat.away_over_35_goals_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Over 3.5 Goals Overall Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.overall_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.overall_over_35_goals }}</td>
+                            <td>{{ over_35_goals_stat.overall_over_35_goals_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Over 3.5 Goals 1H Stat Section-->
+<div class="container site-section">
+    <div class="row">
+        <div class="col-12 title-section">
+            <h2 class="heading">Over 3.5 Goals 1st Half</h2>
+        </div>
+
+        <!-- Table Over 3.5 Goals 1H Home Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Home</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.home_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.home_over_35_goals_1h }}</td>
+                        <td>{{ over_35_goals_stat.home_over_35_goals_1h_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Table Over 3.5 Goals 1H Away Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Away</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.away_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.away_over_35_goals_1h }}</td>
+                        <td>{{ over_35_goals_stat.away_over_35_goals_1h_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Table Over 3.5 Goals 1H Overall Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Overall</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.overall_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.overall_over_35_goals_1h }}</td>
+                        <td>{{ over_35_goals_stat.overall_over_35_goals_1h_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Over 3.5 Goals 2H Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 title-section">
+                <h2 class="heading">Over 3.5 2nd Half Goals</h2>
+            </div>
+
+            <!-- Table Over 3.5 Goals 2H Home Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.home_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.home_over_35_goals_2h }}</td>
+                            <td>{{ over_35_goals_stat.home_over_35_goals_2h_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Over 3.5 Goals 2H Away Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.away_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.away_over_35_goals_2h }}</td>
+                            <td>{{ over_35_goals_stat.away_over_35_goals_2h_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Over 3.5 Goals 2H Overall Section -->
+            <div class="col-lg-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>O3.5</th>
+                            <th>%</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for over_35_goals_stat in over_35_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                    {{ over_35_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ over_35_goals_stat.overall_matches_played }}</td>
+                            <td>{{ over_35_goals_stat.overall_over_35_goals_2h }}</td>
+                            <td>{{ over_35_goals_stat.overall_over_35_goals_2h_percent }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Over 3.5 Goals BH Stat Section-->
+<div class="container site-section">
+    <div class="row">
+        <div class="col-12 title-section">
+            <h2 class="heading">Over 3.5 Goals Both Half</h2>
+        </div>
+
+        <!-- Table Over 3.5 Goals BH Home Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Home</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.home_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.home_over_35_goals_bh }}</td>
+                        <td>{{ over_35_goals_stat.home_over_35_goals_bh_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Table Over 3.5 Goals BH Away Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Away</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.away_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.away_over_35_goals_bh }}</td>
+                        <td>{{ over_35_goals_stat.away_over_35_goals_bh_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Table Over 3.5 Goals BH Overall Section -->
+        <div class="col-lg-4  mb-0 mb-sm-5">
+            <h6 class="heading text-center">Overall</h6>
+            <div class="widget-next-match">
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th>Team</th>
+                        <th>P</th>
+                        <th>O3.5</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for over_35_goals_stat in over_35_goals_stats %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'Website-team_details' over_35_goals_stat.team.season.league.slug over_35_goals_stat.team.slug  %}">
+                                {{ over_35_goals_stat.team.name }}
+                            </a></td>
+                        <td>{{ over_35_goals_stat.overall_matches_played }}</td>
+                        <td>{{ over_35_goals_stat.overall_over_35_goals_bh }}</td>
+                        <td>{{ over_35_goals_stat.overall_over_35_goals_bh_percent }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
