@@ -17,43 +17,6 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
         season__active=True)
 
     # E5
-    def get_iframes(self) -> None:
-        # Check connection
-        self.check_is_connected()
-
-        if self.status.success:
-            for season in self.ACTIVE_SEASONS:
-                season: E5Season  # Type hinting for Intellij
-
-                # Get Url
-                self.get(url=season.url, error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_iframes()")
-                if not self.status.success:
-                    continue
-
-                # Get Iframe Url
-                try:
-                    iframe_url: str = self.soup.select_one(selector="div.fusion-text.fusion-text-2 iframe")['src']
-                except Exception as ex:
-                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_IFRAME_URL_FAILED,
-                                   error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_iframes()", exception=ex)
-                    continue
-
-                # Create League Table Iframe
-                league_table: E5LeagueTableIframe = E5LeagueTableIframe()
-                league_table.season = season
-                league_table.url = iframe_url
-
-                # Check if active season already exists before saving or updating
-                if not league_table.exists():
-                    league_table.save()
-                    self.log_info(f"League {season.league.name} League Table Iframe created in database")
-                else:
-                    target_league_table: E5LeagueTableIframe = E5LeagueTableIframe.objects.get(season=season)
-                    target_league_table.url = iframe_url
-                    target_league_table.save()
-                    self.log_info(f"League {season.league.name} League Table Iframe updated in database")
-
-    # E5
     def get_teams_ranking(self) -> None:
         # Check connection
         self.check_is_connected()

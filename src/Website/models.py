@@ -118,6 +118,9 @@ class E5LeagueTableIframe(models.Model):
     def __str__(self):
         return f"League Table - {self.season}"
 
+    def not_empty(self) -> bool:
+        return self.url != ""
+
     # E5
     def exists(self) -> bool:
         return E5LeagueTableIframe.objects.filter(season=self.season).exists()

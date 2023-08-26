@@ -3,13 +3,14 @@ from typing import ClassVar
 
 from django.core.management.base import BaseCommand
 
+from Website.models import E5WonBothHalfIframes
 from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver
 
 
 # E5
 class Command(BaseCommand):
-    CONTEXT: ClassVar[str] = "GetSeasons"
-    help = "Get Seasons"
+    CONTEXT: ClassVar[str] = "GetWonBothHalfIframes"
+    help = "Get Won Both Half Iframes"
 
     def handle(self, *args, **options):
         # Instantiate Scraper
@@ -24,9 +25,10 @@ class Command(BaseCommand):
             scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Seasons
+        # Get Cards Iframes
         if scraper.status.success:
-            scraper.get_seasons(error_context=self.CONTEXT)
+            scraper.get_iframes(endpoint='wbh/', error_context=self.CONTEXT, iframe_length=2,
+                                save_message="Won Both Half Iframes", class_=E5WonBothHalfIframes)
             if not scraper.status.success:
                 scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")
@@ -40,4 +42,4 @@ class Command(BaseCommand):
         # Logging
         scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} end -----")
 
-        self.stdout.write('Seasons Updated Successfully')
+        self.stdout.write("Won Both Half Iframes Updated Successfully")

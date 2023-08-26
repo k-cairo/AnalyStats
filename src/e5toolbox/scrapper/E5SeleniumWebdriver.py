@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 
 from Website.models import E5Season, E5CardsIframes, E5BttsIframes, E5Over05GoalsIframe, \
     E5Over15GoalsIframe, E5Over25GoalsIframe, E5Over35GoalsIframe, E5CornersIframes, E5ScoredBothHalfIframes, \
-    E5WonBothHalfIframes, E5League
+    E5WonBothHalfIframes, E5League, E5LeagueTableIframe, E5Team
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -28,6 +28,8 @@ class E5SeleniumWebdriverError(Enum):
     ERROR_TYPE_QUIT_FAILED = "quit_failed"
     ERROR_TYPE_GET_TEAM_FAILED = "get_team_failed"
     ERROR_TYPE_GET_LEAGUE_NAME_OR_URL_FAILED = "get_league_name_or_url_failed"
+    ERROR_TYPE_SEASON_NAME_OR_URL_FAILED = "get_season_name_or_url_failed"
+    ERROR_TYPE_TEAM_NAME_OR_URL_FAILED = "get_team_name_or_url_failed"
     ERROR_TYPE_GET_URL_FAILED = "get_url_failed"
     ERROR_TYPE_GET_SOUP_FAILED = "get_soup_failed"
     ERROR_TYPE_GET_IFRAME_URL_FAILED = "get_iframe_url_failed"
@@ -58,6 +60,10 @@ class E5SeleniumWebdriverStatus:
 @dataclasses.dataclass
 class E5SeleniumWebDriver:
     ACTIVE_SEASONS: ClassVar[QuerySet[E5Season]] = E5Season.objects.filter(active=True)
+    LEAGUES: ClassVar[QuerySet[E5League]] = E5League.objects.all()
+    LEAGUE_TABLE_IFRAMES: ClassVar[QuerySet[E5LeagueTableIframe]] = E5LeagueTableIframe.objects.filter(
+        season__active=True)
+
     soup: BeautifulSoup = None
     driver: WebDriver = None
     is_connected: bool = False
@@ -237,7 +243,6 @@ class E5SeleniumWebDriver:
 
         return iframe
 
-    #################################################### GET LEAGUES ###################################################
     def get_leagues(self, error_context: str) -> None:
         # Check connection
         self.check_is_connected()
@@ -283,6 +288,92 @@ class E5SeleniumWebDriver:
                     # Save League
                     new_league.save()
                     self.log_info(message=f"League {league_name} created in database")
+
+    # E5
+    def get_seasons(self, error_context: str) -> None:
+        # Check connection
+        self.check_is_connected()
+
+        if self.status.success:
+            for league in self.LEAGUES:
+                league: E5League  # Type hinting for Intellij
+
+                # Get Url
+                self.get(url=league.url, error_context=error_context)
+                if not self.status.success:
+                    continue
+
+                # Get Season Name and Url
+                try:
+                    season_details: str = self.soup.select(selector="div.textwidget.custom-html-widget p")[1].text
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_SEASON_NAME_OR_URL_FAILED,
+                                   error_context=error_context, exception=ex)
+                    continue
+
+                # Create Active Season
+                active_season: E5Season = E5Season()
+                active_season.name = season_details.split()[-1]
+                active_season.league = league
+                active_season.url = league.url
+                active_season.active = True
+
+                # Check if season already exists before saving or updating
+                if not active_season.exists():
+                    active_season.save()
+                    self.log_info(f"League {active_season.league.name} Season {active_season.name} created in database")
+                else:
+                    target_active_season: E5Season = E5Season.objects.get(active=True, league=league,
+                                                                          name=active_season.name)
+                    target_active_season.url = league.url
+                    target_active_season.save()
+                    self.log_info(f"League {active_season.league.name} Season {active_season.name} updated in database")
+
+    # E5
+    def get_teams(self, error_context: str) -> None:
+        # Check connection
+        self.check_is_connected()
+
+        if self.status.success:
+            for league_table in self.LEAGUE_TABLE_IFRAMES:
+                league_table: E5LeagueTableIframe  # Type hinting for Intellij
+
+                # Get Url
+                self.get(url=league_table.url, error_context=error_context)
+                if not self.status.success:
+                    continue
+
+                # Get Teams
+                teams_a: ResultSet[Tag] = self.soup.select(selector="table.waffle.no-grid tr td a[target='_blank']")
+
+                # Get Team
+                for team_a in teams_a:
+                    try:
+                        team_name: str = team_a.text
+                        team_url: str = team_a['href']
+                    except Exception as ex:
+                        self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_TEAM_NAME_OR_URL_FAILED,
+                                       error_context=error_context, exception=ex)
+                        continue
+
+                    # Create Team
+                    if team_name != "" and team_url != "":
+                        team: E5Team = E5Team()
+                        team.name = team_name
+                        team.url = team_url
+                        team.slug = slugify(value=team_name)
+                        team.season = league_table.season
+
+                        # Check if team already exists before saving or updating
+                        if not team.exists():
+                            team.save()
+                            self.log_info(f"Team {team.name} created in database")
+                        else:
+                            target_team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
+                            target_team.url = team_url
+                            target_team.slug = slugify(value=team_name)
+                            target_team.save()
+                            self.log_info(f"Team {team.name} updated in database")
 
     ##################################################### GET IFRAME ###################################################
     # E5

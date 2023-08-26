@@ -3,7 +3,7 @@ from typing import ClassVar
 
 from django.core.management.base import BaseCommand
 
-from e5toolbox.scrapper.team.get_teams import E5GetTeams
+from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver
 
 
 # E5
@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Instantiate Scraper
-        scraper: E5GetTeams = E5GetTeams()
+        scraper: E5SeleniumWebDriver = E5SeleniumWebDriver()
 
         # Logging
         scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} start -----")
@@ -26,7 +26,7 @@ class Command(BaseCommand):
 
         # Get Teams
         if scraper.status.success:
-            scraper.get_active()
+            scraper.get_teams(error_context=self.CONTEXT)
             if not scraper.status.success:
                 scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")

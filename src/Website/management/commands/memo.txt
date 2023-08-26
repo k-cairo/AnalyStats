@@ -3,7 +3,7 @@ OK  -> E5GetSeasons
 OK   -> E5GetLeaguesTablesIframes
 OK  -> E5GetTeams
 OK  -> E5GetTeamsRanking
-OK  -> E5GetActiveSeasonsBTTSIframes
+OK  -> E5GetBTTSIframes
 OK  -> E5GetOver05GoalsIframes
 OK  -> E5GetOver15GoalsIframes
 OK  -> E5GetOver25GoalsIframes

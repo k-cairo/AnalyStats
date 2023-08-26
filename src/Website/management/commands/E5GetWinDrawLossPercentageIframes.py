@@ -3,7 +3,8 @@ from typing import ClassVar
 
 from django.core.management.base import BaseCommand
 
-from e5toolbox.scrapper.stats.get_win_draw_loss_percentage import E5GetWinDrawLossPercentage
+from Website.models import E5WinDrawLossPercentageIframe
+from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver
 
 
 # E5
@@ -13,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Instantiate Scraper
-        scraper: E5GetWinDrawLossPercentage = E5GetWinDrawLossPercentage()
+        scraper: E5SeleniumWebDriver = E5SeleniumWebDriver()
 
         # Logging
         scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} start -----")
@@ -26,7 +27,8 @@ class Command(BaseCommand):
 
         # Get Win Draw Loss Percentage Iframes
         if scraper.status.success:
-            scraper.get_iframes()
+            scraper.get_iframe(endpoint="wdl/", error_context=self.CONTEXT,
+                               save_message="Win Draw Loss Percentage Iframes", class_=E5WinDrawLossPercentageIframe)
             if not scraper.status.success:
                 scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")
