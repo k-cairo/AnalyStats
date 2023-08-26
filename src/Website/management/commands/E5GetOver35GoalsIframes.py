@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from typing import ClassVar
 
@@ -10,7 +9,7 @@ from e5toolbox.scrapper.stats.get_over_35_goals import E5GetOver35Goals
 # E5
 class Command(BaseCommand):
     CONTEXT: ClassVar[str] = "E5GetOver25GoalsIframes"
-    help = "Get Active Season's Overs 3.5 Goals Iframes"
+    help = "Get Overs 3.5 Goals Iframes"
 
     def handle(self, *args, **options):
         # Instantiate Scraper
@@ -22,23 +21,20 @@ class Command(BaseCommand):
         # Init driver
         scraper.init()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : "
-                                f"{scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Iframes
+        # Get Over 3.5 Goals Iframes
         if scraper.status.success:
             scraper.get_iframes()
             if not scraper.status.success:
-                logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : "
-                                    f"{scraper.status.error_type} : "
+                scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")
 
         # Close driver
         scraper.quit()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : "
-                                f"{scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
         # Logging

@@ -24,7 +24,7 @@ class Command(BaseCommand):
             scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Active Seasons Teams
+        # Get BTTS Iframes
         if scraper.status.success:
             scraper.get_iframes()
             if not scraper.status.success:

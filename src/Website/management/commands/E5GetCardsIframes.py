@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from typing import ClassVar
 
@@ -6,14 +5,11 @@ from django.core.management.base import BaseCommand
 
 from e5toolbox.scrapper.stats.get_cards import E5GetCards
 
-logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
-                    format="%(asctime)s - %(levelname)s - %(message)s")
-
 
 # E5
 class Command(BaseCommand):
     CONTEXT: ClassVar[str] = "GetCardsIframes"
-    help = "Get Active Season's Cards Iframes"
+    help = "Get Cards Iframes"
 
     def handle(self, *args, **options):
         # Instantiate Scraper
@@ -25,20 +21,20 @@ class Command(BaseCommand):
         # Init driver
         scraper.init()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Active Seasons Teams
+        # Get Cards Iframes
         if scraper.status.success:
             scraper.get_iframes()
             if not scraper.status.success:
-                logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+                scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")
 
         # Close driver
         scraper.quit()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
         # Logging

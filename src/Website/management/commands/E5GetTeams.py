@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from typing import ClassVar
 
@@ -6,42 +5,39 @@ from django.core.management.base import BaseCommand
 
 from e5toolbox.scrapper.team.get_teams import E5GetTeams
 
-logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
-                    format="%(asctime)s - %(levelname)s - %(message)s")
-
 
 # E5
 class Command(BaseCommand):
     CONTEXT: ClassVar[str] = "E5GetTeams"
-    help = "Get Active Season's Teams"
+    help = "Get Teams"
 
     def handle(self, *args, **options):
         # Instantiate Scraper
         scraper: E5GetTeams = E5GetTeams()
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : {self.CONTEXT} start -----")
+        scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} start -----")
 
         # Init driver
         scraper.init()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Active Seasons Teams
+        # Get Teams
         if scraper.status.success:
             scraper.get_active()
             if not scraper.status.success:
-                logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+                scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")
 
         # Close driver
         scraper.quit()
         if not scraper.status.success:
-            logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : {self.CONTEXT} end -----")
+        scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} end -----")
 
-        self.stdout.write("Active Season's Teams Updated Successfully")
+        self.stdout.write("Teams Updated Successfully")
