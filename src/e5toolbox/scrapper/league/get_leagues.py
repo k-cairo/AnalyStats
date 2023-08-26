@@ -2,19 +2,21 @@ import dataclasses
 from typing import ClassVar
 
 from bs4 import ResultSet, Tag, BeautifulSoup
+from django.db.models import QuerySet
 from django.utils.text import slugify
 
-from Website.models import E5League
+from Website.models import E5League, E5Season
 from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver, E5SeleniumWebdriverError
 
 
 # E5
 @dataclasses.dataclass
 class E5GetLeagues(E5SeleniumWebDriver):
+    ACTIVE_SEASONS: ClassVar[QuerySet[E5Season]] = E5Season.objects.filter(active=True)
     ERROR_CONTEXT: ClassVar[str] = "E5GetLeagues"
 
     # E5
-    def get_leagues(self):
+    def get(self):
         # Check connection
         self.check_is_connected()
 
@@ -24,7 +26,7 @@ class E5GetLeagues(E5SeleniumWebDriver):
                 self.driver.get("https://www.thestatsdontlie.com/football/leagues/")
             except Exception as ex:
                 self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_URL_FAILED,
-                               error_context=self.ERROR_CONTEXT, exception=ex)
+                               error_context=f"{self.ERROR_CONTEXT}.get_leagues()", exception=ex)
 
         # Get Soup
         if self.status.success:
@@ -32,7 +34,7 @@ class E5GetLeagues(E5SeleniumWebDriver):
                 self.soup = BeautifulSoup(self.driver.page_source, 'html.parser')
             except Exception as ex:
                 self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_SOUP_FAILED,
-                               error_context=self.ERROR_CONTEXT, exception=ex)
+                               error_context=f"{self.ERROR_CONTEXT}.get_leagues()", exception=ex)
 
         # Get Leagues Web Element
         if self.status.success and self.soup is not None:
@@ -47,7 +49,7 @@ class E5GetLeagues(E5SeleniumWebDriver):
                     league_url: str = league['href']
                 except Exception as ex:
                     self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_LEAGUE_NAME_OR_URL_FAILED,
-                                   error_context=self.ERROR_CONTEXT, exception=ex)
+                                   error_context=f"{self.ERROR_CONTEXT}.get_leagues()", exception=ex)
                     continue
 
                 # Create League

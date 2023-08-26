@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
         # Get Leagues
         if scraper.status.success:
-            scraper.get_leagues()
+            scraper.get()
             if not scraper.status.success:
                 logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                     f"{scraper.status.exception}")

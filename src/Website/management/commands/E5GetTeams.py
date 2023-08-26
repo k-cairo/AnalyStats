@@ -4,7 +4,7 @@ from typing import ClassVar
 
 from django.core.management.base import BaseCommand
 
-from e5toolbox.scrapper.season.get_seasons import E5GetSeasons
+from e5toolbox.scrapper.team.get_teams import E5GetTeams
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -12,12 +12,12 @@ logging.basicConfig(level=logging.INFO, filename="management_command.log", filem
 
 # E5
 class Command(BaseCommand):
-    CONTEXT: ClassVar[str] = "GetSeasons"
-    help = "Get Seasons"
+    CONTEXT: ClassVar[str] = "E5GetTeams"
+    help = "Get Active Season's Teams"
 
     def handle(self, *args, **options):
         # Instantiate Scraper
-        scraper: E5GetSeasons = E5GetSeasons()
+        scraper: E5GetTeams = E5GetTeams()
 
         # Logging
         logging.info(msg=f"{datetime.now()} : {self.CONTEXT} start -----")
@@ -28,7 +28,7 @@ class Command(BaseCommand):
             logging.warning(msg=f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
                                 f"{scraper.status.exception}")
 
-        # Get Leagues
+        # Get Active Seasons Teams
         if scraper.status.success:
             scraper.get_active()
             if not scraper.status.success:
@@ -44,4 +44,4 @@ class Command(BaseCommand):
         # Logging
         logging.info(msg=f"{datetime.now()} : {self.CONTEXT} end -----")
 
-        self.stdout.write('Seasons Updated Successfully')
+        self.stdout.write("Active Season's Teams Updated Successfully")

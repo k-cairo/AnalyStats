@@ -15,7 +15,7 @@ class E5GetSeasons(E5SeleniumWebDriver):
     LEAGUES: ClassVar[QuerySet[E5League]] = E5League.objects.all()
 
     # E5
-    def get_active_seasons(self):
+    def get_active(self):
         # Check connection
         self.check_is_connected()
 
