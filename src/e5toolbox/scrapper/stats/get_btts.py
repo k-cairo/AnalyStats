@@ -49,7 +49,7 @@ class E5GetBtts(E5SeleniumWebDriver):
                         iframe_url: str = btts_iframe['src']
                     except Exception as ex:
                         self.exception(
-                            error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_ACTIVE_SEASON_IFRAME_URL_FAILED,
+                            error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_IFRAME_URL_FAILED,
                             error_context=f"{self.ERROR_CONTEXT}.get_iframes()", exception=ex)
                         continue
 

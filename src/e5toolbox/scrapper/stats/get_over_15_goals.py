@@ -50,7 +50,7 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         iframe_url: str = over_15_goals_iframe['src']
                     except Exception as ex:
                         self.exception(
-                            error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_ACTIVE_SEASON_OVER_15_GOALS_IFRAME_URL_FAILED,
+                            error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_OVER_15_GOALS_IFRAME_URL_FAILED,
                             error_context=f"{self.ERROR_CONTEXT}.get_iframes()", exception=ex)
                         continue
 

@@ -39,7 +39,7 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                 try:
                     iframe_url: str = self.soup.select_one(selector="div.fusion-text.fusion-text-2 iframe")['src']
                 except Exception as ex:
-                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_ACTIVE_SEASON_IFRAME_URL_FAILED,
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_IFRAME_URL_FAILED,
                                    error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_iframes()", exception=ex)
                     continue
 
