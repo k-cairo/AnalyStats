@@ -30,11 +30,6 @@ class E5GetTeams(E5SeleniumWebDriver):
                 if not self.status.success:
                     continue
 
-                # Get Soup
-                self.get_soup(error_context=f"{self.ERROR_CONTEXT}.get_active()")
-                if not self.status.success:
-                    continue
-
                 # Get Teams
                 teams_a: ResultSet[Tag] = self.soup.select(selector="table.waffle.no-grid tr td a[target='_blank']")
 

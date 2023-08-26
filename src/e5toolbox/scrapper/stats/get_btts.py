@@ -28,11 +28,6 @@ class E5GetBtts(E5SeleniumWebDriver):
                 if not self.status.success:
                     continue
 
-                # Get Soup
-                self.get_soup(error_context=f"{self.ERROR_CONTEXT}.get_iframes()")
-                if not self.status.success:
-                    continue
-
                 # Get BTTS Iframe
                 btts_iframes: ResultSet[Tag] = self.soup.select(selector="div.tab-content iframe")
 

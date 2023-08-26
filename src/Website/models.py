@@ -108,12 +108,62 @@ class E5LeagueTableIframe(models.Model):
         verbose_name_plural = "League Tables Iframes"
 
     # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
     def __str__(self):
         return f"League Table - {self.season}"
 
     # E5
     def exists(self) -> bool:
         return E5LeagueTableIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5BttsIframes(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    btts_url = models.URLField(max_length=500)
+    btts_1h_url = models.URLField(max_length=500)
+    btts_2h_url = models.URLField(max_length=500)
+    btts_bh_url = models.URLField(max_length=500)
+    btts_25_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "BTTS Iframe"
+        verbose_name_plural = "BTTS Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.btts_url = iframe.btts_url
+        target_iframe.btts_1h_url = iframe.btts_1h_url
+        target_iframe.btts_2h_url = iframe.btts_2h_url
+        target_iframe.btts_bh_url = iframe.btts_bh_url
+        target_iframe.btts_25_url = iframe.btts_25_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"BTTS Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return (self.btts_url != "" and self.btts_1h_url != "" and self.btts_2h_url != "" and self.btts_bh_url != ""
+                and self.btts_25_url != "")
+
+    # E5
+    def exists(self) -> bool:
+        return E5BttsIframes.objects.filter(season=self.season).exists()
 
 
 # E5
@@ -132,6 +182,16 @@ class E5Over05GoalsIframe(models.Model):
     class Meta:
         verbose_name = "Over 0.5 Goals Iframe"
         verbose_name_plural = "Over 0.5 Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.over_05_goals_url = iframe.over_05_goals_url
+        target_iframe.over_05_goals_1h_url = iframe.over_05_goals_1h_url
+        target_iframe.over_05_goals_2h_url = iframe.over_05_goals_2h_url
+        target_iframe.over_05_goals_bh_url = iframe.over_05_goals_bh_url
+        target_iframe.save()
 
     # E5
     def __str__(self):
@@ -165,6 +225,16 @@ class E5Over15GoalsIframe(models.Model):
         verbose_name_plural = "Over 1.5 Goals Iframes"
 
     # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.over_15_goals_url = iframe.over_15_goals_url
+        target_iframe.over_15_goals_1h_url = iframe.over_15_goals_1h_url
+        target_iframe.over_15_goals_2h_url = iframe.over_15_goals_2h_url
+        target_iframe.over_15_goals_bh_url = iframe.over_15_goals_bh_url
+        target_iframe.save()
+
+    # E5
     def __str__(self):
         return f"Over 1.5 Goals Iframe - {self.season}"
 
@@ -193,6 +263,16 @@ class E5Over25GoalsIframe(models.Model):
     class Meta:
         verbose_name = "Over 2.5 Goals Iframe"
         verbose_name_plural = "Over 2.5 Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.over_25_goals_url = iframe.over_25_goals_url
+        target_iframe.over_25_goals_1h_url = iframe.over_25_goals_1h_url
+        target_iframe.over_25_goals_2h_url = iframe.over_25_goals_2h_url
+        target_iframe.over_25_goals_bh_url = iframe.over_25_goals_bh_url
+        target_iframe.save()
 
     # E5
     def __str__(self):
@@ -225,6 +305,16 @@ class E5Over35GoalsIframe(models.Model):
         verbose_name_plural = "Over 3.5 Goals Iframes"
 
     # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.over_35_goals_url = iframe.over_35_goals_url
+        target_iframe.over_35_goals_1h_url = iframe.over_35_goals_1h_url
+        target_iframe.over_35_goals_2h_url = iframe.over_35_goals_2h_url
+        target_iframe.over_35_goals_bh_url = iframe.over_35_goals_bh_url
+        target_iframe.save()
+
+    # E5
     def __str__(self):
         return f"Over 3.5 Goals Iframe - {self.season}"
 
@@ -236,38 +326,6 @@ class E5Over35GoalsIframe(models.Model):
     # E5
     def exists(self) -> bool:
         return E5Over35GoalsIframe.objects.filter(season=self.season).exists()
-
-
-# E5
-class E5BttsIframes(models.Model):
-    id = models.AutoField(primary_key=True)
-    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
-    btts_url = models.URLField(max_length=500)
-    btts_1h_url = models.URLField(max_length=500)
-    btts_2h_url = models.URLField(max_length=500)
-    btts_bh_url = models.URLField(max_length=500)
-    btts_25_url = models.URLField(max_length=500)
-    date_updated = models.DateTimeField(auto_now=True)
-
-    objects = models.Manager()
-
-    # E5
-    class Meta:
-        verbose_name = "BTTS Iframe"
-        verbose_name_plural = "BTTS Iframes"
-
-    # E5
-    def __str__(self):
-        return f"BTTS Iframe - {self.season}"
-
-    # E5
-    def not_empty(self) -> bool:
-        return (self.btts_url != "" and self.btts_1h_url != "" and self.btts_2h_url != "" and self.btts_bh_url != ""
-                and self.btts_25_url != "")
-
-    # E5
-    def exists(self) -> bool:
-        return E5BttsIframes.objects.filter(season=self.season).exists()
 
 
 # E5
@@ -291,6 +349,21 @@ class E5CornersIframes(models.Model):
     class Meta:
         verbose_name = "Corners Iframe"
         verbose_name_plural = "Corners Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.team_corners_for_1h_url = iframe.team_corners_for_1h_url
+        target_iframe.team_corners_against_1h_url = iframe.team_corners_against_1h_url
+        target_iframe.team_corners_for_2h_url = iframe.team_corners_for_2h_url
+        target_iframe.team_corners_against_2h_url = iframe.team_corners_against_2h_url
+        target_iframe.team_corners_for_ft_url = iframe.team_corners_for_ft_url
+        target_iframe.team_corners_against_ft_url = iframe.team_corners_against_ft_url
+        target_iframe.match_corners_1h_url = iframe.match_corners_1h_url
+        target_iframe.match_corners_2h_url = iframe.match_corners_2h_url
+        target_iframe.match_corners_ft_url = iframe.match_corners_ft_url
+        target_iframe.save()
 
     # E5
     def __str__(self):
@@ -326,6 +399,16 @@ class E5CardsIframes(models.Model):
         verbose_name_plural = "Cards Iframes"
 
     # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.yellow_cards_for_url = iframe.yellow_cards_for_url
+        target_iframe.yellow_cards_against_url = iframe.yellow_cards_against_url
+        target_iframe.red_cards_for_url = iframe.red_cards_for_url
+        target_iframe.red_cards_against_url = iframe.red_cards_against_url
+        target_iframe.save()
+
+    # E5
     def __str__(self):
         return f"Cards Iframe - {self.season}"
 
@@ -337,6 +420,146 @@ class E5CardsIframes(models.Model):
     # E5
     def exists(self) -> bool:
         return E5CardsIframes.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5WinDrawLossPercentageIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Win Draw Loss Percentage Iframe"
+        verbose_name_plural = "Win Draw Loss Percentage Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Win Draw Loss Percentage Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5WinDrawLossPercentageIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5HalfTimeFullTimeIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Half Time Full Time Iframe"
+        verbose_name_plural = "Half Time Full Time Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Half Time Full Time Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5HalfTimeFullTimeIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5ScoredBothHalfIframes(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    scored_both_half_url = models.URLField(max_length=500)
+    conceded_both_half_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Scored Both Half Iframe"
+        verbose_name_plural = "Scored Both Half Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.scored_both_half_url = iframe.scored_both_half_url
+        target_iframe.conceded_both_half_url = iframe.conceded_both_half_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Scored Both Half Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.scored_both_half_url != "" and self.conceded_both_half_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5ScoredBothHalfIframes.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5WonBothHalfIframes(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    won_both_half_url = models.URLField(max_length=500)
+    lost_both_half_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Won Both Half Iframe"
+        verbose_name_plural = "Won Both Half Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe) -> None:
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.won_both_half_url = iframe.won_both_half_url
+        target_iframe.lost_both_half_url = iframe.lost_both_half_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Won Both Half Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.won_both_half_url != "" and self.lost_both_half_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5WonBothHalfIframes.objects.filter(season=self.season).exists()
 
 
 #################################################### STATS #############################################################

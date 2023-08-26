@@ -30,11 +30,6 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                 if not self.status.success:
                     continue
 
-                # Get Soup
-                self.get_soup(error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_iframes()")
-                if not self.status.success:
-                    continue
-
                 # Get Iframe Url
                 try:
                     iframe_url: str = self.soup.select_one(selector="div.fusion-text.fusion-text-2 iframe")['src']
@@ -69,11 +64,6 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
 
                 # Get Url
                 self.get(url=league_table.url, error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_teams_ranking()")
-                if not self.status.success:
-                    continue
-
-                # Get Soup
-                self.get_soup(error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_teams_ranking()")
                 if not self.status.success:
                     continue
 

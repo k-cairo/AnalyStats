@@ -1,22 +1,27 @@
-OK / 01 -> E5GetLeagues
-OK / 02 -> E5GetSeasons
-OK / 03  -> E5GetLeaguesTablesIframes
-OK / 04 -> E5GetTeams
-OK / 05 -> E5GetTeamsRanking
-OK / 06 -> E5GetActiveSeasonsBTTSIframes
-OK / 07 -> E5GetOver05GoalsIframes
-OK / 08 -> E5GetOver15GoalsIframes
-OK / 09 -> E5GetOver25GoalsIframes
-OK / 10 -> E5GetOver35GoalsIframes
-OK / 11 -> E5GetCornersIframes
-OK / 12 -> E5GetCardsIframes
-TODO / 13 -> E5ParseOver05GoalsIframes
-TODO / 14 -> E5ParseOver15GoalsIframes
-TODO / 15 -> E5ParseOver25GoalsIframes
-TODO / 16 -> E5ParseOver35GoalsIframes
-TODO / 17 -> E5ParseCornersIframes
-TODO / 18 -> E5ParseCardsIframes
+OK  -> E5GetLeagues
+OK  -> E5GetSeasons
+OK   -> E5GetLeaguesTablesIframes
+OK  -> E5GetTeams
+OK  -> E5GetTeamsRanking
+OK  -> E5GetActiveSeasonsBTTSIframes
+OK  -> E5GetOver05GoalsIframes
+OK  -> E5GetOver15GoalsIframes
+OK  -> E5GetOver25GoalsIframes
+OK  -> E5GetOver35GoalsIframes
+OK  -> E5GetCornersIframes
+OK  -> E5GetCardsIframes
+OK  -> E5GetWinDrawLossPercentageIframes
+TODO  -> E5GetHalfTimeFullTimeIframes
+TODO  -> E5GetScoredBothHalfIframes
+TODO  -> E5GetWonBothHalfIframes
+OK  -> E5ParseOver05GoalsIframes
+OK  -> E5ParseOver15GoalsIframes
+OK  -> E5ParseOver25GoalsIframes
+OK  -> E5ParseOver35GoalsIframes
+OK  -> E5ParseCornersIframes
+OK  -> E5ParseCardsIframes
 TODO / 19 -> Template HTML Includes All Stats
+TODO -> Template Add a Caroussel
 TODO -> URL in AppConf
 TODO -> Ranking for MLS
 TODO -> In model, change auto_now_add to auto_now

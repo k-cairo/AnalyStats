@@ -1,48 +1,43 @@
-import logging
 from datetime import datetime
+from typing import ClassVar
 
 from django.core.management.base import BaseCommand
 
-from e5toolbox.scrapper.E5SeleniumWebdriver import E5SeleniumWebDriver
-
-logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
-                    format="%(asctime)s - %(levelname)s - %(message)s")
+from e5toolbox.scrapper.stats.get_over_15_goals import E5GetOver15Goals
 
 
 # E5
 class Command(BaseCommand):
-    help = "Parse Active Season's Overs 1.5 Goals Iframes"
+    CONTEXT: ClassVar[str] = "E5ParseOver15GoalsIframes"
+    help = "Parse Over 1.5 Goals Iframes"
 
     def handle(self, *args, **options):
-        # Instance selenium_webdriver
-        selenium_webdriver: E5SeleniumWebDriver = E5SeleniumWebDriver()
+        # Instantiate Scraper
+        scraper: E5GetOver15Goals = E5GetOver15Goals()
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : ParseActiveSeasonsOvers1.5GoalsIframes start -----")
+        scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} start -----")
 
         # Init driver
-        selenium_webdriver.init()
-        if not selenium_webdriver.status.success:
-            logging.warning(msg=f"Parse Active Seasons Over 1.5 Goals Iframes - {selenium_webdriver.status.error_context} : "
-                                f"{selenium_webdriver.status.error_type} : "
-                                f"{selenium_webdriver.status.exception}")
+        scraper.init()
+        if not scraper.status.success:
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+                                f"{scraper.status.exception}")
 
-        # Get Active Seasons Teams
-        if selenium_webdriver.status.success:
-            selenium_webdriver.parse_active_seasons_over_15_goals_iframes()
-            if not selenium_webdriver.status.success:
-                logging.warning(msg=f"Parse Active Seasons Over 1.5 Goals Iframes - {selenium_webdriver.status.error_context} : "
-                                    f"{selenium_webdriver.status.error_type} : "
-                                    f"{selenium_webdriver.status.exception}")
+        # Parse Over 1.5 Goals Iframes
+        if scraper.status.success:
+            scraper.parse_iframes()
+            if not scraper.status.success:
+                scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+                                    f"{scraper.status.exception}")
 
         # Close driver
-        selenium_webdriver.quit()
-        if not selenium_webdriver.status.success:
-            logging.warning(msg=f"Parse Active Seasons Over 1.5 Goals Iframes - {selenium_webdriver.status.error_context} : "
-                                f"{selenium_webdriver.status.error_type} : "
-                                f"{selenium_webdriver.status.exception}")
+        scraper.quit()
+        if not scraper.status.success:
+            scraper.log_warning(f"{self.CONTEXT} - {scraper.status.error_context} : {scraper.status.error_type} : "
+                                f"{scraper.status.exception}")
 
         # Logging
-        logging.info(msg=f"{datetime.now()} : ParseActiveSeasonsOvers1.5GoalsIframes end -----")
+        scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} end -----")
 
-        self.stdout.write("Active Season's Overs 1.5 Goals Iframes Parsed Successfully")
+        self.stdout.write("Over 1.5 Goals Iframes Parsed Successfully")
