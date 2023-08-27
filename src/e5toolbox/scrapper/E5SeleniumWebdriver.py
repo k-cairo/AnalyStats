@@ -11,9 +11,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from Website.models import E5Season, E5CardsIframes, E5BttsIframes, E5Over05GoalsIframe, \
-    E5Over15GoalsIframe, E5Over25GoalsIframe, E5Over35GoalsIframe, E5CornersIframes, E5ScoredBothHalfIframes, \
-    E5WonBothHalfIframes, E5League, E5LeagueTableIframe, E5Team
+from Website.models import (E5Season, E5CardsIframes, E5BttsIframes, E5Over05GoalsIframe, E5ScoredFirstIframe,
+                            E5Over15GoalsIframe, E5Over25GoalsIframe, E5Over35GoalsIframe, E5CornersIframes,
+                            E5ScoredBothHalfIframes, E5WonBothHalfIframes, E5League, E5LeagueTableIframe, E5Team,
+                            E51st2ndHalfGoalsIframe, E5CleanSheetIframe, E5WonToNilIframe, E5WinLossMarginIframe)
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -22,7 +23,6 @@ logging.basicConfig(level=logging.INFO, filename="management_command.log", filem
 @dataclasses.dataclass
 class E5SeleniumWebdriverError(Enum):
     ERROR_TYPE_NONE = ""
-
     # Failed
     ERROR_TYPE_INIT_FAILED = "init_failed"
     ERROR_TYPE_QUIT_FAILED = "quit_failed"
@@ -109,6 +109,13 @@ class E5SeleniumWebDriver:
             self.status.error_context = "E5SeleniumWebDriver.quit()"
             self.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_QUIT_FAILED
             self.status.exception = ex
+
+    # E5
+    def init_status(self) -> None:
+        self.status.success = True
+        self.status.error_type = E5SeleniumWebdriverError.ERROR_TYPE_NONE
+        self.status.error_context = ""
+        self.status.exception = ""
 
     # E5
     def check_is_connected(self) -> None:
@@ -239,7 +246,34 @@ class E5SeleniumWebDriver:
                 if idx == 0:
                     iframe.won_both_half_url = iframe_url
                 elif idx == 1:
-                    iframe.lost_both_half_url = iframe_url
+                    iframe.won_both_half_url = iframe_url
+            elif isinstance(iframe, E51st2ndHalfGoalsIframe):
+                if idx == 0:
+                    iframe.overall_1st_2nd_half_goals_url = iframe_url
+                elif idx == 1:
+                    iframe.home_1st_2nd_half_goals_url = iframe_url
+                elif idx == 2:
+                    iframe.away_1st_2nd_half_goals_url = iframe_url
+            elif isinstance(iframe, E5CleanSheetIframe):
+                if idx == 0:
+                    iframe.clean_sheet_url = iframe_url
+                elif idx == 1:
+                    iframe.failed_to_score_url = iframe_url
+            elif isinstance(iframe, E5WonToNilIframe):
+                if idx == 0:
+                    iframe.won_to_nil_url = iframe_url
+                elif idx == 1:
+                    iframe.lost_to_nil_url = iframe_url
+            elif isinstance(iframe, E5WinLossMarginIframe):
+                if idx == 0:
+                    iframe.winning_margins_url = iframe_url
+                elif idx == 1:
+                    iframe.losing_margins_url = iframe_url
+            elif isinstance(iframe, E5ScoredFirstIframe):
+                if idx == 0:
+                    iframe.scored_first_url = iframe_url
+                elif idx == 1:
+                    iframe.conceded_first_url = iframe_url
 
         return iframe
 
@@ -426,6 +460,9 @@ class E5SeleniumWebDriver:
             for season in self.ACTIVE_SEASONS:
                 season: E5Season  # Type hinting for Intellij
 
+                # Init Status
+                self.init_status()
+
                 # Get Url
                 self.get(url=f"{season.url}{endpoint}", error_context=error_context)
                 if not self.status.success:
@@ -433,6 +470,15 @@ class E5SeleniumWebDriver:
 
                 # Get Iframes
                 stat_iframe: Tag | None = self.soup.select_one(selector="div.fusion-text.fusion-text-2 iframe")
+
+                if stat_iframe is None and endpoint == "amr/":
+                    # Get Another Url
+                    self.get(url=f"{season.url}atg/", error_context=error_context)
+                    if not self.status.success:
+                        continue
+
+                    # Get Iframes
+                    stat_iframe: Tag | None = self.soup.select_one(selector="div.fusion-text.fusion-text-2 iframe")
 
                 # Check Iframes
                 if stat_iframe is None:

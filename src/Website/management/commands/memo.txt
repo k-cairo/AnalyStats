@@ -11,15 +11,15 @@ OK  -> E5GetOver35GoalsIframes
 OK  -> E5GetCornersIframes
 OK  -> E5GetCardsIframes
 OK  -> E5GetWinDrawLossPercentageIframes
-TODO  -> E5GetHalfTimeFullTimeIframes
-TODO  -> E5GetScoredBothHalfIframes
-TODO  -> E5GetWonBothHalfIframes
-OK  -> E5ParseOver05GoalsIframes
-OK  -> E5ParseOver15GoalsIframes
-OK  -> E5ParseOver25GoalsIframes
-OK  -> E5ParseOver35GoalsIframes
-OK  -> E5ParseCornersIframes
-OK  -> E5ParseCardsIframes
+OK  -> E5GetHalfTimeFullTimeIframes
+OK  -> E5GetScoredBothHalfIframes
+OK  -> E5GetWonBothHalfIframes
+TODO  -> E5ParseOver05GoalsIframes Refactoring
+TODO  -> E5ParseOver15GoalsIframes Refactoring
+TODO  -> E5ParseOver25GoalsIframes Refactoring
+TODO  -> E5ParseOver35GoalsIframes Refactoring
+TODO  -> E5ParseCornersIframes
+TODO  -> E5ParseCardsIframes
 TODO / 19 -> Template HTML Includes All Stats
 TODO -> Template Add a Caroussel
 TODO -> URL in AppConf

@@ -565,6 +565,359 @@ class E5WonBothHalfIframes(models.Model):
         return E5WonBothHalfIframes.objects.filter(season=self.season).exists()
 
 
+# E5
+class E51st2ndHalfGoalsIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    overall_1st_2nd_half_goals_url = models.URLField(max_length=500)
+    home_1st_2nd_half_goals_url = models.URLField(max_length=500)
+    away_1st_2nd_half_goals_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "1st 2nd Half Goals Iframe"
+        verbose_name_plural = "1st 2nd Half Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.overall_1st_2nd_half_goals_url = iframe.overall_1st_2nd_half_goals_url
+        target_iframe.home_1st_2nd_half_goals_url = iframe.home_1st_2nd_half_goals_url
+        target_iframe.away_1st_2nd_half_goals_url = iframe.away_1st_2nd_half_goals_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"1st 2nd Half Goals Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return (self.overall_1st_2nd_half_goals_url != "" and self.home_1st_2nd_half_goals_url != "" and
+                self.away_1st_2nd_half_goals_url != "")
+
+    # E5
+    def exists(self) -> bool:
+        return E51st2ndHalfGoalsIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5RescuedPointsIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Rescued Points Iframe"
+        verbose_name_plural = "Rescued Points Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Rescued Points Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5RescuedPointsIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5CleanSheetIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    clean_sheet_url = models.URLField(max_length=500)
+    failed_to_score_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Clean Sheet Iframe"
+        verbose_name_plural = "Clean Sheet Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.clean_sheet_url = iframe.clean_sheet_url
+        target_iframe.failed_to_score_url = iframe.failed_to_score_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Clean Sheet Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.clean_sheet_url != "" and self.failed_to_score_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5CleanSheetIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5WonToNilIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    won_to_nil_url = models.URLField(max_length=500)
+    lost_to_nil_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Won To Nil Iframe"
+        verbose_name_plural = "Won To Nil Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.won_to_nil_url = iframe.won_to_nil_url
+        target_iframe.lost_to_nil_url = iframe.lost_to_nil_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Won To Nil Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.won_to_nil_url != "" and self.lost_to_nil_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5WonToNilIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5WinLossMarginIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    winning_margins_url = models.URLField(max_length=500)
+    losing_margins_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Win Loss Margin Iframe"
+        verbose_name_plural = "Win Loss Margin Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.winning_margins_url = iframe.winning_margins_url
+        target_iframe.losing_margins_url = iframe.losing_margins_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Win Loss Margin Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.winning_margins_url != "" and self.losing_margins_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5WinLossMarginIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5ScoredFirstIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    scored_first_url = models.URLField(max_length=500)
+    conceded_first_url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Scored First Iframe"
+        verbose_name_plural = "Scored First Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.scored_first_url = iframe.scored_first_url
+        target_iframe.conceded_first_url = iframe.conceded_first_url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Scored First Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.scored_first_url != "" and self.conceded_first_url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5ScoredFirstIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5Average1stGoalTimeIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Average 1st Goal Time Iframe"
+        verbose_name_plural = "Average 1st Goal Time Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Average 1st Goal Time Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5Average1stGoalTimeIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5AverageTeamGoalsIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Average Team Goals Iframe"
+        verbose_name_plural = "Average Team Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Average Team Goals Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5AverageTeamGoalsIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5EarlyGoalsIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Early Goals Iframe"
+        verbose_name_plural = "Early Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Early Goals Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5EarlyGoalsIframe.objects.filter(season=self.season).exists()
+
+
+# E5
+class E5LateGoalsIframe(models.Model):
+    id = models.AutoField(primary_key=True)
+    season = models.ForeignKey(E5Season, on_delete=models.CASCADE)
+    url = models.URLField(max_length=500)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Late Goals Iframe"
+        verbose_name_plural = "Late Goals Iframes"
+
+    # E5
+    @classmethod
+    def update_iframe(cls, season: E5Season, iframe):
+        target_iframe = cls.objects.get(season=season)
+        target_iframe.url = iframe.url
+        target_iframe.save()
+
+    # E5
+    def __str__(self):
+        return f"Late Goals Iframe - {self.season}"
+
+    # E5
+    def not_empty(self) -> bool:
+        return self.url != ""
+
+    # E5
+    def exists(self) -> bool:
+        return E5LateGoalsIframe.objects.filter(season=self.season).exists()
+
+
 #################################################### STATS #############################################################
 # E5
 class E5TeamRanking(models.Model):
