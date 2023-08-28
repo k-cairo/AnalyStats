@@ -14,7 +14,9 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from Website.models import (E5Season, E5CardsIframes, E5BttsIframes, E5Over05GoalsIframe, E5ScoredFirstIframe,
                             E5Over15GoalsIframe, E5Over25GoalsIframe, E5Over35GoalsIframe, E5CornersIframes,
                             E5ScoredBothHalfIframes, E5WonBothHalfIframes, E5League, E5LeagueTableIframe, E5Team,
-                            E51st2ndHalfGoalsIframe, E5CleanSheetIframe, E5WonToNilIframe, E5WinLossMarginIframe)
+                            E51st2ndHalfGoalsIframe, E5CleanSheetIframe, E5WonToNilIframe, E5WinLossMarginIframe,
+                            E5WinDrawLossPercentageIframe, E5HalfTimeFullTimeIframe, E5RescuedPointsIframe,
+                            E5Average1stGoalTimeIframe, E5AverageTeamGoalsIframe, E5EarlyGoalsIframe, E5LateGoalsIframe)
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -150,6 +152,7 @@ class E5SeleniumWebDriver:
             self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_SOUP_FAILED,
                            error_context=error_context, exception=ex)
 
+    ####################################################### BUILD ######################################################
     # E5
     def build_iframe(self, season: E5Season, stats_iframes: ResultSet[Tag], error_context: str, iframe_class):
         iframe: iframe_class = iframe_class()
@@ -277,6 +280,69 @@ class E5SeleniumWebDriver:
 
         return iframe
 
+    @staticmethod
+    def get_urls(iframe: object) -> list[str]:
+        urls: list[str] = []
+
+        if isinstance(iframe, E5LeagueTableIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5BttsIframes):
+            urls = [iframe.btts_url, iframe.btts_1h_url, iframe.btts_2h_url, iframe.btts_bh_url,
+                    iframe.btts_25_url]
+        elif isinstance(iframe, E5Over05GoalsIframe):
+            urls = [iframe.over_05_goals_url, iframe.over_05_goals_1h_url, iframe.over_05_goals_2h_url,
+                    iframe.over_05_goals_bh_url]
+        elif isinstance(iframe, E5Over15GoalsIframe):
+            urls = [iframe.over_15_goals_url, iframe.over_15_goals_1h_url, iframe.over_15_goals_2h_url,
+                    iframe.over_15_goals_bh_url]
+        elif isinstance(iframe, E5Over25GoalsIframe):
+            urls = [iframe.over_25_goals_url, iframe.over_25_goals_1h_url, iframe.over_25_goals_2h_url,
+                    iframe.over_25_goals_bh_url]
+        elif isinstance(iframe, E5Over35GoalsIframe):
+            urls = [iframe.over_35_goals_url, iframe.over_35_goals_1h_url, iframe.over_35_goals_2h_url,
+                    iframe.over_35_goals_bh_url]
+        elif isinstance(iframe, E5CornersIframes):
+            urls = [iframe.team_corners_for_1h_url, iframe.team_corners_against_1h_url,
+                    iframe.team_corners_for_2h_url, iframe.team_corners_against_2h_url,
+                    iframe.team_corners_for_ft_url, iframe.team_corners_against_ft_url,
+                    iframe.match_corners_1h_url, iframe.match_corners_2h_url, iframe.match_corners_ft_url]
+        elif isinstance(iframe, E5CardsIframes):
+            urls = [iframe.yellow_cards_for_url, iframe.yellow_cards_against_url, iframe.red_cards_for_url,
+                    iframe.red_cards_against_url]
+        elif isinstance(iframe, E5WinDrawLossPercentageIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5HalfTimeFullTimeIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5ScoredBothHalfIframes):
+            urls = [iframe.scored_both_half_url, iframe.conceded_both_half_url]
+        elif isinstance(iframe, E5WonBothHalfIframes):
+            urls = [iframe.won_both_half_url, iframe.won_both_half_url]
+        elif isinstance(iframe, E51st2ndHalfGoalsIframe):
+            urls = [iframe.overall_1st_2nd_half_goals_url, iframe.home_1st_2nd_half_goals_url,
+                    iframe.away_1st_2nd_half_goals_url]
+        elif isinstance(iframe, E5RescuedPointsIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5CleanSheetIframe):
+            urls = [iframe.clean_sheet_url, iframe.failed_to_score_url]
+        elif isinstance(iframe, E5WonToNilIframe):
+            urls = [iframe.won_to_nil_url, iframe.lost_to_nil_url]
+        elif isinstance(iframe, E5WinLossMarginIframe):
+            urls = [iframe.winning_margins_url, iframe.losing_margins_url]
+        elif isinstance(iframe, E5ScoredFirstIframe):
+            urls = [iframe.scored_first_url, iframe.conceded_first_url]
+        elif isinstance(iframe, E5Average1stGoalTimeIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5AverageTeamGoalsIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5EarlyGoalsIframe):
+            urls = [iframe.url]
+        elif isinstance(iframe, E5LateGoalsIframe):
+            urls = [iframe.url]
+
+        # Return
+        return urls
+
+    ######################################################## GET #######################################################
     def get_leagues(self, error_context: str) -> None:
         # Check connection
         self.check_is_connected()

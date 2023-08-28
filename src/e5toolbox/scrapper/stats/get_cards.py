@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import ResultSet, Tag
+from bs4 import Tag
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5CardsIframes, E5Team, E5CardsStats
@@ -210,7 +210,8 @@ class E5GetCards(E5SeleniumWebDriver):
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_yellow_cards_against = overall_yellow_cards_against
-                        target_overall_card_stats.overall_yellow_cards_against_average = overall_yellow_cards_against_average
+                        target_overall_card_stats.overall_yellow_cards_against_average = (
+                            overall_yellow_cards_against_average)
                         target_overall_card_stats.save()
                         self.log_info(f"Team {overall_team.name} Yellow Card Stats updated in database")
 
