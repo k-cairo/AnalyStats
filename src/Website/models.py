@@ -951,6 +951,61 @@ class E5TeamRanking(models.Model):
 
 
 # E5
+class E5BttsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_btts = models.IntegerField(null=True, blank=True)
+    home_btts_percent = models.IntegerField(null=True, blank=True)
+    home_btts_1h = models.IntegerField(null=True, blank=True)
+    home_btts_1h_percent = models.IntegerField(null=True, blank=True)
+    home_btts_2h = models.IntegerField(null=True, blank=True)
+    home_btts_2h_percent = models.IntegerField(null=True, blank=True)
+    home_btts_bh = models.IntegerField(null=True, blank=True)
+    home_btts_bh_percent = models.IntegerField(null=True, blank=True)
+    home_btts_25 = models.IntegerField(null=True, blank=True)
+    home_btts_25_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_btts = models.IntegerField(null=True, blank=True)
+    away_btts_percent = models.IntegerField(null=True, blank=True)
+    away_btts_1h = models.IntegerField(null=True, blank=True)
+    away_btts_1h_percent = models.IntegerField(null=True, blank=True)
+    away_btts_2h = models.IntegerField(null=True, blank=True)
+    away_btts_2h_percent = models.IntegerField(null=True, blank=True)
+    away_btts_bh = models.IntegerField(null=True, blank=True)
+    away_btts_bh_percent = models.IntegerField(null=True, blank=True)
+    away_btts_25 = models.IntegerField(null=True, blank=True)
+    away_btts_25_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_btts = models.IntegerField(null=True, blank=True)
+    overall_btts_percent = models.IntegerField(null=True, blank=True)
+    overall_btts_1h = models.IntegerField(null=True, blank=True)
+    overall_btts_1h_percent = models.IntegerField(null=True, blank=True)
+    overall_btts_2h = models.IntegerField(null=True, blank=True)
+    overall_btts_2h_percent = models.IntegerField(null=True, blank=True)
+    overall_btts_bh = models.IntegerField(null=True, blank=True)
+    overall_btts_bh_percent = models.IntegerField(null=True, blank=True)
+    overall_btts_25 = models.IntegerField(null=True, blank=True)
+    overall_btts_25_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "BTTS Stats"
+        verbose_name_plural = "BTTS Stats"
+
+    # E5
+    def __str__(self):
+        return f"BTTS Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5BttsStats.objects.filter(team=self.team).exists()
+
+
+# E5
 class E5Over05GoalsStats(models.Model):
     id = models.AutoField(primary_key=True)
     team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
@@ -1147,6 +1202,40 @@ class E5Over35GoalsStats(models.Model):
 
 
 # E5
+class E5WinDrawLossPercentageStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_win_percent = models.IntegerField(null=True, blank=True)
+    home_draw_percent = models.IntegerField(null=True, blank=True)
+    home_loss_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_win_percent = models.IntegerField(null=True, blank=True)
+    away_draw_percent = models.IntegerField(null=True, blank=True)
+    away_loss_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_win_percent = models.IntegerField(null=True, blank=True)
+    overall_draw_percent = models.IntegerField(null=True, blank=True)
+    overall_loss_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Win Draw Loss Percentage Stats"
+        verbose_name_plural = "Win Draw Loss Percentage Stats"
+
+    # E5
+    def __str__(self):
+        return f"Win Draw Loss Percentage Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5WinDrawLossPercentageStats.objects.filter(team=self.team).exists()
+
+
+# E5
 class E5TeamCornerStats(models.Model):
     id = models.AutoField(primary_key=True)
     team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
@@ -1294,3 +1383,502 @@ class E5CardsStats(models.Model):
     # E5
     def exists(self) -> bool:
         return E5CardsStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5HalfTimeFullTimeStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_win_win = models.IntegerField(null=True, blank=True)
+    home_win_draw = models.IntegerField(null=True, blank=True)
+    home_win_loss = models.IntegerField(null=True, blank=True)
+    home_draw_win = models.IntegerField(null=True, blank=True)
+    home_draw_draw = models.IntegerField(null=True, blank=True)
+    home_draw_loss = models.IntegerField(null=True, blank=True)
+    home_loss_win = models.IntegerField(null=True, blank=True)
+    home_loss_draw = models.IntegerField(null=True, blank=True)
+    home_loss_loss = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_win_win = models.IntegerField(null=True, blank=True)
+    away_win_draw = models.IntegerField(null=True, blank=True)
+    away_win_loss = models.IntegerField(null=True, blank=True)
+    away_draw_win = models.IntegerField(null=True, blank=True)
+    away_draw_draw = models.IntegerField(null=True, blank=True)
+    away_draw_loss = models.IntegerField(null=True, blank=True)
+    away_loss_win = models.IntegerField(null=True, blank=True)
+    away_loss_draw = models.IntegerField(null=True, blank=True)
+    away_loss_loss = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Half Time Full Time Stats"
+        verbose_name_plural = "Half Time Full Time Stats"
+
+    # E5
+    def __str__(self):
+        return f"Half Time Full Time Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5HalfTimeFullTimeStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5ScoredBothHalfStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_scored_both_halves = models.IntegerField(null=True, blank=True)
+    home_scored_both_halves_percent = models.IntegerField(null=True, blank=True)
+    home_conceded_both_halves = models.IntegerField(null=True, blank=True)
+    home_conceded_both_halves_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_scored_both_halves = models.IntegerField(null=True, blank=True)
+    away_scored_both_halves_percent = models.IntegerField(null=True, blank=True)
+    away_conceded_both_halves = models.IntegerField(null=True, blank=True)
+    away_conceded_both_halves_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_scored_both_halves = models.IntegerField(null=True, blank=True)
+    overall_scored_both_halves_percent = models.IntegerField(null=True, blank=True)
+    overall_conceded_both_halves = models.IntegerField(null=True, blank=True)
+    overall_conceded_both_halves_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Scored Both Halves Stats"
+        verbose_name_plural = "Scored Both Halves Stats"
+
+    # E5
+    def __str__(self):
+        return f"Scored Both Halves Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5ScoredBothHalfStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5WonBothHalfStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_won_both_halves = models.IntegerField(null=True, blank=True)
+    home_won_both_halves_percent = models.IntegerField(null=True, blank=True)
+    home_lost_both_halves = models.IntegerField(null=True, blank=True)
+    home_lost_both_halves_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_won_both_halves = models.IntegerField(null=True, blank=True)
+    away_won_both_halves_percent = models.IntegerField(null=True, blank=True)
+    away_lost_both_halves = models.IntegerField(null=True, blank=True)
+    away_lost_both_halves_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_won_both_halves = models.IntegerField(null=True, blank=True)
+    overall_won_both_halves_percent = models.IntegerField(null=True, blank=True)
+    overall_lost_both_halves = models.IntegerField(null=True, blank=True)
+    overall_lost_both_halves_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Won Both Halves Stats"
+        verbose_name_plural = "Won Both Halves Stats"
+
+    # E5
+    def __str__(self):
+        return f"Won Both Halves Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5WonBothHalfStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E51st2ndHalfGoalsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_goals_scored = models.IntegerField(null=True, blank=True)
+    home_goals_scored_1h = models.IntegerField(null=True, blank=True)
+    home_goals_scored_1h_percent = models.IntegerField(null=True, blank=True)
+    home_goals_scored_1h_average = models.FloatField(null=True, blank=True)
+    home_goals_scored_2h = models.IntegerField(null=True, blank=True)
+    home_goals_scored_2h_percent = models.IntegerField(null=True, blank=True)
+    home_goals_scored_2h_average = models.FloatField(null=True, blank=True)
+    home_goals_conceded = models.IntegerField(null=True, blank=True)
+    home_goals_conceded_1h = models.IntegerField(null=True, blank=True)
+    home_goals_conceded_1h_percent = models.IntegerField(null=True, blank=True)
+    home_goals_conceded_1h_average = models.FloatField(null=True, blank=True)
+    home_goals_conceded_2h = models.IntegerField(null=True, blank=True)
+    home_goals_conceded_2h_percent = models.IntegerField(null=True, blank=True)
+    home_goals_conceded_2h_average = models.FloatField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_goals_scored = models.IntegerField(null=True, blank=True)
+    away_goals_scored_1h = models.IntegerField(null=True, blank=True)
+    away_goals_scored_1h_percent = models.IntegerField(null=True, blank=True)
+    away_goals_scored_1h_average = models.FloatField(null=True, blank=True)
+    away_goals_scored_2h = models.IntegerField(null=True, blank=True)
+    away_goals_scored_2h_percent = models.IntegerField(null=True, blank=True)
+    away_goals_scored_2h_average = models.FloatField(null=True, blank=True)
+    away_goals_conceded = models.IntegerField(null=True, blank=True)
+    away_goals_conceded_1h = models.IntegerField(null=True, blank=True)
+    away_goals_conceded_1h_percent = models.IntegerField(null=True, blank=True)
+    away_goals_conceded_1h_average = models.FloatField(null=True, blank=True)
+    away_goals_conceded_2h = models.IntegerField(null=True, blank=True)
+    away_goals_conceded_2h_percent = models.IntegerField(null=True, blank=True)
+    away_goals_conceded_2h_average = models.FloatField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_goals_scored = models.IntegerField(null=True, blank=True)
+    overall_goals_scored_1h = models.IntegerField(null=True, blank=True)
+    overall_goals_scored_1h_percent = models.IntegerField(null=True, blank=True)
+    overall_goals_scored_1h_average = models.FloatField(null=True, blank=True)
+    overall_goals_scored_2h = models.IntegerField(null=True, blank=True)
+    overall_goals_scored_2h_percent = models.IntegerField(null=True, blank=True)
+    overall_goals_scored_2h_average = models.FloatField(null=True, blank=True)
+    overall_goals_conceded = models.IntegerField(null=True, blank=True)
+    overall_goals_conceded_1h = models.IntegerField(null=True, blank=True)
+    overall_goals_conceded_1h_percent = models.IntegerField(null=True, blank=True)
+    overall_goals_conceded_1h_average = models.FloatField(null=True, blank=True)
+    overall_goals_conceded_2h = models.IntegerField(null=True, blank=True)
+    overall_goals_conceded_2h_percent = models.IntegerField(null=True, blank=True)
+    overall_goals_conceded_2h_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "1st 2nd Half Goals Stats"
+        verbose_name_plural = "1st 2nd Half Goals Stats"
+
+    # E5
+    def __str__(self):
+        return f"1st 2nd Half Goals Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E51st2ndHalfGoalsStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5RescuedPointsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_conceded_first = models.IntegerField(null=True, blank=True)
+    home_drawn_after_conceding_first = models.IntegerField(null=True, blank=True)
+    home_won_after_conceding_first = models.IntegerField(null=True, blank=True)
+    home_rescued_points = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_conceded_first = models.IntegerField(null=True, blank=True)
+    away_drawn_after_conceding_first = models.IntegerField(null=True, blank=True)
+    away_won_after_conceding_first = models.IntegerField(null=True, blank=True)
+    away_rescued_points = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_conceded_first = models.IntegerField(null=True, blank=True)
+    overall_drawn_after_conceding_first = models.IntegerField(null=True, blank=True)
+    overall_won_after_conceding_first = models.IntegerField(null=True, blank=True)
+    overall_rescued_points = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Rescued Points Stats"
+        verbose_name_plural = "Rescued Points Stats"
+
+    # E5
+    def __str__(self):
+        return f"Rescued Points Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5RescuedPointsStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5CleanSheetStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_clean_sheet = models.IntegerField(null=True, blank=True)
+    home_clean_sheet_percent = models.IntegerField(null=True, blank=True)
+    home_failed_to_score = models.IntegerField(null=True, blank=True)
+    home_failed_to_score_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_clean_sheet = models.IntegerField(null=True, blank=True)
+    away_clean_sheet_percent = models.IntegerField(null=True, blank=True)
+    away_failed_to_score = models.IntegerField(null=True, blank=True)
+    away_failed_to_score_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_clean_sheet = models.IntegerField(null=True, blank=True)
+    overall_clean_sheet_percent = models.IntegerField(null=True, blank=True)
+    overall_failed_to_score = models.IntegerField(null=True, blank=True)
+    overall_failed_to_score_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Clean Sheet Stats"
+        verbose_name_plural = "Clean Sheet Stats"
+
+    # E5
+    def __str__(self):
+        return f"Clean Sheet Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5CleanSheetStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5WonToNilStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_won_to_nil = models.IntegerField(null=True, blank=True)
+    home_won_to_nil_percent = models.IntegerField(null=True, blank=True)
+    home_lost_to_nil = models.IntegerField(null=True, blank=True)
+    home_lost_to_nil_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_won_to_nil = models.IntegerField(null=True, blank=True)
+    away_won_to_nil_percent = models.IntegerField(null=True, blank=True)
+    away_lost_to_nil = models.IntegerField(null=True, blank=True)
+    away_lost_to_nil_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_won_to_nil = models.IntegerField(null=True, blank=True)
+    overall_won_to_nil_percent = models.IntegerField(null=True, blank=True)
+    overall_lost_to_nil = models.IntegerField(null=True, blank=True)
+    overall_lost_to_nil_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Won To Nil Stats"
+        verbose_name_plural = "Won To Nil Stats"
+
+    # E5
+    def __str__(self):
+        return f"Won To Nil Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5WonToNilStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5WinLossMarginStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_games_won = models.IntegerField(null=True, blank=True)
+    home_won_by_1 = models.IntegerField(null=True, blank=True)
+    home_won_by_2 = models.IntegerField(null=True, blank=True)
+    home_won_by_3 = models.IntegerField(null=True, blank=True)
+    home_won_by_4_or_more = models.IntegerField(null=True, blank=True)
+    home_games_lost = models.IntegerField(null=True, blank=True)
+    home_loose_by_1 = models.IntegerField(null=True, blank=True)
+    home_loose_by_2 = models.IntegerField(null=True, blank=True)
+    home_loose_by_3 = models.IntegerField(null=True, blank=True)
+    home_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_games_won = models.IntegerField(null=True, blank=True)
+    away_won_by_1 = models.IntegerField(null=True, blank=True)
+    away_won_by_2 = models.IntegerField(null=True, blank=True)
+    away_won_by_3 = models.IntegerField(null=True, blank=True)
+    away_won_by_4_or_more = models.IntegerField(null=True, blank=True)
+    away_games_lost = models.IntegerField(null=True, blank=True)
+    away_loose_by_1 = models.IntegerField(null=True, blank=True)
+    away_loose_by_2 = models.IntegerField(null=True, blank=True)
+    away_loose_by_3 = models.IntegerField(null=True, blank=True)
+    away_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Win Loss Margin Stats"
+        verbose_name_plural = "Win Loss Margin Stats"
+
+    # E5
+    def __str__(self):
+        return f"Win Loss Margin Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5WinLossMarginStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5ScoredFirstStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_scored_first = models.IntegerField(null=True, blank=True)
+    home_scored_first_percent = models.IntegerField(null=True, blank=True)
+    home_conceded_first = models.IntegerField(null=True, blank=True)
+    home_conceded_first_percent = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_scored_first = models.IntegerField(null=True, blank=True)
+    away_scored_first_percent = models.IntegerField(null=True, blank=True)
+    away_conceded_first = models.IntegerField(null=True, blank=True)
+    away_conceded_first_percent = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_scored_first = models.IntegerField(null=True, blank=True)
+    overall_scored_first_percent = models.IntegerField(null=True, blank=True)
+    overall_conceded_first = models.IntegerField(null=True, blank=True)
+    overall_conceded_first_percent = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Scored First Stats"
+        verbose_name_plural = "Scored First Stats"
+
+    # E5
+    def __str__(self):
+        return f"Scored First Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5ScoredFirstStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5AverageTeamGoalsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_goals_scored_average = models.FloatField(null=True, blank=True)
+    home_goals_conceded_average = models.FloatField(null=True, blank=True)
+    away_goals_scored_average = models.FloatField(null=True, blank=True)
+    away_goals_conceded_average = models.FloatField(null=True, blank=True)
+    overall_goals_scored_average = models.FloatField(null=True, blank=True)
+    overall_goals_conceded_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Average Team Goals Stats"
+        verbose_name_plural = "Average Team Goals Stats"
+
+    # E5
+    def __str__(self):
+        return f"Average Team Goals Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5AverageTeamGoalsStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5Average1stGoalTimeStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_first_goal_time_scored_average = models.FloatField(null=True, blank=True)
+    home_first_goal_time_conceded_average = models.FloatField(null=True, blank=True)
+    away_first_goal_time_scored_average = models.FloatField(null=True, blank=True)
+    away_first_goal_time_conceded_average = models.FloatField(null=True, blank=True)
+    overall_first_goal_time_scored_average = models.FloatField(null=True, blank=True)
+    overall_first_goal_time_conceded_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Average 1st Goal Time Stats"
+        verbose_name_plural = "Average 1st Goal Time Stats"
+
+    # E5
+    def __str__(self):
+        return f"Average 1st Goal Time Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5Average1stGoalTimeStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5EarlyGoalsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_scored_early = models.IntegerField(null=True, blank=True)
+    home_conceded_early = models.IntegerField(null=True, blank=True)
+    home_scored_or_conceded_early = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_scored_early = models.IntegerField(null=True, blank=True)
+    away_conceded_early = models.IntegerField(null=True, blank=True)
+    away_scored_or_conceded_early = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_scored_early = models.IntegerField(null=True, blank=True)
+    overall_conceded_early = models.IntegerField(null=True, blank=True)
+    overall_scored_or_conceded_early = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Early Goals Stats"
+        verbose_name_plural = "Early Goals Stats"
+
+    # E5
+    def __str__(self):
+        return f"Early Goals Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5EarlyGoalsStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5LateGoalsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_matches_played = models.IntegerField(null=True, blank=True)
+    home_scored_late = models.IntegerField(null=True, blank=True)
+    home_conceded_late = models.IntegerField(null=True, blank=True)
+    home_scored_or_conceded_late = models.IntegerField(null=True, blank=True)
+    away_matches_played = models.IntegerField(null=True, blank=True)
+    away_scored_late = models.IntegerField(null=True, blank=True)
+    away_conceded_late = models.IntegerField(null=True, blank=True)
+    away_scored_or_conceded_late = models.IntegerField(null=True, blank=True)
+    overall_matches_played = models.IntegerField(null=True, blank=True)
+    overall_scored_late = models.IntegerField(null=True, blank=True)
+    overall_conceded_late = models.IntegerField(null=True, blank=True)
+    overall_scored_or_conceded_late = models.IntegerField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Late Goals Stats"
+        verbose_name_plural = "Late Goals Stats"
+
+    # E5
+    def __str__(self):
+        return f"Late Goals Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5LateGoalsStats.objects.filter(team=self.team).exists()
