@@ -3,8 +3,36 @@ from django.urls import path
 from Website import views
 
 urlpatterns = [
-    # Index
     path('', views.index, name="Website-index"),
-    # Match Stats
-    path('match/<int:match_id>/', views.match_stats, name="Website-match")
+    path('leagues', views.leagues, name="Website-leagues"),
+    path('league/<slug:league_slug>', views.league_details, name="Website-league_details"),
+    path('league/<slug:league_slug>/btts', views.league_btts, name="Website-league_btts"),
+    path('league/<slug:league_slug>/over-05-goals', views.league_over_05_goals, name="Website-league_over_05_goals"),
+    path('league/<slug:league_slug>/over-15-goals', views.league_over_15_goals, name="Website-league_over_15_goals"),
+    path('league/<slug:league_slug>/over-25-goals', views.league_over_25_goals, name="Website-league_over_25_goals"),
+    path('league/<slug:league_slug>/over-35-goals', views.league_over_35_goals, name="Website-league_over_35_goals"),
+    path('league/<slug:league_slug>/wdl', views.league_win_draw_loss_percentage,
+         name="Website-league_win_draw_loss_percentage"),
+    path('league/<slug:league_slug>/corners', views.league_corners, name="Website-corners"),
+    path('league/<slug:league_slug>/cards', views.league_cards, name="Website-cards"),
+    path('league/<slug:league_slug>/half-time-full-time', views.league_half_time_full_time,
+         name="Website-half_time_full_time"),
+    path('league/<slug:league_slug>/sbh', views.league_scored_both_halves, name="Website-scored_both_halves"),
+    path('league/<slug:league_slug>/wbh', views.league_won_both_halves, name="Website-won_both_halves"),
+    path('league/<slug:league_slug>/1st-2nd-half-goals', views.league_1st_2nd_half_goals,
+         name="Website-1st_2nd_half_goals"),
+    path('league/<slug:league_slug>/rescued-points', views.league_rescued_points, name="Website-rescued_points"),
+    path('league/<slug:league_slug>/clean-sheets', views.league_clean_sheets, name="Website-clean_sheets"),
+    path('league/<slug:league_slug>/wtn', views.league_won_to_nil, name="Website-won_to_nil"),
+    path('league/<slug:league_slug>/winloss', views.league_win_loss, name="Website-win_loss"),
+    path('league/<slug:league_slug>/scored-first', views.league_scored_first, name="Website-scored_first"),
+    path('league/<slug:league_slug>/agt', views.league_average_first_goal_time, name="Website-average_first_goal_time"),
+    path('league/<slug:league_slug>/avg-team-goals', views.league_average_team_goals,
+         name="Website-average_team_goals"),
+    path('league/<slug:league_slug>/early-goals', views.league_early_goals, name="Website-early_goals"),
+    path('league/<slug:league_slug>/late-goals', views.league_late_goals, name="Website-late_goals"),
+    path('team/<slug:league_slug>/<slug:team_slug>', views.team_details, name="Website-team_details"),
+    path('teams', views.teams, name="Website-teams"),
+    path('fixtures', views.fixtures, name="Website-fixtures"),
+    path('fixture/<slug:fixture_slug>', views.fixture_details, name="Website-fixture_details"),
 ]

@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Half Time Full Time</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+
+<div id="carousel1st2ndHalfGoals" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel1st2ndHalfGoals" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel1st2ndHalfGoals" data-slide-to="1"></li>
+        <li data-target="#carousel1st2ndHalfGoals" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <!-- 1st 2nd Half Goals Home Section-->
+        <div class="carousel-item active">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Scored Home</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Scored Home Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GS</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.home_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_scored_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Conceded Home</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Conceded Home Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GC</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.home_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.home_goals_conceded_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1st 2nd Half Goals Away Section-->
+        <div class="carousel-item">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Scored Away</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Scored Away Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GS</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.away_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_scored_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Conceded Away</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Conceded Away Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GC</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.away_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.away_goals_conceded_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1st 2nd Half Goals Overall Section-->
+        <div class="carousel-item">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Scored Overall</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Scored Overall Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GS</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_scored_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">1st 2nd Half Goals Conceded Overall</h2>
+                        </div>
+
+                        <!-- Table 1st 2nd Half Goals Conceded Overall Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-4">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">GC</th>
+                                        <th scope="col" class="col-1">1H</th>
+                                        <th scope="col" class="col-1">1H%</th>
+                                        <th scope="col" class="col-1">1Av</th>
+                                        <th scope="col" class="col-1">2H</th>
+                                        <th scope="col" class="col-1">2H%</th>
+                                        <th scope="col" class="col-1">2Av</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for fh_sh_goals_stat in fh_sh_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' fh_sh_goals_stat.team.season.league.slug fh_sh_goals_stat.team.slug  %}">
+                                                {{ fh_sh_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ fh_sh_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_1h }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_1h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_1h_average }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_2h }}</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_2h_percent }}%</td>
+                                        <td>{{ fh_sh_goals_stat.overall_goals_conceded_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carousel1st2ndHalfGoals" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel1st2ndHalfGoals" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% endblock %}

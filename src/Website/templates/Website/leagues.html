@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">Choose Your League</h1>
+<p>Below you will find a list of 130 football leagues that we cover on the site, choose your league to view the league
+    table and all stats for that league </p>
+{% endblock %}
+
+{% block content %}
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Title Section -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Leagues</h2>
+            </div>
+
+            <!-- Check if there is leagues-->
+            {% if not leagues %}
+            <div class="col-12">
+                <h5 class="heading">No leagues</h5>
+            </div>
+            {% endif %}
+
+            {% for league in leagues %}
+            <!-- Div Leagues-->
+            <div class="col-lg-6 mb-4">
+                <div class="bg-light p-4 rounded">
+                    <div class="text-center widget-vs-contents mb-4">
+                        <a href="{% url 'Website-league_details' league.slug %}">
+                            <h4>{{ league.name }}</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

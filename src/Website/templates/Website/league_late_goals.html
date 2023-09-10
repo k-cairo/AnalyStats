@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Late Goals</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<!-- Late Goals Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Late Goals</h2>
+            </div>
+
+            <!-- Table Late Goals Home Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>G</th>
+                            <th>S15</th>
+                            <th>C15</th>
+                            <th>Any</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for late_goals_stat in late_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' late_goals_stat.team.season.league.slug late_goals_stat.team.slug  %}">
+                                    {{ late_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ late_goals_stat.home_matches_played }}</td>
+                            <td>{{ late_goals_stat.home_scored_late }}</td>
+                            <td>{{ late_goals_stat.home_conceded_late }}</td>
+                            <td>{{ late_goals_stat.home_scored_or_conceded_late }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Late Goals Away Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>G</th>
+                            <th>S15</th>
+                            <th>C15</th>
+                            <th>Any</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for late_goals_stat in late_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' late_goals_stat.team.season.league.slug late_goals_stat.team.slug  %}">
+                                    {{ late_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ late_goals_stat.away_matches_played }}</td>
+                            <td>{{ late_goals_stat.away_scored_late }}</td>
+                            <td>{{ late_goals_stat.away_conceded_late }}</td>
+                            <td>{{ late_goals_stat.away_scored_or_conceded_late }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Late Goals Overall Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>G</th>
+                            <th>S15</th>
+                            <th>C15</th>
+                            <th>Any</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for late_goals_stat in late_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' late_goals_stat.team.season.league.slug late_goals_stat.team.slug  %}">
+                                    {{ late_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ late_goals_stat.overall_matches_played }}</td>
+                            <td>{{ late_goals_stat.overall_scored_late }}</td>
+                            <td>{{ late_goals_stat.overall_conceded_late }}</td>
+                            <td>{{ late_goals_stat.overall_scored_or_conceded_late }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

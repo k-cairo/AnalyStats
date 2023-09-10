@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Clean Sheets</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<div id="carouselCleanSheets" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselCleanSheets" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselCleanSheets" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+        <!-- Clean Sheets Stat Section-->
+        <div class="carousel-item active">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Clean Sheets</h2>
+                        </div>
+
+                        <!-- Table Clean Sheets Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"home_clean_sheet_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.home_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.home_clean_sheet }}</td>
+                                        <td>{{ clean_sheets_stat.home_clean_sheet_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Clean Sheets Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"away_clean_sheet_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.away_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.away_clean_sheet }}</td>
+                                        <td>{{ clean_sheets_stat.away_clean_sheet_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Clean Sheets Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"overall_clean_sheet_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.overall_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.overall_clean_sheet }}</td>
+                                        <td>{{ clean_sheets_stat.overall_clean_sheet_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Failed To Score Stat Section-->
+        <div class="carousel-item">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Failed To Score</h2>
+                        </div>
+
+                        <!-- Table Failed To Score Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>FTS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"home_failed_to_score_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.home_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.home_failed_to_score }}</td>
+                                        <td>{{ clean_sheets_stat.home_failed_to_score_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Failed To Score Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>FTS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"away_failed_to_score_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.away_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.away_failed_to_score }}</td>
+                                        <td>{{ clean_sheets_stat.away_failed_to_score_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Failed To Score Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>FTS</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for clean_sheets_stat in clean_sheets_stats|dictsortreversed:"overall_failed_to_score_percent" %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' clean_sheets_stat.team.season.league.slug clean_sheets_stat.team.slug  %}">
+                                                {{ clean_sheets_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ clean_sheets_stat.overall_matches_played }}</td>
+                                        <td>{{ clean_sheets_stat.overall_failed_to_score }}</td>
+                                        <td>{{ clean_sheets_stat.overall_failed_to_score_percent }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselCleanSheets" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselCleanSheets" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% endblock %}

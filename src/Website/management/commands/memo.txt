@@ -1,0 +1,55 @@
+47 Tasks
+
+# General
+Get Leagues
+Get Seasons
+Get Teams
+
+# Get Iframes
+Get Iframe : League Tables
+Get Iframe : BTTS
+Get Iframe : Over 0.5 Goals
+Get Iframe : Over 1.5 Goals
+Get Iframe : Over 2.5 Goals
+Get Iframe : Over 3.5 Goals
+Get Iframe : Win Draw Loss Percentage
+Get Iframe : Corners
+Get Iframe : Cards
+Get Iframe : Half Time Full Time
+Get Iframe : Scored Both Halves
+Get Iframe : Won Both Halves
+Get Iframe : 1st Half 2nd Half Goals
+Get Iframe : Rescued Points
+Get Iframe : Clean Sheets
+Get Iframe : Won To Nil
+Get Iframe : Win Loss Margin
+Get Iframe : Scored First
+Get Iframe : Average First Goal Time
+Get Iframe : Average Team Goals
+Get Iframe : Early Goals
+Get Iframe : Late Goals
+
+# Parse Iframes
+Parse Iframe : League Tables (Team Ranking)
+Parse Iframe : BTTS
+Parse Iframe : Over 0.5 Goals
+Parse Iframe : Over 1.5 Goals
+Parse Iframe : Over 2.5 Goals
+Parse Iframe : Over 3.5 Goals
+Parse Iframe : Win Draw Loss Percentage
+Parse Iframe : Corners
+Parse Iframe : Cards
+Parse Iframe : Half Time Full Time
+Parse Iframe : Scored Both Halves
+Parse Iframe : Won Both Halves
+Parse Iframe : 1st Half 2nd Half Goals
+Parse Iframe : Rescued Points
+Parse Iframe : Clean Sheets
+Parse Iframe : Won To Nil
+Parse Iframe : Win Loss Margin
+Parse Iframe : Scored First
+Parse Iframe : Average First Goal Time
+Parse Iframe : Average Team Goals
+Parse Iframe : Early Goals
+Parse Iframe : Late Goals
+

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Average Team Goals</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<!-- Average Team Goals Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Average Team Goals</h2>
+            </div>
+
+            <!-- Table Average Team Goals Home Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_team_goals_stat in avg_team_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_team_goals_stat.team.season.league.slug avg_team_goals_stat.team.slug  %}">
+                                    {{ avg_team_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_team_goals_stat.home_goals_scored_average }}</td>
+                            <td>{{ avg_team_goals_stat.home_goals_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Average Team Goals Away Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_team_goals_stat in avg_team_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_team_goals_stat.team.season.league.slug avg_team_goals_stat.team.slug  %}">
+                                    {{ avg_team_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_team_goals_stat.away_goals_scored_average }}</td>
+                            <td>{{ avg_team_goals_stat.away_goals_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Average Team Goals Overall Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_team_goals_stat in avg_team_goals_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_team_goals_stat.team.season.league.slug avg_team_goals_stat.team.slug  %}">
+                                    {{ avg_team_goals_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_team_goals_stat.overall_goals_scored_average }}</td>
+                            <td>{{ avg_team_goals_stat.overall_goals_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

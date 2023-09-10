@@ -1,0 +1,28 @@
+{% load static %}
+
+<header class="site-navbar py-4" role="banner">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <div class="site-logo">
+                <a href="{% url 'Website-index' %}">
+                    <img src="{% static 'Website/images/logo.png' %}" alt="Logo">
+                </a>
+            </div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li><a href="{% url 'Website-index' %}" class="nav-link">Home</a></li>
+                        <li><a href="{% url 'Website-leagues' %}" class="nav-link">Leagues</a></li>
+                        <li><a href="{% url 'Website-teams' %}" class="nav-link">Teams</a></li>
+                        <li><a href="{% url 'Website-fixtures' %}" class="nav-link">Fixtures</a></li>
+                        <li><a href="#" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                <a href="#"
+                   class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right text-white">
+                    <span class="icon-menu h3 text-white"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
