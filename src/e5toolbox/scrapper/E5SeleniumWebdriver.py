@@ -90,10 +90,16 @@ class E5SeleniumWebDriver:
     # E5
     def init(self) -> None:
         try:
-            service: Service = Service()
-            chrome_options = Options()
+            # service: Service = Service()
+            # chrome_options = Options()
+            # chrome_options.add_argument("--headless")
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--headless")
-            self.driver = webdriver.Chrome(service=service, options=chrome_options)
+            chrome_options.add_argument("--disable-gpu")
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            # self.driver = webdriver.Chrome(service=service, options=chrome_options)
+            self.driver = webdriver.Chrome(options=chrome_options)
             self.is_connected = True
             self.status.success = True
         except Exception as ex:
