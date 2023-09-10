@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Average First Goal Time</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<!-- Average First Goal Time Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Average First Goal Time</h2>
+            </div>
+
+            <!-- Table Average First Goal Time Home Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_1st_gt_stat in avg_1st_gt_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_1st_gt_stat.team.season.league.slug avg_1st_gt_stat.team.slug  %}">
+                                    {{ avg_1st_gt_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_1st_gt_stat.home_first_goal_time_scored_average }}</td>
+                            <td>{{ avg_1st_gt_stat.home_first_goal_time_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Average First Goal Time Away Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_1st_gt_stat in avg_1st_gt_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_1st_gt_stat.team.season.league.slug avg_1st_gt_stat.team.slug  %}">
+                                    {{ avg_1st_gt_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_1st_gt_stat.away_first_goal_time_scored_average }}</td>
+                            <td>{{ avg_1st_gt_stat.away_first_goal_time_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Average First Goal Time Overall Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="widget-next-match">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Av. S</th>
+                            <th>Av. C</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for avg_1st_gt_stat in avg_1st_gt_stats %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' avg_1st_gt_stat.team.season.league.slug avg_1st_gt_stat.team.slug  %}">
+                                    {{ avg_1st_gt_stat.team.name }}
+                                </a></td>
+                            <td>{{ avg_1st_gt_stat.overall_first_goal_time_scored_average }}</td>
+                            <td>{{ avg_1st_gt_stat.overall_first_goal_time_conceded_average }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

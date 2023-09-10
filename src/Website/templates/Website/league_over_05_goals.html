@@ -1,0 +1,445 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Over 0.5 Goals</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<div id="carouselOver05Goals" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselOver05Goals" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselOver05Goals" data-slide-to="1"></li>
+        <li data-target="#carouselOver05Goals" data-slide-to="2"></li>
+        <li data-target="#carouselOver05Goals" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!-- Over 0.5 Goals Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Table Over 0.5 Goals Home Section -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Over 0.5 Goals</h2>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.home_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals Away Section -->
+                        <div class="col-lg-4 mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.away_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals Overall Section -->
+                        <div class="col-lg-4 mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Over 0.5 Goals 1H Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Over 0.5 Goals 1st Half</h2>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 1H Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.home_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_1h }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_1h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 1H Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.away_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_1h }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_1h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 1H Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_1h }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_1h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Over 0.5 Goals 2H Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Over 0.5 2nd Half Goals</h2>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 2H Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.home_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_2h }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_2h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 2H Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.away_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_2h }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_2h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals 2H Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_2h }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_2h_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Over 0.5 Goals BH Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Over 0.5 Goals Both Half</h2>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals BH Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.home_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_bh }}</td>
+                                        <td>{{ over_05_goals_stat.home_over_05_goals_bh_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals BH Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.away_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_bh }}</td>
+                                        <td>{{ over_05_goals_stat.away_over_05_goals_bh_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Over 0.5 Goals BH Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>O0.5</th>
+                                        <th>%</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for over_05_goals_stat in over_05_goals_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' over_05_goals_stat.team.season.league.slug over_05_goals_stat.team.slug  %}">
+                                                {{ over_05_goals_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ over_05_goals_stat.overall_matches_played }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_bh }}</td>
+                                        <td>{{ over_05_goals_stat.overall_over_05_goals_bh_percent }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselOver05Goals" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselOver05Goals" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% endblock %}

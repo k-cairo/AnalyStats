@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Half Time Full Time</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+
+<div id="carouselHalfTimeFullTime" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselHalfTimeFullTime" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselHalfTimeFullTime" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+        <!-- Half Time Full Time Home Section-->
+        <div class="carousel-item active">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Half Time Full Time Home</h2>
+                        </div>
+
+                        <!-- Table Half Time Full Time Home Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-2">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">WW</th>
+                                        <th scope="col" class="col-1">WD</th>
+                                        <th scope="col" class="col-1">WL</th>
+                                        <th scope="col" class="col-1">DW</th>
+                                        <th scope="col" class="col-1">DD</th>
+                                        <th scope="col" class="col-1">DL</th>
+                                        <th scope="col" class="col-1">LW</th>
+                                        <th scope="col" class="col-1">LD</th>
+                                        <th scope="col" class="col-1">LL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for ht_ft_stat in ht_ft_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' ht_ft_stat.team.season.league.slug ht_ft_stat.team.slug  %}">
+                                                {{ ht_ft_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ ht_ft_stat.home_matches_played }}</td>
+                                        <td>{{ ht_ft_stat.home_win_win }}</td>
+                                        <td>{{ ht_ft_stat.home_win_draw }}</td>
+                                        <td>{{ ht_ft_stat.home_win_loss }}</td>
+                                        <td>{{ ht_ft_stat.home_draw_win }}</td>
+                                        <td>{{ ht_ft_stat.home_draw_draw }}</td>
+                                        <td>{{ ht_ft_stat.home_draw_loss }}</td>
+                                        <td>{{ ht_ft_stat.home_loss_win }}</td>
+                                        <td>{{ ht_ft_stat.home_loss_draw }}</td>
+                                        <td>{{ ht_ft_stat.home_loss_loss }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Half Time Full Time Away Section-->
+        <div class="carousel-item">
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <!-- Section Title -->
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Half Time Full Time Away</h2>
+                        </div>
+
+                        <!-- Table Half Time Full Time Away Section -->
+                        <div class="col-lg-12  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-2">Team</th>
+                                        <th scope="col" class="col-1">P</th>
+                                        <th scope="col" class="col-1">WW</th>
+                                        <th scope="col" class="col-1">WD</th>
+                                        <th scope="col" class="col-1">WL</th>
+                                        <th scope="col" class="col-1">DW</th>
+                                        <th scope="col" class="col-1">DD</th>
+                                        <th scope="col" class="col-1">DL</th>
+                                        <th scope="col" class="col-1">LW</th>
+                                        <th scope="col" class="col-1">LD</th>
+                                        <th scope="col" class="col-1">LL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for ht_ft_stat in ht_ft_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' ht_ft_stat.team.season.league.slug ht_ft_stat.team.slug  %}">
+                                                {{ ht_ft_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ ht_ft_stat.away_matches_played }}</td>
+                                        <td>{{ ht_ft_stat.away_win_win }}</td>
+                                        <td>{{ ht_ft_stat.away_win_draw }}</td>
+                                        <td>{{ ht_ft_stat.away_win_loss }}</td>
+                                        <td>{{ ht_ft_stat.away_draw_win }}</td>
+                                        <td>{{ ht_ft_stat.away_draw_draw }}</td>
+                                        <td>{{ ht_ft_stat.away_draw_loss }}</td>
+                                        <td>{{ ht_ft_stat.away_loss_win }}</td>
+                                        <td>{{ ht_ft_stat.away_loss_draw }}</td>
+                                        <td>{{ ht_ft_stat.away_loss_loss }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselHalfTimeFullTime" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselHalfTimeFullTime" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% endblock %}

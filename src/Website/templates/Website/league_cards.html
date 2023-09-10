@@ -1,0 +1,456 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Cards</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<div id="carouselCards" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselCards" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselCards" data-slide-to="1"></li>
+        <li data-target="#carouselCards" data-slide-to="2"></li>
+        <li data-target="#carouselCards" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!-- Yellow Cards For Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Yellow Cards For</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.home_matches_played }}</td>
+                                        <td>{{ card_stat.home_yellow_cards_for }}</td>
+                                        <td>{{ card_stat.home_yellow_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.away_matches_played }}</td>
+                                        <td>{{ card_stat.away_yellow_cards_for }}</td>
+                                        <td>{{ card_stat.away_yellow_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.overall_matches_played }}</td>
+                                        <td>{{ card_stat.overall_yellow_cards_for }}</td>
+                                        <td>{{ card_stat.overall_yellow_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Yellow Cards Against Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Yellow Cards Against</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.home_matches_played }}</td>
+                                        <td>{{ card_stat.home_yellow_cards_against }}</td>
+                                        <td>{{ card_stat.home_yellow_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.away_matches_played }}</td>
+                                        <td>{{ card_stat.away_yellow_cards_against }}</td>
+                                        <td>{{ card_stat.away_yellow_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>YA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.overall_matches_played }}</td>
+                                        <td>{{ card_stat.overall_yellow_cards_against }}</td>
+                                        <td>{{ card_stat.overall_yellow_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Red Cards For Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Red Cards For</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.home_matches_played }}</td>
+                                        <td>{{ card_stat.home_red_cards_for }}</td>
+                                        <td>{{ card_stat.home_red_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.away_matches_played }}</td>
+                                        <td>{{ card_stat.away_red_cards_for }}</td>
+                                        <td>{{ card_stat.away_red_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.overall_matches_played }}</td>
+                                        <td>{{ card_stat.overall_red_cards_for }}</td>
+                                        <td>{{ card_stat.overall_red_cards_for_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Red Cards Against Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Red Cards Against</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.home_matches_played }}</td>
+                                        <td>{{ card_stat.home_red_cards_against }}</td>
+                                        <td>{{ card_stat.home_red_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.away_matches_played }}</td>
+                                        <td>{{ card_stat.away_red_cards_against }}</td>
+                                        <td>{{ card_stat.away_red_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>RA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for card_stat in cards_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' card_stat.team.season.league.slug card_stat.team.slug  %}">
+                                                {{ card_stat.team.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ card_stat.overall_matches_played }}</td>
+                                        <td>{{ card_stat.overall_red_cards_against }}</td>
+                                        <td>{{ card_stat.overall_red_cards_against_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselCards" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselCards" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+{% endblock %}

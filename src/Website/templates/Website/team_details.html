@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ team.name }}</h1>
+<h3 class="text-white">Team Stats</h3>
+<h6 class="text-white">Season {{ team.season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+
+            <!-- Match Goals Section-->
+            <div class="col-xl-4 mb-5">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Match Goals</h2>
+                </div>
+
+                <!-- Table Match Goals Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Match Goals</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Over 0.5</td>
+                                <td>{{ over_05_goals_stats.home_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.away_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.overall_over_05_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 1.5</td>
+                                <td>{{ over_15_goals_stats.home_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.away_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.overall_over_15_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 2.5</td>
+                                <td>{{ over_25_goals_stats.home_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.away_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.overall_over_25_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 3.5</td>
+                                <td>{{ over_35_goals_stats.home_over_35_goals_percent }}</td>
+                                <td>{{ over_35_goals_stats.away_over_35_goals_percent }}</td>
+                                <td>{{ over_35_goals_stats.overall_over_35_goals_percent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Stats Section-->
+            <div class="col-xl-4 mb-5">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Cards Stats</h2>
+                </div>
+
+                <!-- Table Cards Stats Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Cards Stats</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Yel F</td>
+                                <td>{{ cards_stats.home_yellow_cards_for_average }}</td>
+                                <td>{{ cards_stats.away_yellow_cards_for_average }}</td>
+                                <td>{{ cards_stats.overall_yellow_cards_for_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Yel A</td>
+                                <td>{{ cards_stats.home_yellow_cards_against_average }}</td>
+                                <td>{{ cards_stats.away_yellow_cards_against_average }}</td>
+                                <td>{{ cards_stats.overall_yellow_cards_against_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Red F</td>
+                                <td>{{ cards_stats.home_red_cards_for_average }}</td>
+                                <td>{{ cards_stats.away_red_cards_for_average }}</td>
+                                <td>{{ cards_stats.overall_red_cards_for_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Red A</td>
+                                <td>{{ cards_stats.home_red_cards_against_average }}</td>
+                                <td>{{ cards_stats.away_red_cards_against_average }}</td>
+                                <td>{{ cards_stats.overall_red_cards_against_average }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 mb-5 mb-xl-0">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Win Draw Loss % Stats</h2>
+                </div>
+
+                <!-- TODO Table Win Draw Loss % Stats Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Win Draw Loss % Stats</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Win %</td>
+                                <td>{{ over_05_goals_stats.home_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.away_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.overall_over_05_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Draw %</td>
+                                <td>{{ over_15_goals_stats.home_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.away_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.overall_over_15_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Loss %</td>
+                                <td>{{ over_25_goals_stats.home_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.away_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.overall_over_25_goals_percent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="site-section bg-grey">
+    <div class="container">
+        <div class="row">
+
+            <!-- Match Goals Section-->
+            <div class="col-xl-4 mb-5">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Match Goals</h2>
+                </div>
+
+                <!-- Table Match Goals Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Match Goals</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Over 0.5</td>
+                                <td>{{ over_05_goals_stats.home_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.away_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.overall_over_05_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 1.5</td>
+                                <td>{{ over_15_goals_stats.home_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.away_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.overall_over_15_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 2.5</td>
+                                <td>{{ over_25_goals_stats.home_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.away_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.overall_over_25_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Over 3.5</td>
+                                <td>{{ over_35_goals_stats.home_over_35_goals_percent }}</td>
+                                <td>{{ over_35_goals_stats.away_over_35_goals_percent }}</td>
+                                <td>{{ over_35_goals_stats.overall_over_35_goals_percent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards Stats Section-->
+            <div class="col-xl-4 mb-5">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Cards Stats</h2>
+                </div>
+
+                <!-- Table Cards Stats Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Cards Stats</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Yel F</td>
+                                <td>{{ cards_stats.home_yellow_cards_for_average }}</td>
+                                <td>{{ cards_stats.away_yellow_cards_for_average }}</td>
+                                <td>{{ cards_stats.overall_yellow_cards_for_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Yel A</td>
+                                <td>{{ cards_stats.home_yellow_cards_against_average }}</td>
+                                <td>{{ cards_stats.away_yellow_cards_against_average }}</td>
+                                <td>{{ cards_stats.overall_yellow_cards_against_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Red F</td>
+                                <td>{{ cards_stats.home_red_cards_for_average }}</td>
+                                <td>{{ cards_stats.away_red_cards_for_average }}</td>
+                                <td>{{ cards_stats.overall_red_cards_for_average }}</td>
+                            </tr>
+                            <tr>
+                                <td>Red A</td>
+                                <td>{{ cards_stats.home_red_cards_against_average }}</td>
+                                <td>{{ cards_stats.away_red_cards_against_average }}</td>
+                                <td>{{ cards_stats.overall_red_cards_against_average }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 mb-5 mb-xl-0">
+                <!-- Title Section -->
+                <div class="col-12 title-section">
+                    <h2 class="heading">Win Draw Loss % Stats</h2>
+                </div>
+
+                <!-- TODO Table Win Draw Loss % Stats Section -->
+                <div class="col-lg-12">
+                    <h6 class="heading text-center">Win Draw Loss % Stats</h6>
+                    <div class="widget-next-match">
+                        <table class="table custom-table">
+                            <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Home</th>
+                                <th>Away</th>
+                                <th>Overall</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Win %</td>
+                                <td>{{ over_05_goals_stats.home_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.away_over_05_goals_percent }}</td>
+                                <td>{{ over_05_goals_stats.overall_over_05_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Draw %</td>
+                                <td>{{ over_15_goals_stats.home_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.away_over_15_goals_percent }}</td>
+                                <td>{{ over_15_goals_stats.overall_over_15_goals_percent }}</td>
+                            </tr>
+                            <tr>
+                                <td>Loss %</td>
+                                <td>{{ over_25_goals_stats.home_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.away_over_25_goals_percent }}</td>
+                                <td>{{ over_25_goals_stats.overall_over_25_goals_percent }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
