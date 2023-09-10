@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page-infos %}
+<h1 class="text-white">{{ league.name }}</h1>
+<h3 class="text-white">Win Draw Loss %</h3>
+<h6 class="text-white">Season {{ season.name }}</h6>
+{% endblock %}
+
+{% block content %}
+<!-- Change League Section-->
+{% include 'base/change_league_stat.html' %}
+
+<!-- Win Draw Loss Percentage Stat Section-->
+<div class="site-section bg-dark">
+    <div class="container">
+        <div class="row">
+            <!-- Section Title -->
+            <div class="col-12 title-section">
+                <h2 class="heading">Win Draw Loss %</h2>
+            </div>
+
+            <!-- Table Win Draw Loss Percentage Home Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Home</h6>
+                <div class="">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for wdl_percent_stat in wdl_percent_stats|dictsortreversed:"home_win_percent" %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' wdl_percent_stat.team.season.league.slug wdl_percent_stat.team.slug  %}">
+                                    {{ wdl_percent_stat.team.name }}
+                                </a></td>
+                            <td>{{ wdl_percent_stat.home_matches_played }}</td>
+                            <td>{{ wdl_percent_stat.home_win_percent }}%</td>
+                            <td>{{ wdl_percent_stat.home_draw_percent }}%</td>
+                            <td>{{ wdl_percent_stat.home_loss_percent }}%</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Win Draw Loss Percentage Away Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Away</h6>
+                <div class="">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for wdl_percent_stat in wdl_percent_stats|dictsortreversed:"away_win_percent" %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' wdl_percent_stat.team.season.league.slug wdl_percent_stat.team.slug  %}">
+                                    {{ wdl_percent_stat.team.name }}
+                                </a></td>
+                            <td>{{ wdl_percent_stat.away_matches_played }}</td>
+                            <td>{{ wdl_percent_stat.away_win_percent }}%</td>
+                            <td>{{ wdl_percent_stat.away_draw_percent }}%</td>
+                            <td>{{ wdl_percent_stat.away_loss_percent }}%</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table Win Draw Loss Percentage Overall Section -->
+            <div class="col-xl-4  mb-0 mb-sm-5">
+                <h6 class="heading text-center">Overall</h6>
+                <div class="">
+                    <table class="table custom-table text-center">
+                        <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>P</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for wdl_percent_stat in wdl_percent_stats|dictsortreversed:"overall_win_percent" %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'Website-team_details' wdl_percent_stat.team.season.league.slug wdl_percent_stat.team.slug  %}">
+                                    {{ wdl_percent_stat.team.name }}
+                                </a></td>
+                            <td>{{ wdl_percent_stat.overall_matches_played }}</td>
+                            <td>{{ wdl_percent_stat.overall_win_percent }}%</td>
+                            <td>{{ wdl_percent_stat.overall_draw_percent }}%</td>
+                            <td>{{ wdl_percent_stat.overall_loss_percent }}%</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -92,6 +92,34 @@ class E5Team(models.Model):
         return E5Team.objects.filter(name=self.name, season=self.season).exists()
 
 
+################################################### FIXTURES ###########################################################
+# E5
+class E5Fixture(models.Model):
+    id = models.AutoField(primary_key=True)
+    home_team = models.ForeignKey(E5Team, on_delete=models.CASCADE, related_name="home_team")
+    away_team = models.ForeignKey(E5Team, on_delete=models.CASCADE, related_name="away_team")
+    date = models.DateField()
+    kickoff_time = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=150, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Fixture"
+        verbose_name_plural = "Fixtures"
+
+    # E5
+    def __str__(self):
+        return f"{self.home_team} vs {self.away_team} - {self.date} {self.kickoff_time}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5Fixture.objects.filter(home_team=self.home_team, away_team=self.away_team, date=self.date,
+                                        kickoff_time=self.kickoff_time).exists()
+
+
 #################################################### IFRAMES ###########################################################
 # E5
 class E5LeagueTableIframe(models.Model):
@@ -1278,6 +1306,7 @@ class E5TeamCornerStats(models.Model):
     overall_corners_for_ft_average = models.FloatField(null=True, blank=True)
     overall_corners_against_ft = models.IntegerField(null=True, blank=True)
     overall_corners_against_ft_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
 
@@ -1320,6 +1349,7 @@ class E5MatchCornerStats(models.Model):
     overall_corners_2h_average = models.FloatField(null=True, blank=True)
     overall_corners_ft = models.IntegerField(null=True, blank=True)
     overall_corners_ft_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
 
@@ -1685,26 +1715,26 @@ class E5WinLossMarginStats(models.Model):
     team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
     home_matches_played = models.IntegerField(null=True, blank=True)
     home_games_won = models.IntegerField(null=True, blank=True)
-    home_won_by_1 = models.IntegerField(null=True, blank=True)
-    home_won_by_2 = models.IntegerField(null=True, blank=True)
-    home_won_by_3 = models.IntegerField(null=True, blank=True)
-    home_won_by_4_or_more = models.IntegerField(null=True, blank=True)
-    home_games_lost = models.IntegerField(null=True, blank=True)
-    home_loose_by_1 = models.IntegerField(null=True, blank=True)
-    home_loose_by_2 = models.IntegerField(null=True, blank=True)
-    home_loose_by_3 = models.IntegerField(null=True, blank=True)
-    home_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
+    home_games_won_by_1 = models.IntegerField(null=True, blank=True)
+    home_games_won_by_2 = models.IntegerField(null=True, blank=True)
+    home_games_won_by_3 = models.IntegerField(null=True, blank=True)
+    home_games_won_by_4_or_more = models.IntegerField(null=True, blank=True)
+    home_games_loose = models.IntegerField(null=True, blank=True)
+    home_games_loose_by_1 = models.IntegerField(null=True, blank=True)
+    home_games_loose_by_2 = models.IntegerField(null=True, blank=True)
+    home_games_loose_by_3 = models.IntegerField(null=True, blank=True)
+    home_games_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
     away_matches_played = models.IntegerField(null=True, blank=True)
     away_games_won = models.IntegerField(null=True, blank=True)
-    away_won_by_1 = models.IntegerField(null=True, blank=True)
-    away_won_by_2 = models.IntegerField(null=True, blank=True)
-    away_won_by_3 = models.IntegerField(null=True, blank=True)
-    away_won_by_4_or_more = models.IntegerField(null=True, blank=True)
-    away_games_lost = models.IntegerField(null=True, blank=True)
-    away_loose_by_1 = models.IntegerField(null=True, blank=True)
-    away_loose_by_2 = models.IntegerField(null=True, blank=True)
-    away_loose_by_3 = models.IntegerField(null=True, blank=True)
-    away_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
+    away_games_won_by_1 = models.IntegerField(null=True, blank=True)
+    away_games_won_by_2 = models.IntegerField(null=True, blank=True)
+    away_games_won_by_3 = models.IntegerField(null=True, blank=True)
+    away_games_won_by_4_or_more = models.IntegerField(null=True, blank=True)
+    away_games_loose = models.IntegerField(null=True, blank=True)
+    away_games_loose_by_1 = models.IntegerField(null=True, blank=True)
+    away_games_loose_by_2 = models.IntegerField(null=True, blank=True)
+    away_games_loose_by_3 = models.IntegerField(null=True, blank=True)
+    away_games_loose_by_4_or_more = models.IntegerField(null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True)
 
     objects = models.Manager()
@@ -1761,34 +1791,6 @@ class E5ScoredFirstStats(models.Model):
 
 
 # E5
-class E5AverageTeamGoalsStats(models.Model):
-    id = models.AutoField(primary_key=True)
-    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
-    home_goals_scored_average = models.FloatField(null=True, blank=True)
-    home_goals_conceded_average = models.FloatField(null=True, blank=True)
-    away_goals_scored_average = models.FloatField(null=True, blank=True)
-    away_goals_conceded_average = models.FloatField(null=True, blank=True)
-    overall_goals_scored_average = models.FloatField(null=True, blank=True)
-    overall_goals_conceded_average = models.FloatField(null=True, blank=True)
-    date_updated = models.DateTimeField(auto_now=True)
-
-    objects = models.Manager()
-
-    # E5
-    class Meta:
-        verbose_name = "Average Team Goals Stats"
-        verbose_name_plural = "Average Team Goals Stats"
-
-    # E5
-    def __str__(self):
-        return f"Average Team Goals Stats - {self.team}"
-
-    # E5
-    def exists(self) -> bool:
-        return E5AverageTeamGoalsStats.objects.filter(team=self.team).exists()
-
-
-# E5
 class E5Average1stGoalTimeStats(models.Model):
     id = models.AutoField(primary_key=True)
     team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
@@ -1814,6 +1816,34 @@ class E5Average1stGoalTimeStats(models.Model):
     # E5
     def exists(self) -> bool:
         return E5Average1stGoalTimeStats.objects.filter(team=self.team).exists()
+
+
+# E5
+class E5AverageTeamGoalsStats(models.Model):
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(E5Team, on_delete=models.CASCADE)
+    home_goals_scored_average = models.FloatField(null=True, blank=True)
+    home_goals_conceded_average = models.FloatField(null=True, blank=True)
+    away_goals_scored_average = models.FloatField(null=True, blank=True)
+    away_goals_conceded_average = models.FloatField(null=True, blank=True)
+    overall_goals_scored_average = models.FloatField(null=True, blank=True)
+    overall_goals_conceded_average = models.FloatField(null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
+
+    # E5
+    class Meta:
+        verbose_name = "Average Team Goals Stats"
+        verbose_name_plural = "Average Team Goals Stats"
+
+    # E5
+    def __str__(self):
+        return f"Average Team Goals Stats - {self.team}"
+
+    # E5
+    def exists(self) -> bool:
+        return E5AverageTeamGoalsStats.objects.filter(team=self.team).exists()
 
 
 # E5

@@ -28,13 +28,25 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                 # Get Url
                 self.get(url=league_table.url, error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_teams_ranking()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Teams Ranking
+                table_trs: ResultSet[Tag] = []
                 table_trs: ResultSet[Tag] = self.soup.select(selector="table.waffle.no-grid tr")
 
                 # Get Team Ranking
                 for table_tr in table_trs:
+                    ranking: int = 0
+                    team_name: str = ""
+                    matchs_played: int = 0
+                    matchs_won: int = 0
+                    matchs_drawn: int = 0
+                    matchs_lost: int = 0
+                    goals_scored: int = 0
+                    goals_conceded: int = 0
+                    goals_difference: int = 0
+                    points: int = 0
                     try:
                         ranking: int = int(table_tr.select(selector="td")[1].text)
                         team_name: str = table_tr.select_one(selector="td a[target='_blank']").text
@@ -51,10 +63,12 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
 
                     # Get Team
                     try:
-                        team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
+                        team: E5Team | None = None
+                        team = E5Team.objects.get(name=team_name, season=league_table.season)
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED, exception=ex,
                                        error_context=f"{self.ERROR_CONTEXT}.get_active_seasons_teams_ranking()")
+                        self.init_status()
                         continue
 
                     # Create Team Ranking
@@ -73,7 +87,6 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                     # Check if team ranking already exists before saving or updating
                     if not team_ranking.exists():
                         team_ranking.save()
-                        self.log_info(f"Team {team.name} Ranking created in database")
                     else:
                         target_team_ranking: E5TeamRanking = E5TeamRanking.objects.get(team=team)
                         target_team_ranking.ranking = ranking
@@ -86,4 +99,3 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                         target_team_ranking.goals_difference = goals_difference
                         target_team_ranking.points = points
                         target_team_ranking.save()
-                        self.log_info(f"Team {team.name} Ranking updated in database")

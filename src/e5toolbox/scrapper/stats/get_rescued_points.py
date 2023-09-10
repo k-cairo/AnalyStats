@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5RescuedPointsIframe, E5Team, E5RescuedPointsStats
@@ -32,11 +32,30 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_conceded_first: int = 0
+                    home_drawn_after_conceding_first: int = 0
+                    home_won_after_conceding_first: int = 0
+                    home_rescued_points: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_conceded_first: int = 0
+                    away_drawn_after_conceding_first: int = 0
+                    away_won_after_conceding_first: int = 0
+                    away_rescued_points: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_conceded_first: int = 0
+                    overall_drawn_after_conceding_first: int = 0
+                    overall_won_after_conceding_first: int = 0
+                    overall_rescued_points: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -82,7 +101,6 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_rp_stats.exists():
                         home_rp_stats.save()
-                        self.log_info(f"Team {home_team.name} Rescued Points Stats created in database")
                     else:
                         home_rp_stats: E5RescuedPointsStats = E5RescuedPointsStats.objects.get(team=home_team)
                         home_rp_stats.home_matches_played = home_matches_played
@@ -91,7 +109,6 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                         home_rp_stats.home_won_after_conceding_first = home_won_after_conceding_first
                         home_rp_stats.home_rescued_points = home_rescued_points
                         home_rp_stats.save()
-                        self.log_info(f"Team {home_team.name} Rescued Points Stats updated in database")
 
                     # Create Away Stats
                     away_rp_stats: E5RescuedPointsStats = E5RescuedPointsStats()
@@ -105,7 +122,6 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_rp_stats.exists():
                         away_rp_stats.save()
-                        self.log_info(f"Team {away_team.name} Rescued Points Stats created in database")
                     else:
                         away_rp_stats: E5RescuedPointsStats = E5RescuedPointsStats.objects.get(team=away_team)
                         away_rp_stats.away_matches_played = away_matches_played
@@ -114,7 +130,6 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                         away_rp_stats.away_won_after_conceding_first = away_won_after_conceding_first
                         away_rp_stats.away_rescued_points = away_rescued_points
                         away_rp_stats.save()
-                        self.log_info(f"Team {away_team.name} Rescued Points Stats updated in database")
 
                     # Create Overall Stats
                     overall_rp_stats: E5RescuedPointsStats = E5RescuedPointsStats()
@@ -128,7 +143,6 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_rp_stats.exists():
                         overall_rp_stats.save()
-                        self.log_info(f"Team {overall_team.name} Rescued Points Stats created in database")
                     else:
                         overall_rp_stats: E5RescuedPointsStats = E5RescuedPointsStats.objects.get(team=overall_team)
                         overall_rp_stats.overall_matches_played = overall_matches_played
@@ -137,4 +151,3 @@ class E5GetRescuedPoints(E5SeleniumWebDriver):
                         overall_rp_stats.overall_won_after_conceding_first = overall_won_after_conceding_first
                         overall_rp_stats.overall_rescued_points = overall_rescued_points
                         overall_rp_stats.save()
-                        self.log_info(f"Team {overall_team.name} Rescued Points updated in database")

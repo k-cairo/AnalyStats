@@ -64,6 +64,8 @@ class Command(BaseCommand):
                     scraper.get_seasons(error_context=error_context)
                 elif error_context.lower() == "get teams":
                     scraper.get_teams(error_context=error_context)
+                elif error_context.lower() == "get upcoming matches":
+                    scraper.get_upcoming_matches(error_context=error_context)
             elif iframe_length == 1:
                 scraper.get_iframe(endpoint=endpoint, error_context=error_context, save_message=save_message,
                                    class_=class_)

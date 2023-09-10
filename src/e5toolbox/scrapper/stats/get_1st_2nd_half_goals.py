@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E51st2ndHalfGoalsIframe, E5Team, E51st2ndHalfGoalsStats
@@ -33,14 +33,32 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
-
+                home_scored_team_name: str = ""
+                home_matches_played: int = 0
+                home_goals_scored: int = 0
+                home_goals_scored_1h: int = 0
+                home_goals_scored_1h_percent: int = 0
+                home_goals_scored_1h_average: float = 0.0
+                home_goals_scored_2h: int = 0
+                home_goals_scored_2h_percent: int = 0
+                home_goals_scored_2h_average: float = 0.0
+                home_conceded_team_name: str = ""
+                home_matches_conceded_played: int = 0
+                home_goals_conceded: int = 0
+                home_goals_conceded_1h: int = 0
+                home_goals_conceded_1h_percent: int = 0
+                home_goals_conceded_1h_average: float = 0.0
+                home_goals_conceded_2h: int = 0
+                home_goals_conceded_2h_percent: int = 0
+                home_goals_conceded_2h_average: float = 0.0
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_scored_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_matches_scored_played: int = int(table_tr.find_all('td')[2].text)
+                        home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_goals_scored = int(table_tr.find_all('td')[3].text)
                         home_goals_scored_1h = int(table_tr.find_all('td')[4].text)
                         home_goals_scored_1h_percent = int(table_tr.find_all('td')[5].text.strip('%'))
@@ -73,7 +91,7 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Create Home Scored Stats
                     home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     home_1st_2nd_half_goals_stats.team = scored_team
-                    home_1st_2nd_half_goals_stats.home_matches_scored_played = home_matches_scored_played
+                    home_1st_2nd_half_goals_stats.home_matches_played = home_matches_played
                     home_1st_2nd_half_goals_stats.home_goals_scored = home_goals_scored
                     home_1st_2nd_half_goals_stats.home_goals_scored_1h = home_goals_scored_1h
                     home_1st_2nd_half_goals_stats.home_goals_scored_1h_percent = home_goals_scored_1h_percent
@@ -85,11 +103,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_1st_2nd_half_goals_stats.exists():
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
-                        home_1st_2nd_half_goals_stats.home_matches_scored_played = home_matches_scored_played
+                        home_1st_2nd_half_goals_stats.home_matches_played = home_matches_played
                         home_1st_2nd_half_goals_stats.home_goals_scored = home_goals_scored
                         home_1st_2nd_half_goals_stats.home_goals_scored_1h = home_goals_scored_1h
                         home_1st_2nd_half_goals_stats.home_goals_scored_1h_percent = home_goals_scored_1h_percent
@@ -98,12 +115,11 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         home_1st_2nd_half_goals_stats.home_goals_scored_2h_percent = home_goals_scored_2h_percent
                         home_1st_2nd_half_goals_stats.home_goals_scored_2h_average = home_goals_scored_2h_average
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats updated in database")
 
                     # Create Home Conceded Stats
                     home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     home_1st_2nd_half_goals_stats.team = conceded_team
-                    home_1st_2nd_half_goals_stats.home_matches_conceded_played = home_matches_conceded_played
+                    home_1st_2nd_half_goals_stats.home_matches_played = home_matches_played
                     home_1st_2nd_half_goals_stats.home_goals_conceded = home_goals_conceded
                     home_1st_2nd_half_goals_stats.home_goals_conceded_1h = home_goals_conceded_1h
                     home_1st_2nd_half_goals_stats.home_goals_conceded_1h_percent = home_goals_conceded_1h_percent
@@ -115,11 +131,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_1st_2nd_half_goals_stats.exists():
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
-                        home_1st_2nd_half_goals_stats.home_matches_conceded_played = home_matches_conceded_played
+                        home_1st_2nd_half_goals_stats.home_matches_played = home_matches_played
                         home_1st_2nd_half_goals_stats.home_goals_conceded = home_goals_conceded
                         home_1st_2nd_half_goals_stats.home_goals_conceded_1h = home_goals_conceded_1h
                         home_1st_2nd_half_goals_stats.home_goals_conceded_1h_percent = home_goals_conceded_1h_percent
@@ -128,7 +143,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         home_1st_2nd_half_goals_stats.home_goals_conceded_2h_percent = home_goals_conceded_2h_percent
                         home_1st_2nd_half_goals_stats.home_goals_conceded_2h_average = home_goals_conceded_2h_average
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats updated in database")
 
                 ########################################## 1st 2nd Half Goals ##########################################
                 # Get Url
@@ -138,14 +152,33 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    away_scored_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_goals_scored: int = 0
+                    away_goals_scored_1h: int = 0
+                    away_goals_scored_1h_percent: int = 0
+                    away_goals_scored_1h_average: float = 0.0
+                    away_goals_scored_2h: int = 0
+                    away_goals_scored_2h_percent: int = 0
+                    away_goals_scored_2h_average: float = 0.0
+                    away_conceded_team_name: str = ""
+                    away_matches_conceded_played: int = 0
+                    away_goals_conceded: int = 0
+                    away_goals_conceded_1h: int = 0
+                    away_goals_conceded_1h_percent: int = 0
+                    away_goals_conceded_1h_average: float = 0.0
+                    away_goals_conceded_2h: int = 0
+                    away_goals_conceded_2h_percent: int = 0
+                    away_goals_conceded_2h_average: float = 0.0
                     try:
                         away_scored_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        away_matches_scored_played: int = int(table_tr.find_all('td')[2].text)
+                        away_matches_played: int = int(table_tr.find_all('td')[2].text)
                         away_goals_scored = int(table_tr.find_all('td')[3].text)
                         away_goals_scored_1h = int(table_tr.find_all('td')[4].text)
                         away_goals_scored_1h_percent = int(table_tr.find_all('td')[5].text.strip('%'))
@@ -178,7 +211,7 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Create Away Scored Stats
                     away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     away_1st_2nd_half_goals_stats.team = scored_team
-                    away_1st_2nd_half_goals_stats.away_matches_scored_played = away_matches_scored_played
+                    away_1st_2nd_half_goals_stats.away_matches_played = away_matches_played
                     away_1st_2nd_half_goals_stats.away_goals_scored = away_goals_scored
                     away_1st_2nd_half_goals_stats.away_goals_scored_1h = away_goals_scored_1h
                     away_1st_2nd_half_goals_stats.away_goals_scored_1h_percent = away_goals_scored_1h_percent
@@ -190,11 +223,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_1st_2nd_half_goals_stats.exists():
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
-                        away_1st_2nd_half_goals_stats.away_matches_scored_played = away_matches_scored_played
+                        away_1st_2nd_half_goals_stats.away_matches_played = away_matches_played
                         away_1st_2nd_half_goals_stats.away_goals_scored = away_goals_scored
                         away_1st_2nd_half_goals_stats.away_goals_scored_1h = away_goals_scored_1h
                         away_1st_2nd_half_goals_stats.away_goals_scored_1h_percent = away_goals_scored_1h_percent
@@ -203,12 +235,11 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         away_1st_2nd_half_goals_stats.away_goals_scored_2h_percent = away_goals_scored_2h_percent
                         away_1st_2nd_half_goals_stats.away_goals_scored_2h_average = away_goals_scored_2h_average
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats updated in database")
 
                     # Create Away Conceded Stats
                     away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     away_1st_2nd_half_goals_stats.team = conceded_team
-                    away_1st_2nd_half_goals_stats.away_matches_conceded_played = away_matches_conceded_played
+                    away_1st_2nd_half_goals_stats.away_matches_played = away_matches_played
                     away_1st_2nd_half_goals_stats.away_goals_conceded = away_goals_conceded
                     away_1st_2nd_half_goals_stats.away_goals_conceded_1h = away_goals_conceded_1h
                     away_1st_2nd_half_goals_stats.away_goals_conceded_1h_percent = away_goals_conceded_1h_percent
@@ -220,11 +251,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_1st_2nd_half_goals_stats.exists():
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
-                        away_1st_2nd_half_goals_stats.away_matches_conceded_played = away_matches_conceded_played
+                        away_1st_2nd_half_goals_stats.away_matches_played = away_matches_played
                         away_1st_2nd_half_goals_stats.away_goals_conceded = away_goals_conceded
                         away_1st_2nd_half_goals_stats.away_goals_conceded_1h = away_goals_conceded_1h
                         away_1st_2nd_half_goals_stats.away_goals_conceded_1h_percent = away_goals_conceded_1h_percent
@@ -233,7 +263,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         away_1st_2nd_half_goals_stats.away_goals_conceded_2h_percent = away_goals_conceded_2h_percent
                         away_1st_2nd_half_goals_stats.away_goals_conceded_2h_average = away_goals_conceded_2h_average
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats updated in database")
 
                 ########################################## 1st 2nd Half Goals ##########################################
                 # Get Url
@@ -244,14 +273,33 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    overall_scored_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_goals_scored: int = 0
+                    overall_goals_scored_1h: int = 0
+                    overall_goals_scored_1h_percent: int = 0
+                    overall_goals_scored_1h_average: float = 0.0
+                    overall_goals_scored_2h: int = 0
+                    overall_goals_scored_2h_percent: int = 0
+                    overall_goals_scored_2h_average: float = 0.0
+                    overall_conceded_team_name: str = ""
+                    overall_matches_conceded_played: int = 0
+                    overall_goals_conceded: int = 0
+                    overall_goals_conceded_1h: int = 0
+                    overall_goals_conceded_1h_percent: int = 0
+                    overall_goals_conceded_1h_average: float = 0.0
+                    overall_goals_conceded_2h: int = 0
+                    overall_goals_conceded_2h_percent: int = 0
+                    overall_goals_conceded_2h_average: float = 0.0
                     try:
                         overall_scored_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        overall_matches_scored_played: int = int(table_tr.find_all('td')[2].text)
+                        overall_matches_played: int = int(table_tr.find_all('td')[2].text)
                         overall_goals_scored = int(table_tr.find_all('td')[3].text)
                         overall_goals_scored_1h = int(table_tr.find_all('td')[4].text)
                         overall_goals_scored_1h_percent = int(table_tr.find_all('td')[5].text.strip('%'))
@@ -285,7 +333,7 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Create Overall Scored Stats
                     overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     overall_1st_2nd_half_goals_stats.team = scored_team
-                    overall_1st_2nd_half_goals_stats.overall_matches_scored_played = overall_matches_scored_played
+                    overall_1st_2nd_half_goals_stats.overall_matches_played = overall_matches_played
                     overall_1st_2nd_half_goals_stats.overall_goals_scored = overall_goals_scored
                     overall_1st_2nd_half_goals_stats.overall_goals_scored_1h = overall_goals_scored_1h
                     overall_1st_2nd_half_goals_stats.overall_goals_scored_1h_percent = overall_goals_scored_1h_percent
@@ -297,11 +345,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_1st_2nd_half_goals_stats.exists():
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
-                        overall_1st_2nd_half_goals_stats.overall_matches_scored_played = overall_matches_scored_played
+                        overall_1st_2nd_half_goals_stats.overall_matches_played = overall_matches_played
                         overall_1st_2nd_half_goals_stats.overall_goals_scored = overall_goals_scored
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_1h = overall_goals_scored_1h
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_1h_percent = overall_goals_scored_1h_percent
@@ -310,12 +357,11 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_2h_percent = overall_goals_scored_2h_percent
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_2h_average = overall_goals_scored_2h_average
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {scored_team.name} 1st 2nd Half Goals Stats updated in database")
 
                     # Create Overall Conceded Stats
                     overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
                     overall_1st_2nd_half_goals_stats.team = conceded_team
-                    overall_1st_2nd_half_goals_stats.overall_matches_conceded_played = overall_matches_conceded_played
+                    overall_1st_2nd_half_goals_stats.overall_matches_played = overall_matches_played
                     overall_1st_2nd_half_goals_stats.overall_goals_conceded = overall_goals_conceded
                     overall_1st_2nd_half_goals_stats.overall_goals_conceded_1h = overall_goals_conceded_1h
                     overall_1st_2nd_half_goals_stats.overall_goals_conceded_1h_percent = overall_goals_conceded_1h_percent
@@ -327,11 +373,10 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_1st_2nd_half_goals_stats.exists():
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats created in database")
                     else:
                         overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
-                        overall_1st_2nd_half_goals_stats.overall_matches_conceded_played = overall_matches_conceded_played
+                        overall_1st_2nd_half_goals_stats.overall_matches_played = overall_matches_played
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded = overall_goals_conceded
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_1h = overall_goals_conceded_1h
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_1h_percent = overall_goals_conceded_1h_percent
@@ -340,4 +385,3 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_2h_percent = overall_goals_conceded_2h_percent
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_2h_average = overall_goals_conceded_2h_average
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(f"Team {conceded_team.name} 1st 2nd Half Goals Stats updated in database")

@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5WonToNilStats, E5Team, E5WonToNilIframe
@@ -32,11 +32,24 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_won_to_nil: int = 0
+                    home_won_to_nil_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_won_to_nil: int = 0
+                    away_won_to_nil_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_won_to_nil: int = 0
+                    overall_won_to_nil_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -74,14 +87,12 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wtn_stats.exists():
                         home_wtn_stats.save()
-                        self.log_info(f"Team {home_team.name} Won To Nil Stats created in database")
                     else:
                         home_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=home_team)
                         home_wtn_stats.home_matches_played = home_matches_played
                         home_wtn_stats.home_won_to_nil = home_won_to_nil
                         home_wtn_stats.home_won_to_nil_percent = home_won_to_nil_percent
                         home_wtn_stats.save()
-                        self.log_info(f"Team {home_team.name} Won To Nil Stats updated in database")
 
                     # Create Away Stats
                     away_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -93,14 +104,12 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wtn_stats.exists():
                         away_wtn_stats.save()
-                        self.log_info(f"Team {away_team.name} Won To Nil Stats created in database")
                     else:
                         away_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=away_team)
                         away_wtn_stats.away_matches_played = away_matches_played
                         away_wtn_stats.away_won_to_nil = away_won_to_nil
                         away_wtn_stats.away_won_to_nil_percent = away_won_to_nil_percent
                         away_wtn_stats.save()
-                        self.log_info(f"Team {away_team.name} Won To Nil Stats updated in database")
 
                     # Create Overall Stats
                     overall_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -112,14 +121,12 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wtn_stats.exists():
                         overall_wtn_stats.save()
-                        self.log_info(f"Team {overall_team.name} Won To Nil Stats created in database")
                     else:
                         overall_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=overall_team)
                         overall_wtn_stats.overall_matches_played = overall_matches_played
                         overall_wtn_stats.overall_won_to_nil = overall_won_to_nil
                         overall_wtn_stats.overall_won_to_nil_percent = overall_won_to_nil_percent
                         overall_wtn_stats.save()
-                        self.log_info(f"Team {overall_team.name} Won To Nil updated in database")
 
                 ############################################ Lost To Nil ###############################################
                 # Get Url
@@ -129,11 +136,24 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_lost_to_nil: int = 0
+                    home_lost_to_nil_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_lost_to_nil: int = 0
+                    away_lost_to_nil_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_lost_to_nil: int = 0
+                    overall_lost_to_nil_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -171,14 +191,12 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wtn_stats.exists():
                         home_wtn_stats.save()
-                        self.log_info(f"Team {home_team.name} Won To Nil Stats created in database")
                     else:
                         home_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=home_team)
                         home_wtn_stats.home_matches_played = home_matches_played
                         home_wtn_stats.home_lost_to_nil = home_lost_to_nil
                         home_wtn_stats.home_lost_to_nil_percent = home_lost_to_nil_percent
                         home_wtn_stats.save()
-                        self.log_info(f"Team {home_team.name} Won To Nil Stats updated in database")
 
                     # Create Away Stats
                     away_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -190,14 +208,12 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wtn_stats.exists():
                         away_wtn_stats.save()
-                        self.log_info(f"Team {away_team.name} Won To Nil Stats created in database")
                     else:
                         away_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=away_team)
                         away_wtn_stats.away_matches_played = away_matches_played
                         away_wtn_stats.away_lost_to_nil = away_lost_to_nil
                         away_wtn_stats.away_lost_to_nil_percent = away_lost_to_nil_percent
                         away_wtn_stats.save()
-                        self.log_info(f"Team {away_team.name} Won To Nil Stats updated in database")
 
                     # Create Overall Stats
                     overall_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -209,11 +225,9 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wtn_stats.exists():
                         overall_wtn_stats.save()
-                        self.log_info(f"Team {overall_team.name} Won To Nil Stats created in database")
                     else:
                         overall_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=overall_team)
                         overall_wtn_stats.overall_matches_played = overall_matches_played
                         overall_wtn_stats.overall_lost_to_nil = overall_lost_to_nil
                         overall_wtn_stats.overall_lost_to_nil_percent = overall_lost_to_nil_percent
                         overall_wtn_stats.save()
-                        self.log_info(f"Team {overall_team.name} Won To Nil Stats updated in database")

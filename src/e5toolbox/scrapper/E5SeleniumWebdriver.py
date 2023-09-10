@@ -1,22 +1,26 @@
 import dataclasses
+import datetime
 import logging
+import time
 from enum import Enum
 from typing import Any, ClassVar
 
 from bs4 import BeautifulSoup, ResultSet, Tag
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Q
 from django.utils.text import slugify
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.common.by import By
 
 from Website.models import (E5Season, E5CardsIframes, E5BttsIframes, E5Over05GoalsIframe, E5ScoredFirstIframe,
                             E5Over15GoalsIframe, E5Over25GoalsIframe, E5Over35GoalsIframe, E5CornersIframes,
                             E5ScoredBothHalfIframes, E5WonBothHalfIframes, E5League, E5LeagueTableIframe, E5Team,
                             E51st2ndHalfGoalsIframe, E5CleanSheetIframe, E5WonToNilIframe, E5WinLossMarginIframe,
                             E5WinDrawLossPercentageIframe, E5HalfTimeFullTimeIframe, E5RescuedPointsIframe,
-                            E5Average1stGoalTimeIframe, E5AverageTeamGoalsIframe, E5EarlyGoalsIframe, E5LateGoalsIframe)
+                            E5Average1stGoalTimeIframe, E5AverageTeamGoalsIframe, E5EarlyGoalsIframe, E5LateGoalsIframe,
+                            E5Fixture)
 
 logging.basicConfig(level=logging.INFO, filename="management_command.log", filemode="a",
                     format="%(asctime)s - %(levelname)s - %(message)s")
@@ -134,6 +138,14 @@ class E5SeleniumWebDriver:
         logging.warning(msg=f"{self.status.error_context} : {self.status.error_type} : {self.status.exception}")
 
     # E5
+    def get_only(self, url: str, error_context: str):
+        try:
+            self.driver.get(url)
+        except Exception as ex:
+            self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_URL_FAILED,
+                           error_context=error_context, exception=ex)
+
+    # E5
     def get(self, url: str, error_context: str):
         try:
             self.driver.get(url)
@@ -151,6 +163,15 @@ class E5SeleniumWebDriver:
         except Exception as ex:
             self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_SOUP_FAILED,
                            error_context=error_context, exception=ex)
+
+    ####################################################### UTILS ######################################################
+    # E5
+    @staticmethod
+    def convert_to_date(date_str: str) -> datetime.date:
+        date_list = date_str.split()
+        date_list[1] = date_list[1][:-2]
+        date_format = "%A %d %B %Y"
+        return datetime.datetime.strptime(' '.join(date_list), date_format).date()
 
     ####################################################### BUILD ######################################################
     # E5
@@ -249,7 +270,7 @@ class E5SeleniumWebDriver:
                 if idx == 0:
                     iframe.won_both_half_url = iframe_url
                 elif idx == 1:
-                    iframe.won_both_half_url = iframe_url
+                    iframe.lost_both_half_url = iframe_url
             elif isinstance(iframe, E51st2ndHalfGoalsIframe):
                 if idx == 0:
                     iframe.overall_1st_2nd_half_goals_url = iframe_url
@@ -373,7 +394,11 @@ class E5SeleniumWebDriver:
 
                 if ("Colombia" in league_name or "Costa Rica" in league_name or "Ecuador" in league_name
                         or "Honduras" in league_name or "Mexico" in league_name or "Paraguay" in league_name
-                        or "Peru" in league_name or "Tunisia" in league_name or "Uruguay" in league_name):
+                        or "Peru" in league_name or "Tunisia" in league_name or "Uruguay" in league_name
+                        or "England – Northern Premier League" in league_name or "Moldova" in league_name
+                        or "England – Southern League South" in league_name
+                        or "England – Southern League Central" in league_name
+                        or "England – Isthmian League" in league_name or "Nigeria" in league_name):
                     continue
 
                 # Check if league already exists
@@ -383,11 +408,9 @@ class E5SeleniumWebDriver:
                     target_league.url = league_url
                     target_league.slug = slugify(value=league_name)
                     target_league.save()
-                    self.log_info(message=f"League {league_name} updated in database")
                 else:
                     # Save League
                     new_league.save()
-                    self.log_info(message=f"League {league_name} created in database")
 
     # E5
     def get_seasons(self, error_context: str) -> None:
@@ -401,14 +424,17 @@ class E5SeleniumWebDriver:
                 # Get Url
                 self.get(url=league.url, error_context=error_context)
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Season Name and Url
                 try:
-                    season_details: str = self.soup.select(selector="div.textwidget.custom-html-widget p")[1].text
+                    season_details: str = ""
+                    season_details = self.soup.select(selector="div.textwidget.custom-html-widget p")[1].text
                 except Exception as ex:
                     self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_SEASON_NAME_OR_URL_FAILED,
                                    error_context=error_context, exception=ex)
+                    self.init_status()
                     continue
 
                 # Create Active Season
@@ -421,13 +447,11 @@ class E5SeleniumWebDriver:
                 # Check if season already exists before saving or updating
                 if not active_season.exists():
                     active_season.save()
-                    self.log_info(f"League {active_season.league.name} Season {active_season.name} created in database")
                 else:
                     target_active_season: E5Season = E5Season.objects.get(active=True, league=league,
                                                                           name=active_season.name)
                     target_active_season.url = league.url
                     target_active_season.save()
-                    self.log_info(f"League {active_season.league.name} Season {active_season.name} updated in database")
 
     # E5
     def get_teams(self, error_context: str) -> None:
@@ -441,39 +465,135 @@ class E5SeleniumWebDriver:
                 # Get Url
                 self.get(url=league_table.url, error_context=error_context)
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Teams
-                teams_a: ResultSet[Tag] = self.soup.select(selector="table.waffle.no-grid tr td a[target='_blank']")
+                teams_a: ResultSet[Tag] = []
+                teams_a = self.soup.select(selector="table.waffle.no-grid tr td a[target='_blank']")
 
                 # Get Team
                 for team_a in teams_a:
+                    team_name: str = ""
+                    team_url: str = ""
                     try:
-                        team_name: str = team_a.text
-                        team_url: str = team_a['href']
+                        team_name = team_a.text
+                        team_url = team_a['href']
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_TEAM_NAME_OR_URL_FAILED,
                                        error_context=error_context, exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Team
-                    if team_name != "" and team_url != "":
-                        team: E5Team = E5Team()
-                        team.name = team_name
-                        team.url = team_url
-                        team.slug = slugify(value=team_name)
-                        team.season = league_table.season
+                    team: E5Team = E5Team()
+                    team.name = team_name
+                    team.url = team_url
+                    team.slug = slugify(value=team_name)
+                    team.season = league_table.season
 
-                        # Check if team already exists before saving or updating
-                        if not team.exists():
-                            team.save()
-                            self.log_info(f"Team {team.name} created in database")
-                        else:
-                            target_team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
-                            target_team.url = team_url
-                            target_team.slug = slugify(value=team_name)
-                            target_team.save()
-                            self.log_info(f"Team {team.name} updated in database")
+                    # Check if team already exists before saving or updating
+                    if not team.exists():
+                        team.save()
+                    else:
+                        target_team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
+                        target_team.url = team_url
+                        target_team.slug = slugify(value=team_name)
+                        target_team.save()
+
+    # E5
+    def get_upcoming_matches(self, error_context: str) -> None:
+        endpoints: tuple = ("saturday-uk/", "saturday/", "sunday/", "monday/", "tuesday/", "wednesday/",
+                            "thursday/", "friday")
+
+        # Check connection
+        self.check_is_connected()
+
+        if self.status.success:
+            for endpoint in endpoints:
+                # Get Url
+                self.get_only(url=f"https://www.thestatsdontlie.com/football/predictions/{endpoint}",
+                              error_context=error_context)
+                if not self.status.success:
+                    self.init_status()
+                    continue
+
+                # Check if user and pass required
+                try:
+                    self.driver.find_element(by=By.ID, value="user_login").send_keys("cairo.kevin72@gmail.com")
+                    self.driver.find_element(by=By.ID, value="user_pass").send_keys("31Mars1988")
+                    self.driver.find_element(by=By.ID, value="wp-submit").click()
+                    self.driver.implicitly_wait(10)
+                except Exception:
+                    pass
+
+                # Get Soup
+                self.get_soup(error_context=error_context)
+                if not self.status.success:
+                    self.init_status()
+                    continue
+
+                # Get Upcoming Matches Date
+                date_str: str = self.soup.select_one(selector="div.fusion-text.fusion-text-2 h1").text
+                date_str += f" {datetime.datetime.now().year}"
+                date: datetime.date = self.convert_to_date(date_str=date_str)
+
+                # Check if date if newer than today
+                if date < datetime.date.today():
+                    continue
+
+                # Get Upcoming Matches
+                time.sleep(10)
+                table_upcoming_matchs = self.soup.select(selector="table.supsystic-table")[1]
+                if table_upcoming_matchs is None:
+                    self.log_warning(message=f"Table upcoming matches not found for date {date}")
+                    continue
+
+                upcoming_matches_trs: ResultSet[Tag] = table_upcoming_matchs.select(selector="tbody tr")
+
+                for upcoming_match_tr in upcoming_matches_trs:
+                    league_str: str = upcoming_match_tr.select(selector="td")[0].text
+                    kick_off: str = upcoming_match_tr.select(selector="td")[1].text
+                    home_team_str: str = upcoming_match_tr.select(selector="td")[2].next.text
+                    away_team_str: str = upcoming_match_tr.select(selector="td")[2].next.next.next.text[1:] # Remove space
+
+                    if ("Colombia" in league_str or "Costa Rica" in league_str or "Ecuador" in league_str
+                    or "Honduras" in league_str or "Mexico" in league_str or "Paraguay" in league_str
+                    or "Peru" in league_str or "Tunisia" in league_str or "Uruguay" in league_str
+                    or "England NL" in league_str or "Moldova" in league_str
+                    or "England SL" in league_str or "England Isthmian" in league_str or "Nigeria" in league_str
+                    or "Southern League South" in league_str or "Southern League Central" in league_str):
+                        continue
+
+                    # Get Teams
+                    league_list: list[str] = league_str.split(" ")
+
+                    try:
+                        home_team: E5Team | None = E5Team.objects.filter(
+                            Q(name__contains=home_team_str) &
+                            Q(season__league__name__icontains=league_list[0]) &
+                            Q(season__league__name__icontains=league_list[1])).get()
+                        away_team: E5Team | None = E5Team.objects.filter(
+                            Q(name__contains=away_team_str) &
+                            Q(season__league__name__icontains=league_list[0]) &
+                            Q(season__league__name__icontains=league_list[1])).get()
+                    except Exception as ex:
+                        self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
+                                       error_context=error_context, exception=ex)
+                        self.init_status()
+                        continue
+
+                    # Build Upcoming Match
+                    fixture: E5Fixture = E5Fixture()
+                    fixture.home_team = home_team
+                    fixture.away_team = away_team
+                    fixture.date = date
+                    fixture.slug = slugify(value=f"{home_team.name}-{away_team.name}")
+                    fixture.kickoff_time = kick_off
+
+                    # Check if fixture already exists
+                    if not fixture.exists():
+                        fixture.save()
 
     ##################################################### GET IFRAME ###################################################
     # E5
@@ -488,6 +608,7 @@ class E5SeleniumWebDriver:
                 # Get Url
                 self.get(url=f"{season.url}{endpoint}", error_context=error_context)
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Iframes
@@ -497,6 +618,7 @@ class E5SeleniumWebDriver:
                 if len(stat_iframes) != iframe_length:
                     self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_IFRAMES_BAD_LENGTH,
                                    error_context=error_context, exception=None)
+                    self.init_status()
                     continue
 
                 # Build Iframe
@@ -507,15 +629,14 @@ class E5SeleniumWebDriver:
                 if not iframe.not_empty():
                     self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_IFRAME_EMPTY,
                                    error_context=error_context, exception=None)
+                    self.init_status()
                     continue
 
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"League {season.league.name} : {save_message} created in database")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"League {season.league.name} : {save_message} updated in database")
 
     # E5
     def get_iframe(self, endpoint: str, error_context: str, save_message: str, class_: Any):
@@ -574,7 +695,5 @@ class E5SeleniumWebDriver:
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"League {season.league.name} : {save_message} created in database")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"League {season.league.name} : {save_message} updated in database")

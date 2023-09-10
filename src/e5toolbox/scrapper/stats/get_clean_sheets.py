@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5CleanSheetStats, E5Team, E5CleanSheetIframe
@@ -32,11 +32,24 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Clean Sheets Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_clean_sheet: int = 0
+                    home_clean_sheet_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_clean_sheet: int = 0
+                    away_clean_sheet_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_clean_sheet: int = 0
+                    overall_clean_sheet_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -74,14 +87,12 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_cs_stats.exists():
                         home_cs_stats.save()
-                        self.log_info(f"Team {home_team.name} Clean Sheet Stats created in database")
                     else:
                         home_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=home_team)
                         home_cs_stats.home_matches_played = home_matches_played
                         home_cs_stats.home_clean_sheet = home_clean_sheet
                         home_cs_stats.home_clean_sheet_percent = home_clean_sheet_percent
                         home_cs_stats.save()
-                        self.log_info(f"Team {home_team.name} Clean Sheet Stats updated in database")
 
                     # Create Clean Sheet Away Stats
                     away_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -93,14 +104,12 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_cs_stats.exists():
                         away_cs_stats.save()
-                        self.log_info(f"Team {away_team.name} Clean Sheet Stats created in database")
                     else:
                         away_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=away_team)
                         away_cs_stats.away_matches_played = away_matches_played
                         away_cs_stats.away_clean_sheet = away_clean_sheet
                         away_cs_stats.away_clean_sheet_percent = away_clean_sheet_percent
                         away_cs_stats.save()
-                        self.log_info(f"Team {away_team.name} Clean Sheet Stats updated in database")
 
                     # Create Clean Sheet Overall Stats
                     overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -112,14 +121,12 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_cs_stats.exists():
                         overall_cs_stats.save()
-                        self.log_info(f"Team {overall_team.name} Clean Sheet Stats created in database")
                     else:
                         overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=overall_team)
                         overall_cs_stats.overall_matches_played = overall_matches_played
                         overall_cs_stats.overall_clean_sheet = overall_clean_sheet
                         overall_cs_stats.overall_clean_sheet_percent = overall_clean_sheet_percent
                         overall_cs_stats.save()
-                        self.log_info(f"Team {overall_team.name} Clean Sheet Stats updated in database")
 
                 ######################################### Failed To Score ###########################################
                 # Get Url
@@ -129,11 +136,24 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_failed_to_score: int = 0
+                    home_failed_to_score_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_failed_to_score: int = 0
+                    away_failed_to_score_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_failed_to_score: int = 0
+                    overall_failed_to_score_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -171,14 +191,12 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_cs_stats.exists():
                         home_cs_stats.save()
-                        self.log_info(f"Team {home_team.name} Clean Sheet Stats created in database")
                     else:
                         home_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=home_team)
                         home_cs_stats.home_matches_played = home_matches_played
                         home_cs_stats.home_failed_to_score = home_failed_to_score
                         home_cs_stats.home_failed_to_score_percent = home_failed_to_score_percent
                         home_cs_stats.save()
-                        self.log_info(f"Team {home_team.name} Clean Sheet Stats updated in database")
 
                     # Create Clean Sheet Away Stats
                     away_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -190,14 +208,12 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_cs_stats.exists():
                         away_cs_stats.save()
-                        self.log_info(f"Team {away_team.name} Clean Sheet Stats created in database")
                     else:
                         away_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=away_team)
                         away_cs_stats.away_matches_played = away_matches_played
                         away_cs_stats.away_failed_to_score = away_failed_to_score
                         away_cs_stats.away_failed_to_score_percent = away_failed_to_score_percent
                         away_cs_stats.save()
-                        self.log_info(f"Team {away_team.name} Clean Sheet Stats updated in database")
 
                     # Create Clean Sheet Overall Stats
                     overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -209,11 +225,9 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_cs_stats.exists():
                         overall_cs_stats.save()
-                        self.log_info(f"Team {overall_team.name} Clean Sheet Stats created in database")
                     else:
                         overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=overall_team)
                         overall_cs_stats.overall_matches_played = overall_matches_played
                         overall_cs_stats.overall_failed_to_score = overall_failed_to_score
                         overall_cs_stats.overall_failed_to_score_percent = overall_failed_to_score_percent
                         overall_cs_stats.save()
-                        self.log_info(f"Team {overall_team.name} Clean Sheet Stats updated in database")

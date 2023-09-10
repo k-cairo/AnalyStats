@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5ScoredBothHalfStats, E5Team, E5ScoredBothHalfIframes
@@ -33,11 +33,24 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Scored Both Halves Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_scored_both_halves: int = 0
+                    home_scored_both_halves_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_scored_both_halves: int = 0
+                    away_scored_both_halves_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_scored_both_halves: int = 0
+                    overall_scored_both_halves_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -75,14 +88,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sbh_stats.exists():
                         home_sbh_stats.save()
-                        self.log_info(f"Team {home_team.name} Scored Both Halves Stats created in database")
                     else:
                         home_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=home_team)
                         home_sbh_stats.home_matches_played = home_matches_played
                         home_sbh_stats.home_scored_both_halves = home_scored_both_halves
                         home_sbh_stats.home_scored_both_halves_percent = home_scored_both_halves_percent
                         home_sbh_stats.save()
-                        self.log_info(f"Team {home_team.name} Scored Both Halves Stats updated in database")
 
                     # Create Scored Both Halves Away Stats
                     away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -94,14 +105,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sbh_stats.exists():
                         away_sbh_stats.save()
-                        self.log_info(f"Team {away_team.name} Scored Both Halves Stats created in database")
                     else:
                         away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=away_team)
                         away_sbh_stats.away_matches_played = away_matches_played
                         away_sbh_stats.away_scored_both_halves = away_scored_both_halves
                         away_sbh_stats.away_scored_both_halves_percent = away_scored_both_halves_percent
                         away_sbh_stats.save()
-                        self.log_info(f"Team {away_team.name} Scored Both Halves Stats updated in database")
 
                     # Create Scored Both Halves Overall Stats
                     overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -113,14 +122,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sbh_stats.exists():
                         overall_sbh_stats.save()
-                        self.log_info(f"Team {overall_team.name} Scored Both Halves Stats created in database")
                     else:
                         overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=overall_team)
                         overall_sbh_stats.overall_matches_played = overall_matches_played
                         overall_sbh_stats.overall_scored_both_halves = overall_scored_both_halves
                         overall_sbh_stats.overall_scored_both_halves_percent = overall_scored_both_halves_percent
                         overall_sbh_stats.save()
-                        self.log_info(f"Team {overall_team.name} Scored Both Halves Stats updated in database")
 
                 ######################################### Conceded Both Halves ###########################################
                 # Get Url
@@ -130,11 +137,24 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Conceded Both Halves Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_conceded_both_halves: int = 0
+                    home_conceded_both_halves_percent: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_conceded_both_halves: int = 0
+                    away_conceded_both_halves_percent: int = 0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_conceded_both_halves: int = 0
+                    overall_conceded_both_halves_percent: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -172,14 +192,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sbh_stats.exists():
                         home_sbh_stats.save()
-                        self.log_info(f"Team {home_team.name} Scored Both Halves Stats created in database")
                     else:
                         home_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=home_team)
                         home_sbh_stats.home_matches_played = home_matches_played
                         home_sbh_stats.home_conceded_both_halves = home_conceded_both_halves
                         home_sbh_stats.home_conceded_both_halves_percent = home_conceded_both_halves_percent
                         home_sbh_stats.save()
-                        self.log_info(f"Team {home_team.name} Scored Both Halves Stats updated in database")
 
                     # Create Scored Both Halves Away Stats
                     away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -191,14 +209,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sbh_stats.exists():
                         away_sbh_stats.save()
-                        self.log_info(f"Team {away_team.name} Scored Both Halves Stats created in database")
                     else:
                         away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=away_team)
                         away_sbh_stats.away_matches_played = away_matches_played
                         away_sbh_stats.away_conceded_both_halves = away_conceded_both_halves
                         away_sbh_stats.away_conceded_both_halves_percent = away_conceded_both_halves_percent
                         away_sbh_stats.save()
-                        self.log_info(f"Team {away_team.name} Scored Both Halves Stats updated in database")
 
                     # Create Scored Both Halves Overall Stats
                     overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -210,11 +226,9 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sbh_stats.exists():
                         overall_sbh_stats.save()
-                        self.log_info(f"Team {overall_team.name} Scored Both Halves Stats created in database")
                     else:
                         overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=overall_team)
                         overall_sbh_stats.overall_matches_played = overall_matches_played
                         overall_sbh_stats.overall_conceded_both_halves = overall_conceded_both_halves
                         overall_sbh_stats.overall_conceded_both_halves_percent = overall_conceded_both_halves_percent
                         overall_sbh_stats.save()
-                        self.log_info(f"Team {overall_team.name} Scored Both Halves Stats updated in database")

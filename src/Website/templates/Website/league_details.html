@@ -9,7 +9,7 @@
 
 {% block content %}
 <!-- Change League Section-->
-{% include 'change_league_stat.html' %}
+{% include 'base/change_league_stat.html' %}
 
 <!-- League Table Ranking Section-->
 <div class="site-section bg-dark">
@@ -22,19 +22,19 @@
             <!-- Table Section -->
             <div class="col-lg-12">
                 <div class="widget-next-match">
-                    <table class="table custom-table">
+                    <table class="table table-responsive-md custom-table text-center">
                         <thead>
                         <tr>
-                            <th>R</th>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>W</th>
-                            <th>D</th>
-                            <th>L</th>
-                            <th>GF</th>
-                            <th>GA</th>
-                            <th>GD</th>
-                            <th>PTS</th>
+                            <th scope="col" class="col-1">R</th>
+                            <th scope="col" class="col-3">Team</th>
+                            <th scope="col" class="col-1">P</th>
+                            <th scope="col" class="col-1">W</th>
+                            <th scope="col" class="col-1">D</th>
+                            <th scope="col" class="col-1">L</th>
+                            <th scope="col" class="col-1">GF</th>
+                            <th scope="col" class="col-1">GA</th>
+                            <th scope="col" class="col-1">GD</th>
+                            <th scope="col" class="col-1">PTS</th>
                         </tr>
                         </thead>
                         <tbody>

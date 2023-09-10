@@ -9,898 +9,958 @@
 
 {% block content %}
 <!-- Change League Section-->
-{% include 'change_league_stat.html' %}
+{% include 'base/change_league_stat.html' %}
 
-<!-- Team Corners For 1st Half Stat Section-->
-<div class="site-section bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 title-section">
-                <h2 class="heading">Team Corners For 1st Half</h2>
-            </div>
 
-            <!-- Table Corner Home Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Home</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.home_matches_played }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_1h }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div id="carouselCorners" class="carousel slide" data-ride="carousel" data-interval="false">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselCorners" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselCorners" data-slide-to="1"></li>
+        <li data-target="#carouselCorners" data-slide-to="2"></li>
+        <li data-target="#carouselCorners" data-slide-to="3"></li>
+        <li data-target="#carouselCorners" data-slide-to="4"></li>
+        <li data-target="#carouselCorners" data-slide-to="5"></li>
+        <li data-target="#carouselCorners" data-slide-to="6"></li>
+        <li data-target="#carouselCorners" data-slide-to="7"></li>
+        <li data-target="#carouselCorners" data-slide-to="8"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!-- Team Corners For 1st Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners For 1st Half</h2>
+                        </div>
 
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Away</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.away_matches_played }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_1h }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_1h }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Overall</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.overall_matches_played }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_1h }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_1h }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_1h }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="carousel-item">
+            <!-- Team Corners Against 1st Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners Against 1st Half</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_1h }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_1h }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_1h }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Team Corners For 2nd Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners For 2nd Half</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_2h }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_2h }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_2h }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Team Corners Against 2nd Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners Against 2nd Half</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_2h }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_2h }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_2h }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Team Corners For Full Time Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners For Full Time</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_ft }}</td>
+                                        <td>{{ team_corner_stat.home_corners_for_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_ft }}</td>
+                                        <td>{{ team_corner_stat.away_corners_for_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CF</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_ft }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_for_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Team Corners Against Full Time Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Team Corners Against Full Time</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.home_matches_played }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_ft }}</td>
+                                        <td>{{ team_corner_stat.home_corners_against_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.away_matches_played }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_ft }}</td>
+                                        <td>{{ team_corner_stat.away_corners_against_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>CA</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for team_corner_stat in team_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
+                                                {{ team_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ team_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_ft }}</td>
+                                        <td>{{ team_corner_stat.overall_corners_against_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Match Corners 1st Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Match Corners 1st Half</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.home_matches_played }}</td>
+                                        <td>{{ match_corner_stat.home_corners_1h }}</td>
+                                        <td>{{ match_corner_stat.home_corners_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.away_matches_played }}</td>
+                                        <td>{{ match_corner_stat.away_corners_1h }}</td>
+                                        <td>{{ match_corner_stat.away_corners_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_1h }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_1h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Match Corners 2nd Half Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Match Corners 2nd Half</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.home_matches_played }}</td>
+                                        <td>{{ match_corner_stat.home_corners_2h }}</td>
+                                        <td>{{ match_corner_stat.home_corners_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.away_matches_played }}</td>
+                                        <td>{{ match_corner_stat.away_corners_2h }}</td>
+                                        <td>{{ match_corner_stat.away_corners_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_2h }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_2h_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <!-- Match Corners Full Time Stat Section-->
+            <div class="site-section bg-dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 title-section">
+                            <h2 class="heading">Match Corners Full Time</h2>
+                        </div>
+
+                        <!-- Table Corner Home Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Home</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.home_matches_played }}</td>
+                                        <td>{{ match_corner_stat.home_corners_ft }}</td>
+                                        <td>{{ match_corner_stat.home_corners_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Away Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Away</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.away_matches_played }}</td>
+                                        <td>{{ match_corner_stat.away_corners_ft }}</td>
+                                        <td>{{ match_corner_stat.away_corners_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Table Corner Overall Section -->
+                        <div class="col-lg-4  mb-0 mb-sm-5">
+                            <h6 class="heading text-center">Overall</h6>
+                            <div class="widget-next-match">
+                                <table class="table custom-table text-center">
+                                    <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>P</th>
+                                        <th>MC</th>
+                                        <th>AV.</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for match_corner_stat in match_corners_stats %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
+                                                {{ match_corner_stat.team.name }}
+                                            </a></td>
+                                        <td>{{ match_corner_stat.overall_matches_played }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_ft }}</td>
+                                        <td>{{ match_corner_stat.overall_corners_ft_average }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
-
-<!-- Team Corners Against 1st Half Stat Section-->
-<div class="container site-section">
-    <div class="row">
-        <div class="col-12 title-section">
-            <h2 class="heading">Team Corners Against 1st Half</h2>
-        </div>
-
-        <!-- Table Corner Home Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Home</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>1H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.home_matches_played }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_1h }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_1h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Away Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Away</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>1H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.away_matches_played }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_1h }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_1h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Overall Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Overall</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>1H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.overall_matches_played }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_1h }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_1h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Team Corners For 2nd Half Stat Section-->
-<div class="site-section bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 title-section">
-                <h2 class="heading">Team Corners For 2nd Half</h2>
-            </div>
-
-            <!-- Table Corner Home Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Home</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>2H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.home_matches_played }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_2h }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_2h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Away</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>2H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.away_matches_played }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_2h }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_2h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Overall</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>2H CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.overall_matches_played }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_2h }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_2h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Team Corners Against 2nd Half Stat Section-->
-<div class="container site-section">
-    <div class="row">
-        <div class="col-12 title-section">
-            <h2 class="heading">Team Corners Against 2nd Half</h2>
-        </div>
-
-        <!-- Table Corner Home Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Home</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.home_matches_played }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_2h }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Away Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Away</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.away_matches_played }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_2h }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Overall Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Overall</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.overall_matches_played }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_2h }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Team Corners For Full Time Half Stat Section-->
-<div class="site-section bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 title-section">
-                <h2 class="heading">Team Corners For Full Time</h2>
-            </div>
-
-            <!-- Table Corner Home Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Home</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.home_matches_played }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_ft }}</td>
-                            <td>{{ team_corner_stat.home_corners_for_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Away</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.away_matches_played }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_ft }}</td>
-                            <td>{{ team_corner_stat.away_corners_for_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Overall</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT CF</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for team_corner_stat in team_corners_stats %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                    {{ team_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ team_corner_stat.overall_matches_played }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_ft }}</td>
-                            <td>{{ team_corner_stat.overall_corners_for_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Team Corners Against Full Time Stat Section-->
-<div class="container site-section">
-    <div class="row">
-        <div class="col-12 title-section">
-            <h2 class="heading">Team Corners Against Full Time</h2>
-        </div>
-
-        <!-- Table Corner Home Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Home</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>FT CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.home_matches_played }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_ft }}</td>
-                        <td>{{ team_corner_stat.home_corners_against_ft_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Away Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Away</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>FT CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.away_matches_played }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_ft }}</td>
-                        <td>{{ team_corner_stat.away_corners_against_ft_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Overall Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Overall</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>FT CA</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for team_corner_stat in team_corners_stats %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'Website-team_details' team_corner_stat.team.season.league.slug team_corner_stat.team.slug  %}">
-                                {{ team_corner_stat.team.name }}
-                            </a></td>
-                        <td>{{ team_corner_stat.overall_matches_played }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_ft }}</td>
-                        <td>{{ team_corner_stat.overall_corners_against_ft_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Match Corners 1st Half Stat Section-->
-<div class="site-section bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 title-section">
-                <h2 class="heading">Match Corners 1st Half</h2>
-            </div>
-
-            <!-- Table Corner Home Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Home</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.home_matches_played }}</td>
-                            <td>{{ match_corner_stat.home_corners_1h }}</td>
-                            <td>{{ match_corner_stat.home_corners_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Away</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.away_matches_played }}</td>
-                            <td>{{ match_corner_stat.away_corners_1h }}</td>
-                            <td>{{ match_corner_stat.away_corners_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Overall Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Overall</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>1H MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.overall_matches_played }}</td>
-                            <td>{{ match_corner_stat.overall_corners_1h }}</td>
-                            <td>{{ match_corner_stat.overall_corners_1h_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Match Corners 2nd Half Stat Section-->
-<div class="container site-section">
-    <div class="row">
-        <div class="col-12 title-section">
-            <h2 class="heading">Match Corners 2nd Half</h2>
-        </div>
-
-        <!-- Table Corner Home Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Home</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H MC</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for match_corner_stat in match_corners_stats %}
-                    <tr>
-                        <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                        <td>{{ match_corner_stat.home_matches_played }}</td>
-                        <td>{{ match_corner_stat.home_corners_2h }}</td>
-                        <td>{{ match_corner_stat.home_corners_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Away Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Away</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H MC</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for match_corner_stat in match_corners_stats %}
-                    <tr>
-                        <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                        <td>{{ match_corner_stat.away_matches_played }}</td>
-                        <td>{{ match_corner_stat.away_corners_2h }}</td>
-                        <td>{{ match_corner_stat.away_corners_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Table Corner Overall Section -->
-        <div class="col-lg-4  mb-0 mb-sm-5">
-            <h6 class="heading text-center">Overall</h6>
-            <div class="widget-next-match">
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>P</th>
-                        <th>2H MC</th>
-                        <th>AV.</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for match_corner_stat in match_corners_stats %}
-                    <tr>
-                        <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                        <td>{{ match_corner_stat.overall_matches_played }}</td>
-                        <td>{{ match_corner_stat.overall_corners_2h }}</td>
-                        <td>{{ match_corner_stat.overall_corners_2h_average }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Match Corners Full Time Stat Section-->
-<div class="site-section bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 title-section">
-                <h2 class="heading">Match Corners Full Time</h2>
-            </div>
-
-            <!-- Table Corner Home Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Home</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.home_matches_played }}</td>
-                            <td>{{ match_corner_stat.home_corners_ft }}</td>
-                            <td>{{ match_corner_stat.home_corners_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Away Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Away</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.away_matches_played }}</td>
-                            <td>{{ match_corner_stat.away_corners_ft }}</td>
-                            <td>{{ match_corner_stat.away_corners_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Table Corner Overall Section -->
-            <div class="col-lg-4  mb-0 mb-sm-5">
-                <h6 class="heading text-center">Overall</h6>
-                <div class="widget-next-match">
-                    <table class="table custom-table">
-                        <thead>
-                        <tr>
-                            <th>Team</th>
-                            <th>P</th>
-                            <th>FT MC</th>
-                            <th>AV.</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for match_corner_stat in match_corners_stats %}
-                        <tr>
-                            <td><a href="{% url 'Website-team_details' match_corner_stat.team.season.league.slug match_corner_stat.team.slug  %}">
-                                    {{ match_corner_stat.team.name }}
-                                </a></td>
-                            <td>{{ match_corner_stat.overall_matches_played }}</td>
-                            <td>{{ match_corner_stat.overall_corners_ft }}</td>
-                            <td>{{ match_corner_stat.overall_corners_ft_average }}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    <a class="carousel-control-prev" href="#carouselCorners" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselCorners" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
 {% endblock %}

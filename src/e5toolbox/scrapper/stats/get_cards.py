@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5CardsIframes, E5Team, E5CardsStats
@@ -28,14 +28,28 @@ class E5GetCards(E5SeleniumWebDriver):
                 # Get Url
                 self.get(url=iframe.yellow_cards_for_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Yellow Cards For Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_yellow_cards_for: int = 0
+                    home_yellow_cards_for_average: float = 0.0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_yellow_cards_for: int = 0
+                    away_yellow_cards_for_average: float = 0.0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_yellow_cards_for: int = 0
+                    overall_yellow_cards_for_average: float = 0.0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -60,6 +74,7 @@ class E5GetCards(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Yellow Card Home Stats
@@ -72,14 +87,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Yellow Card Stats created in database")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_yellow_cards_for = home_yellow_cards_for
                         target_home_card_stats.home_yellow_cards_for_average = home_yellow_cards_for_average
                         target_home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Yellow Card Stats updated in database")
 
                     # Create Yellow Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -91,14 +104,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Yellow Card Stats created in database")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_yellow_cards_for = away_yellow_cards_for
                         target_away_card_stats.away_yellow_cards_for_average = away_yellow_cards_for_average
                         target_away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Yellow Card Stats updated in database")
 
                     # Create Yellow Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -110,27 +121,39 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Yellow Card Stats created in database")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_yellow_cards_for = overall_yellow_cards_for
                         target_overall_card_stats.overall_yellow_cards_for_average = overall_yellow_cards_for_average
                         target_overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Yellow Card Stats updated in database")
 
                 ######################################## Yellow Cards Against ##########################################
                 # Get Url
                 self.get(url=iframe.yellow_cards_against_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Yellow Cards Against Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_yellow_cards_against: int = 0
+                    home_yellow_cards_against_average: float = 0.0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_yellow_cards_against: int = 0
+                    away_yellow_cards_against_average: float = 0.0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_yellow_cards_against: int = 0
+                    overall_yellow_cards_against_average: float = 0.0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -155,6 +178,7 @@ class E5GetCards(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Yellow Card Home Stats
@@ -167,14 +191,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Yellow Card Stats created in database")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_yellow_cards_against = home_yellow_cards_against
                         target_home_card_stats.home_yellow_cards_against_average = home_yellow_cards_against_average
                         target_home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Yellow Card Stats updated in database")
 
                     # Create Yellow Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -186,14 +208,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Yellow Card Stats created in database")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_yellow_cards_against = away_yellow_cards_against
                         target_away_card_stats.away_yellow_cards_against_average = away_yellow_cards_against_average
                         target_away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Yellow Card Stats updated in database")
 
                     # Create Yellow Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -205,7 +225,6 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Yellow Card Stats created in database")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
@@ -213,20 +232,33 @@ class E5GetCards(E5SeleniumWebDriver):
                         target_overall_card_stats.overall_yellow_cards_against_average = (
                             overall_yellow_cards_against_average)
                         target_overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Yellow Card Stats updated in database")
 
                 ############################################ Red Cards For #############################################
                 # Get Url
                 self.get(url=iframe.red_cards_for_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Red Cards For Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_red_cards_for: int = 0
+                    home_red_cards_for_average: float = 0.0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_red_cards_for: int = 0
+                    away_red_cards_for_average: float = 0.0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_red_cards_for: int = 0
+                    overall_red_cards_for_average: float = 0.0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -251,6 +283,7 @@ class E5GetCards(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Red Card Home Stats
@@ -263,14 +296,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Red Card Stats created in database")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_red_cards_for = home_red_cards_for
                         target_home_card_stats.home_red_cards_for_average = home_red_cards_for_average
                         target_home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Red Card Stats updated in database")
 
                     # Create Red Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -282,14 +313,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Red Card Stats created in database")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_red_cards_for = away_red_cards_for
                         target_away_card_stats.away_red_cards_for_average = away_red_cards_for_average
                         target_away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Red Card Stats updated in database")
 
                     # Create Red Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -301,27 +330,39 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Red Card Stats created in database")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_red_cards_for = overall_red_cards_for
                         target_overall_card_stats.overall_red_cards_for_average = overall_red_cards_for_average
                         target_overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Red Card Stats updated in database")
 
                 ########################################## Red Cards Against ###########################################
                 # Get Url
                 self.get(url=iframe.red_cards_against_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Red Cards Against Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_red_cards_against: int = 0
+                    home_red_cards_against_average: float = 0.0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_red_cards_against: int = 0
+                    away_red_cards_against_average: float = 0.0
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_red_cards_against: int = 0
+                    overall_red_cards_against_average: float = 0.0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -346,6 +387,7 @@ class E5GetCards(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Red Card Home Stats
@@ -358,14 +400,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Red Card Stats created in database")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_red_cards_against = home_red_cards_against
                         target_home_card_stats.home_red_cards_against_average = home_red_cards_against_average
                         target_home_card_stats.save()
-                        self.log_info(f"Team {home_team.name} Red Card Stats updated in database")
 
                     # Create Red Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -377,14 +417,12 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Red Card Stats created in database")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_red_cards_against = away_red_cards_against
                         target_away_card_stats.away_red_cards_against_average = away_red_cards_against_average
                         target_away_card_stats.save()
-                        self.log_info(f"Team {away_team.name} Red Card Stats updated in database")
 
                     # Create Red Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -396,11 +434,9 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Red Card Stats created in database")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_red_cards_against = overall_red_cards_against
                         target_overall_card_stats.overall_red_cards_against_average = overall_red_cards_against_average
                         target_overall_card_stats.save()
-                        self.log_info(f"Team {overall_team.name} Red Card Stats updated in database")

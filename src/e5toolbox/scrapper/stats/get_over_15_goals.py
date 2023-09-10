@@ -28,13 +28,27 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                 # Get Url
                 self.get(url=iframe.over_15_goals_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
-                table_trs: ResultSet[Tag] = self.soup.select(selector='table.waffle.no-grid tr')
+                table_trs: ResultSet[Tag] = []
+                table_trs = self.soup.select(selector='table.waffle.no-grid tr')
 
                 # Get Over 1.5 Goals Stats
                 for table_tr in table_trs:
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_over_15_goals: int = 0
+                    home_over_15_goals_percent: str = ""
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_over_15_goals: int = 0
+                    away_over_15_goals_percent: str = ""
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_over_15_goals: int = 0
+                    overall_over_15_goals_percent: str = ""
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.select(selector='td')[2].text)
@@ -59,6 +73,7 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Over 1.5 Goals Home Stats
@@ -71,7 +86,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_over_15_goals_stats.exists():
                         home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals Home Stats created in database")
                     else:
                         target_home_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=home_team)
@@ -79,7 +93,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_home_over_15_goals_stats.home_over_15_goals = home_over_15_goals
                         target_home_over_15_goals_stats.home_over_15_goals_percent = home_over_15_goals_percent
                         target_home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals Home Stats updated in database")
 
                     # Create Over 1.5 Goals Away Stats
                     away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -91,7 +104,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_over_15_goals_stats.exists():
                         away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals Away Stats created in database")
                     else:
                         target_away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=away_team)
@@ -99,7 +111,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_away_over_15_goals_stats.away_over_15_goals = away_over_15_goals
                         target_away_over_15_goals_stats.away_over_15_goals_percent = away_over_15_goals_percent
                         target_away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals Away Stats updated in database")
 
                     # Create Over 1.5 Goals Overall Stats
                     overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -111,7 +122,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_over_15_goals_stats.exists():
                         overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals Overall Stats created in database")
                     else:
                         target_overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=overall_team)
@@ -119,19 +129,32 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_overall_over_15_goals_stats.overall_over_15_goals = overall_over_15_goals
                         target_overall_over_15_goals_stats.overall_over_15_goals_percent = overall_over_15_goals_percent
                         target_overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals Overall Stats updated in database")
 
                 ######################################### Over 1.5 Goals 1H ############################################
                 # Get Url
                 self.get(url=iframe.over_15_goals_1h_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
-                table_trs: ResultSet[Tag] = self.soup.select(selector='table.waffle.no-grid tr')
+                table_trs: ResultSet[Tag] = []
+                table_trs = self.soup.select(selector='table.waffle.no-grid tr')
 
                 # Get Over 1.5 Goals 1H Stats
                 for table_tr in table_trs:
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_over_15_goals: int = 0
+                    home_over_15_goals_percent: str = ""
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_over_15_goals: int = 0
+                    away_over_15_goals_percent: str = ""
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_over_15_goals: int = 0
+                    overall_over_15_goals_percent: str = ""
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.select(selector='td')[2].text)
@@ -156,6 +179,7 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Over 1.5 Goals 1H Home Stats
@@ -168,7 +192,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_over_15_goals_stats.exists():
                         home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals 1H Home Stats created in database")
                     else:
                         target_home_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=home_team)
@@ -176,7 +199,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_home_over_15_goals_stats.home_over_15_goals_1h = home_over_15_goals
                         target_home_over_15_goals_stats.home_over_15_goals_1h_percent = home_over_15_goals_percent
                         target_home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals 1H Home Stats updated in database")
 
                     # Create Over 1.5 Goals 1H Away Stats
                     away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -188,7 +210,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_over_15_goals_stats.exists():
                         away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals 1H Away Stats created in database")
                     else:
                         target_away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=away_team)
@@ -196,7 +217,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_away_over_15_goals_stats.away_over_15_goals_1h = away_over_15_goals
                         target_away_over_15_goals_stats.away_over_15_goals_1h_percent = away_over_15_goals_percent
                         target_away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals 1H Away Stats updated in database")
 
                     # Create Over 1.5 Goals 1H Overall Stats
                     overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -208,7 +228,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_over_15_goals_stats.exists():
                         overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals 1H Overall Stats created in database")
                     else:
                         target_overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=overall_team)
@@ -216,19 +235,32 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_overall_over_15_goals_stats.overall_over_15_goals_1h = overall_over_15_goals
                         target_overall_over_15_goals_stats.overall_over_15_goals_1h_percent = overall_over_15_goals_percent
                         target_overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals 1H Overall Stats updated in database")
 
                 ######################################### Over 1.5 Goals 2H ############################################
                 # Get Url
                 self.get(url=iframe.over_15_goals_2h_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
-                table_trs: ResultSet[Tag] = self.soup.select(selector='table.waffle.no-grid tr')
+                table_trs: ResultSet[Tag] = []
+                table_trs = self.soup.select(selector='table.waffle.no-grid tr')
 
                 # Get Over 1.5 Goals 2H Stats
                 for table_tr in table_trs:
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_over_15_goals: int = 0
+                    home_over_15_goals_percent: str = ""
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_over_15_goals: int = 0
+                    away_over_15_goals_percent: str = ""
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_over_15_goals: int = 0
+                    overall_over_15_goals_percent: str = ""
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.select(selector='td')[2].text)
@@ -253,6 +285,7 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Over 1.5 Goals 2H Home Stats
@@ -265,7 +298,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_over_15_goals_stats.exists():
                         home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals 2H Home Stats created in database")
                     else:
                         target_home_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=home_team)
@@ -273,7 +305,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_home_over_15_goals_stats.home_over_15_goals_2h = home_over_15_goals
                         target_home_over_15_goals_stats.home_over_15_goals_2h_percent = home_over_15_goals_percent
                         target_home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals 2H Home Stats updated in database")
 
                     # Create Over 1.5 Goals 2H Away Stats
                     away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -285,7 +316,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_over_15_goals_stats.exists():
                         away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals 2H Away Stats created in database")
                     else:
                         target_away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=away_team)
@@ -293,7 +323,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_away_over_15_goals_stats.away_over_15_goals_2h = away_over_15_goals
                         target_away_over_15_goals_stats.away_over_15_goals_2h_percent = away_over_15_goals_percent
                         target_away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals 2H Away Stats updated in database")
 
                     # Create Over 1.5 Goals 2H Overall Stats
                     overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -305,7 +334,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_over_15_goals_stats.exists():
                         overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals 2H Overall Stats created in database")
                     else:
                         target_overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=overall_team)
@@ -313,19 +341,32 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_overall_over_15_goals_stats.overall_over_15_goals_2h = overall_over_15_goals
                         target_overall_over_15_goals_stats.overall_over_15_goals_2h_percent = overall_over_15_goals_percent
                         target_overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals 2H Overall Stats updated in database")
 
                 ######################################### Over 1.5 Goals BH ############################################
                 # Get Url
                 self.get(url=iframe.over_15_goals_bh_url, error_context=f"{self.ERROR_CONTEXT}.parse_iframes()")
                 if not self.status.success:
+                    self.init_status()
                     continue
 
                 # Get Table Trs
-                table_trs: ResultSet[Tag] = self.soup.select(selector='table.waffle.no-grid tr')
+                table_trs: ResultSet[Tag] = []
+                table_trs = self.soup.select(selector='table.waffle.no-grid tr')
 
                 # Get Over 1.5 Goals BH Stats
                 for table_tr in table_trs:
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_over_15_goals: int = 0
+                    home_over_15_goals_percent: str = ""
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_over_15_goals: int = 0
+                    away_over_15_goals_percent: str = ""
+                    overall_team_name: str = ""
+                    overall_matches_played: int = 0
+                    overall_over_15_goals: int = 0
+                    overall_over_15_goals_percent: str = ""
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.select(selector='td')[2].text)
@@ -350,6 +391,7 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     except Exception as ex:
                         self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
                                        error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                        self.init_status()
                         continue
 
                     # Create Over 1.5 Goals BH Home Stats
@@ -362,7 +404,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_over_15_goals_stats.exists():
                         home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals BH Home Stats created in database")
                     else:
                         target_home_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=home_team)
@@ -370,7 +411,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_home_over_15_goals_stats.home_over_15_goals_bh = home_over_15_goals
                         target_home_over_15_goals_stats.home_over_15_goals_bh_percent = home_over_15_goals_percent
                         target_home_over_15_goals_stats.save()
-                        self.log_info(f"Team {home_team.name} Over 1.5 Goals BH Home Stats updated in database")
 
                     # Create Over 1.5 Goals BH Away Stats
                     away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -382,7 +422,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_over_15_goals_stats.exists():
                         away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals BH Away Stats created in database")
                     else:
                         target_away_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=away_team)
@@ -390,7 +429,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_away_over_15_goals_stats.away_over_15_goals_bh = away_over_15_goals
                         target_away_over_15_goals_stats.away_over_15_goals_bh_percent = away_over_15_goals_percent
                         target_away_over_15_goals_stats.save()
-                        self.log_info(f"Team {away_team.name} Over 1.5 Goals BH Away Stats updated in database")
 
                     # Create Over 1.5 Goals BH Overall Stats
                     overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats()
@@ -402,7 +440,6 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_over_15_goals_stats.exists():
                         overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals BH Overall Stats created in database")
                     else:
                         target_overall_over_15_goals_stats: E5Over15GoalsStats = E5Over15GoalsStats.objects.get(
                             team=overall_team)
@@ -410,4 +447,3 @@ class E5GetOver15Goals(E5SeleniumWebDriver):
                         target_overall_over_15_goals_stats.overall_over_15_goals_bh = overall_over_15_goals
                         target_overall_over_15_goals_stats.overall_over_15_goals_bh_percent = overall_over_15_goals_percent
                         target_overall_over_15_goals_stats.save()
-                        self.log_info(f"Team {overall_team.name} Over 1.5 Goals BH Overall Stats updated in database")

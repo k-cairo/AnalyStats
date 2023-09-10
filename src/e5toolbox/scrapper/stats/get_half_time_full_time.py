@@ -33,11 +33,34 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs: ResultSet[Tag] = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                table_trs: ResultSet[Tag] = []
+                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Half Time Full Time Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_win_win: int = 0
+                    home_win_draw: int = 0
+                    home_win_loss: int = 0
+                    home_draw_win: int = 0
+                    home_draw_draw: int = 0
+                    home_draw_loss: int = 0
+                    home_loss_win: int = 0
+                    home_loss_draw: int = 0
+                    home_loss_loss: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_win_win: int = 0
+                    away_win_draw: int = 0
+                    away_win_loss: int = 0
+                    away_draw_win: int = 0
+                    away_draw_draw: int = 0
+                    away_draw_loss: int = 0
+                    away_loss_win: int = 0
+                    away_loss_draw: int = 0
+                    away_loss_loss: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -91,7 +114,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_ht_ft_stats.exists():
                         home_ht_ft_stats.save()
-                        self.log_info(f"Team {home_team.name} Half Time Full Time Stats created in database")
                     else:
                         target_home_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats.objects.get(
                             team=home_team)
@@ -106,7 +128,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                         target_home_ht_ft_stats.home_loss_draw = home_loss_draw
                         target_home_ht_ft_stats.home_loss_loss = home_loss_loss
                         target_home_ht_ft_stats.save()
-                        self.log_info(f"Team {home_team.name} Half Time Full Time Stats updated in database")
 
                     # Create Half Time Full Time Away Stats
                     away_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats()
@@ -125,7 +146,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_ht_ft_stats.exists():
                         away_ht_ft_stats.save()
-                        self.log_info(f"Team {away_team.name} Half Time Full Time Stats created in database")
                     else:
                         target_away_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats.objects.get(
                             team=away_team)
@@ -140,4 +160,3 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                         target_away_ht_ft_stats.away_loss_draw = away_loss_draw
                         target_away_ht_ft_stats.away_loss_loss = away_loss_loss
                         target_away_ht_ft_stats.save()
-                        self.log_info(f"Team {away_team.name} Half Time Full Time Stats updated in database")

@@ -1,0 +1,48 @@
+Tache,Time (s),Errors
+Get Leagues,5,None
+Get Seasons,733,None
+Get Teams,90,None
+Get Iframe : League Tables,780,None
+Get Iframe : BTTS,600,None
+Get Iframe : Over 0.5 Goals,780,None
+Get Iframe : Over 1.5 Goals,540,None
+Get Iframe : Over 2.5 Goals,600,None
+Get Iframe : Over 3.5 Goals,540,None
+Get Iframe : Win Draw Loss Percentage,600,None
+Get Iframe : Corners,600,None
+Get Iframe : Cards,540,None
+Get Iframe : Half Time Full Time,600,None
+Get Iframe : Scored Both Halves,600,None
+Get Iframe : Won Both Halves,600,None
+Get Iframe : 1st Half 2nd Half Goals,600,None
+Get Iframe : Rescued Points,600,None
+Get Iframe : Clean Sheets,600,None
+Get Iframe : Won To Nil,600,None
+Get Iframe : Win Loss Margin,600,None
+Get Iframe : Scored First,600,None
+Get Iframe : Average First Goal Time,540,None
+Get Iframe : Average Team Goals,540,None
+Get Iframe : Early Goals,540,None
+Get Iframe : Late Goals,540,None
+Parse Iframe : League Tables,240,None
+Parse Iframe : BTTS,1260,None
+Parse Iframe : Over 0.5 Goals,1200,None
+Parse Iframe : Over 1.5 Goals,960,None
+Parse Iframe : Over 2.5 Goals,1260,None
+Parse Iframe : Over 3.5 Goals,1200,None
+Parse Iframe : Win Draw Loss Percentage,180,None
+Parse Iframe : Corners,2400,None
+Parse Iframe : Cards,1200,None
+Parse Iframe : Half Time Full Time,180,None
+Parse Iframe : Scored Both Halves,360,None
+Parse Iframe : Won Both Halves,420,None
+Parse Iframe : 1st Half 2nd Half Goals,1020,None
+Parse Iframe : Rescued Points,180,None
+Parse Iframe : Clean Sheets,780,None
+Parse Iframe : Won To Nil,720,None
+Parse Iframe : Win Loss Margin,600,None
+Parse Iframe : Scored First,420,None
+Parse Iframe : Average First Goal Time,420,None
+Parse Iframe : Average Team Goals,180,None
+Parse Iframe : Early Goals,180,None
+Parse Iframe : Late Goals,420,None

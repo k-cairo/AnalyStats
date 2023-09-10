@@ -1,7 +1,7 @@
 import dataclasses
 from typing import ClassVar
 
-from bs4 import Tag
+from bs4 import Tag, ResultSet
 from django.db.models import QuerySet
 
 from Website.models import E5Season, E5WinLossMarginIframe, E5Team, E5WinLossMarginStats
@@ -32,11 +32,26 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_games_won: int = 0
+                    home_games_won_by_1: int = 0
+                    home_games_won_by_2: int = 0
+                    home_games_won_by_3: int = 0
+                    home_games_won_by_4_or_more: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_games_won: int = 0
+                    away_games_won_by_1: int = 0
+                    away_games_won_by_2: int = 0
+                    away_games_won_by_3: int = 0
+                    away_games_won_by_4_or_more: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -78,7 +93,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wlm_stats.exists():
                         home_wlm_stats.save()
-                        self.log_info(f"Team {home_team.name} Win Loss Margin Stats created in database")
                     else:
                         home_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=home_team)
                         home_wlm_stats.home_matches_played = home_matches_played
@@ -88,7 +102,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         home_wlm_stats.home_games_won_by_3 = home_games_won_by_3
                         home_wlm_stats.home_games_won_by_4_or_more = home_games_won_by_4_or_more
                         home_wlm_stats.save()
-                        self.log_info(f"Team {home_team.name} Win Loss Margin Stats updated in database")
 
                     # Create Away Stats
                     away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats()
@@ -103,7 +116,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wlm_stats.exists():
                         away_wlm_stats.save()
-                        self.log_info(f"Team {away_team.name} Win Loss Margin Stats created in database")
                     else:
                         away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=away_team)
                         away_wlm_stats.away_matches_played = away_matches_played
@@ -113,7 +125,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         away_wlm_stats.away_games_won_by_3 = away_games_won_by_3
                         away_wlm_stats.away_games_won_by_4_or_more = away_games_won_by_4_or_more
                         away_wlm_stats.save()
-                        self.log_info(f"Team {away_team.name} Win Loss Margin Stats updated in database")
 
                 ############################################# Losing Margins ###########################################
                 # Get Url
@@ -123,11 +134,26 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
+                table_trs: ResultSet[Tag] = []
                 table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
 
                 # Get Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
+                    home_team_name: str = ""
+                    home_matches_played: int = 0
+                    home_games_loose: int = 0
+                    home_games_loose_by_1: int = 0
+                    home_games_loose_by_2: int = 0
+                    home_games_loose_by_3: int = 0
+                    home_games_loose_by_4_or_more: int = 0
+                    away_team_name: str = ""
+                    away_matches_played: int = 0
+                    away_games_loose: int = 0
+                    away_games_loose_by_1: int = 0
+                    away_games_loose_by_2: int = 0
+                    away_games_loose_by_3: int = 0
+                    away_games_loose_by_4_or_more: int = 0
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
@@ -169,7 +195,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wlm_stats.exists():
                         home_wlm_stats.save()
-                        self.log_info(f"Team {home_team.name} Win Loss Margin Stats created in database")
                     else:
                         home_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=home_team)
                         home_wlm_stats.home_matches_played = home_matches_played
@@ -179,7 +204,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         home_wlm_stats.home_games_loose_by_3 = home_games_loose_by_3
                         home_wlm_stats.home_games_loose_by_4_or_more = home_games_loose_by_4_or_more
                         home_wlm_stats.save()
-                        self.log_info(f"Team {home_team.name} Win Loss Margin Stats updated in database")
 
                     # Create Away Stats
                     away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats()
@@ -194,7 +218,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wlm_stats.exists():
                         away_wlm_stats.save()
-                        self.log_info(f"Team {away_team.name} Win Loss Margin Stats created in database")
                     else:
                         away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=away_team)
                         away_wlm_stats.away_matches_played = away_matches_played
@@ -204,4 +227,3 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         away_wlm_stats.away_games_loose_by_3 = away_games_loose_by_3
                         away_wlm_stats.away_games_loose_by_4_or_more = away_games_loose_by_4_or_more
                         away_wlm_stats.save()
-                        self.log_info(f"Team {away_team.name} Win Loss Margin Stats updated in database")

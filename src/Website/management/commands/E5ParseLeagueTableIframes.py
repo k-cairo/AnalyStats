@@ -8,8 +8,8 @@ from e5toolbox.scrapper.stats.get_league_tables import E5GetLeagueTables
 
 # E5
 class Command(BaseCommand):
-    CONTEXT: ClassVar[str] = "E5GetTeamsRanking"
-    help = "Get Teams Ranking"
+    CONTEXT: ClassVar[str] = "E5ParseLeagueTableIframes"
+    help = "Parse League Table Iframes"
 
     def handle(self, *args, **options):
         # Instance scraper
@@ -40,4 +40,4 @@ class Command(BaseCommand):
         # Logging
         scraper.log_info(message=f"{datetime.now()} : {self.CONTEXT} end -----")
 
-        self.stdout.write("Active Season's Teams Ranking Updated Successfully")
+        self.stdout.write("Teams Ranking Updated Successfully")

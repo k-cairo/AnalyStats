@@ -78,7 +78,6 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_lg_stats.exists():
                         home_lg_stats.save()
-                        self.log_info(f"Team {home_team.name} Late Goals Stats created in database")
                     else:
                         home_lg_stats: E5LateGoalsStats = E5LateGoalsStats.objects.get(team=home_team)
                         home_lg_stats.home_matches_played = home_matches_played
@@ -86,7 +85,6 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                         home_lg_stats.home_conceded_late = home_conceded_late
                         home_lg_stats.home_scored_or_conceded_late = home_scored_or_conceded_late
                         home_lg_stats.save()
-                        self.log_info(f"Team {home_team.name} Late Goals Stats updated in database")
 
                     # Create Away Stats
                     away_lg_stats: E5LateGoalsStats = E5LateGoalsStats()
@@ -99,7 +97,6 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_lg_stats.exists():
                         away_lg_stats.save()
-                        self.log_info(f"Team {away_team.name} Late Goals Stats created in database")
                     else:
                         away_lg_stats: E5LateGoalsStats = E5LateGoalsStats.objects.get(team=away_team)
                         away_lg_stats.away_matches_played = away_matches_played
@@ -107,7 +104,6 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                         away_lg_stats.away_conceded_late = away_conceded_late
                         away_lg_stats.away_scored_or_conceded_late = away_scored_or_conceded_late
                         away_lg_stats.save()
-                        self.log_info(f"Team {away_team.name} Late Goals Stats updated in database")
 
                     # Create Overall Stats
                     overall_lg_stats: E5LateGoalsStats = E5LateGoalsStats()
@@ -120,7 +116,6 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_lg_stats.exists():
                         overall_lg_stats.save()
-                        self.log_info(f"Team {overall_team.name} Late Goals Stats created in database")
                     else:
                         overall_lg_stats: E5LateGoalsStats = E5LateGoalsStats.objects.get(team=overall_team)
                         overall_lg_stats.overall_matches_played = overall_matches_played
@@ -128,4 +123,3 @@ class E5GetLateGoals(E5SeleniumWebDriver):
                         overall_lg_stats.overall_conceded_late = overall_conceded_late
                         overall_lg_stats.overall_scored_or_conceded_late = overall_scored_or_conceded_late
                         overall_lg_stats.save()
-                        self.log_info(f"Team {overall_team.name} Late Goals Stats updated in database")
