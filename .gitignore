@@ -4,3 +4,6 @@ src/AnalyStats/.env
 src/E5AppConf.json
 __pycache__/
 management_command.log
+.env
+src/analystat.db
+src/staticfiles/

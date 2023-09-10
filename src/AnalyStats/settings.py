@@ -79,14 +79,21 @@ WSGI_APPLICATION = 'AnalyStats.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env(var="DB_NAME"),
-        'USER': env(var="DB_USER"),
-        'PASSWORD': env(var="DB_PASSWORD"),
-        'HOST': env(var="DB_HOST"),
-        'PORT': env(var="DB_PORT")
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'analystat.db'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env(var="DB_NAME"),
+#         'USER': env(var="DB_USER"),
+#         'PASSWORD': env(var="DB_PASSWORD"),
+#         'HOST': env(var="DB_HOST"),
+#         'PORT': env(var="DB_PORT")
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -121,6 +128,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
