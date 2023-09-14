@@ -77,27 +77,16 @@ WSGI_APPLICATION = 'AnalyStats.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-mode = env(var="MODE")
-
-if mode == "dev":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': env(var="DB_NAME"),
-            'USER': env(var="DB_USER"),
-            'PASSWORD': env(var="DB_PASSWORD"),
-            'HOST': env(var="DB_HOST"),
-            'PORT': env(var="DB_PORT")
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env(var="DB_NAME"),
+        'USER': env(var="DB_USER"),
+        'PASSWORD': env(var="DB_PASSWORD"),
+        'HOST': env(var="DB_HOST"),
+        'PORT': env(var="DB_PORT")
     }
-elif mode == "prod":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'analystat.db'),
-        }
-    }
-
+}
 
 
 # Password validation
