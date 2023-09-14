@@ -126,7 +126,13 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 1H Stats
                 for table_tr in table_trs:
@@ -220,7 +226,13 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 2H Stats
                 for table_tr in table_trs:
@@ -314,7 +326,13 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS BH Stats
                 for table_tr in table_trs:
@@ -408,7 +426,13 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 25 Stats
                 for table_tr in table_trs:

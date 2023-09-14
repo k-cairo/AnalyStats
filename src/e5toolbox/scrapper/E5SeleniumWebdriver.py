@@ -46,6 +46,7 @@ class E5SeleniumWebdriverError(Enum):
     ERROR_TYPE_GET_OVER_35_GOALS_IFRAME_URL_FAILED = "get_over_35_goals_iframe_url_failed"
     ERROR_TYPE_GET_CORNER_IFRAME_URL_FAILED = "get_corner_iframe_url_failed"
     ERROR_TYPE_GET_CARD_IFRAME_URL_FAILED = "get_card_iframe_url_failed"
+    ERROR_TYPE_GET_TABLE_TRS_FAILED = "get_table_trs_failed"
     # Empty
     ERROR_TYPE_IFRAME_EMPTY = "iframe_empty"
     # Bad Length
