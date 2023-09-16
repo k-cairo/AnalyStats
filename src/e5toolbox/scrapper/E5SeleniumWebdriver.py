@@ -510,13 +510,13 @@ class E5SeleniumWebDriver:
 
     # E5
     def get_upcoming_matches(self, error_context: str) -> None:
-        endpoints: tuple = ("saturday-uk/", "saturday/", "sunday/", "monday/", "tuesday/", "wednesday/",
-                            "thursday/", "friday")
-
         # Check connection
         self.check_is_connected()
 
         if self.status.success:
+            endpoints: tuple = ("saturday-uk/", "saturday/", "sunday/", "monday/", "tuesday/", "wednesday/",
+                                "thursday/", "friday/")
+
             for endpoint in endpoints:
                 # Get Url
                 self.get_only(url=f"https://www.thestatsdontlie.com/football/predictions/{endpoint}",
@@ -550,7 +550,7 @@ class E5SeleniumWebDriver:
                     continue
 
                 # Get Upcoming Matches
-                time.sleep(10)
+                time.sleep(15)
                 table_upcoming_matchs = self.soup.select(selector="table.supsystic-table")[1]
                 if table_upcoming_matchs is None:
                     self.log_warning(message=f"Table upcoming matches not found for date {date}")

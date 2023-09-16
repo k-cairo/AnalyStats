@@ -47,84 +47,66 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_btts_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_btts_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches played</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>BTTS</td>
-                                        <td>{{ ht_btts_stats.home_btts_percent }}%</td>
-                                        <td>{{ ht_btts_stats.home_btts_percent|average:at_btts_stats.away_btts_percent }}%
+                                        <td class="align-middle">BTTS</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_percent }}%</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_percent|average:at_btts_stats.away_btts_percent }}%
                                         </td>
-                                        <td>{{ at_btts_stats.away_btts_percent }}%</td>
-                                        <td>BTTS</td>
-                                        <td></td>
+                                        <td class="align-middle">{{ at_btts_stats.away_btts_percent }}%</td>
+                                        <td class="align-middle">BTTS</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>BTTS 1H</td>
-                                        <td>{{ ht_btts_stats.home_btts_1h_percent }}%</td>
-                                        <td>{{ ht_btts_stats.home_btts_1h_percent|average:at_btts_stats.away_btts_1h_percent }}%</td>
-                                        <td>{{ at_btts_stats.away_btts_1h_percent }}%</td>
-                                        <td>BTTS 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">BTTS 1H</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_1h_percent|average:at_btts_stats.away_btts_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_btts_1h_percent }}%</td>
+                                        <td class="align-middle">BTTS 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>BTTS 2H</td>
-                                        <td>{{ ht_btts_stats.home_btts_2h_percent }}%</td>
-                                        <td>{{ ht_btts_stats.home_btts_2h_percent|average:at_btts_stats.away_btts_2h_percent }}%</td>
-                                        <td>{{ at_btts_stats.away_btts_2h_percent }}%</td>
-                                        <td>BTTS 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">BTTS 2H</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_2h_percent|average:at_btts_stats.away_btts_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_btts_2h_percent }}%</td>
+                                        <td class="align-middle">BTTS 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>BTTS BH</td>
-                                        <td>{{ ht_btts_stats.home_btts_bh_percent }}%</td>
-                                        <td>{{ ht_btts_stats.home_btts_bh_percent|average:at_btts_stats.away_btts_bh_percent }}%</td>
-                                        <td>{{ at_btts_stats.away_btts_bh_percent }}%</td>
-                                        <td>BTTS BH</td>
-                                        <td></td>
+                                        <td class="align-middle">BTTS BH</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_bh_percent }}%</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_bh_percent|average:at_btts_stats.away_btts_bh_percent }}%</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_btts_bh_percent }}%</td>
+                                        <td class="align-middle">BTTS BH</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>BTTS 2.5</td>
-                                        <td>{{ ht_btts_stats.home_btts_25_percent }}%</td>
-                                        <td>{{ ht_btts_stats.home_btts_25_percent|average:at_btts_stats.away_btts_25_percent }}%</td>
-                                        <td>{{ at_btts_stats.away_btts_25_percent }}%</td>
-                                        <td>BTTS 2.5</td>
-                                        <td></td>
+                                        <td class="align-middle">BTTS 2.5</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_25_percent }}%</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_btts_25_percent|average:at_btts_stats.away_btts_25_percent }}%</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_btts_25_percent }}%</td>
+                                        <td class="align-middle">BTTS 2.5</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -154,209 +136,163 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_btts_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_btts_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches played</td>
+                                        <td class="align-middle">{{ ht_btts_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_btts_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 0.5</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_percent }}%</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_percent|average:at_over_05_goals_stats.away_over_05_goals_percent }}%</td>
-                                        <td>{{ at_over_05_goals_stats.away_over_05_goals_percent }}%</td>
-                                        <td>Over 0.5</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 0.5</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_percent|average:at_over_05_goals_stats.away_over_05_goals_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_05_goals_stats.away_over_05_goals_percent }}%</td>
+                                        <td class="align-middle">Over 0.5</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 0.5 1H</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_1h_percent }}%</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_1h_percent|average:at_over_05_goals_stats.away_over_05_goals_1h_percent }}%</td>
-                                        <td>{{ at_over_05_goals_stats.away_over_05_goals_1h_percent }}%</td>
-                                        <td>Over 0.5 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 0.5 1H</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_1h_percent|average:at_over_05_goals_stats.away_over_05_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_05_goals_stats.away_over_05_goals_1h_percent }}%</td>
+                                        <td class="align-middle">Over 0.5 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 0.5 2H</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_2h_percent }}%</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_2h_percent|average:at_over_05_goals_stats.away_over_05_goals_2h_percent }}%</td>
-                                        <td>{{ at_over_05_goals_stats.away_over_05_goals_2h_percent }}%</td>
-                                        <td>Over 0.5 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 0.5 2H</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_2h_percent|average:at_over_05_goals_stats.away_over_05_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_05_goals_stats.away_over_05_goals_2h_percent }}%</td>
+                                        <td class="align-middle">Over 0.5 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 0.5 BH</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_bh_percent }}%</td>
-                                        <td>{{ ht_over_05_goals_stats.home_over_05_goals_bh_percent|average:at_over_05_goals_stats.away_over_05_goals_bh_percent }}%</td>
-                                        <td>{{ at_over_05_goals_stats.away_over_05_goals_bh_percent }}%</td>
-                                        <td>Over 0.5 BH</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 0.5 BH</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_05_goals_stats.home_over_05_goals_bh_percent|average:at_over_05_goals_stats.away_over_05_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_05_goals_stats.away_over_05_goals_bh_percent }}%</td>
+                                        <td class="align-middle">Over 0.5 BH</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 1.5</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_percent }}%</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_percent|average:at_over_15_goals_stats.away_over_15_goals_percent }}%</td>
-                                        <td>{{ at_over_15_goals_stats.away_over_15_goals_percent }}%</td>
-                                        <td>Over 1.5</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 1.5</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_percent|average:at_over_15_goals_stats.away_over_15_goals_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_15_goals_stats.away_over_15_goals_percent }}%</td>
+                                        <td class="align-middle">Over 1.5</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 1.5 1H</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_1h_percent }}%</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_1h_percent|average:at_over_15_goals_stats.away_over_15_goals_1h_percent }}%</td>
-                                        <td>{{ at_over_15_goals_stats.away_over_15_goals_1h_percent }}%</td>
-                                        <td>Over 1.5 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 1.5 1H</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_1h_percent|average:at_over_15_goals_stats.away_over_15_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_15_goals_stats.away_over_15_goals_1h_percent }}%</td>
+                                        <td class="align-middle">Over 1.5 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 1.5 2H</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_2h_percent }}%</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_2h_percent|average:at_over_15_goals_stats.away_over_15_goals_2h_percent }}%</td>
-                                        <td>{{ at_over_15_goals_stats.away_over_15_goals_2h_percent }}%</td>
-                                        <td>Over 1.5 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 1.5 2H</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_2h_percent|average:at_over_15_goals_stats.away_over_15_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_15_goals_stats.away_over_15_goals_2h_percent }}%</td>
+                                        <td class="align-middle">Over 1.5 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 1.5 BH</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_bh_percent }}%</td>
-                                        <td>{{ ht_over_15_goals_stats.home_over_15_goals_bh_percent|average:at_over_15_goals_stats.away_over_15_goals_bh_percent }}%</td>
-                                        <td>{{ at_over_15_goals_stats.away_over_15_goals_bh_percent }}%</td>
-                                        <td>Over 1.5 BH</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 1.5 BH</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_15_goals_stats.home_over_15_goals_bh_percent|average:at_over_15_goals_stats.away_over_15_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_15_goals_stats.away_over_15_goals_bh_percent }}%</td>
+                                        <td class="align-middle">Over 1.5 BH</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 2.5</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_percent }}%</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_percent|average:at_over_25_goals_stats.away_over_25_goals_percent }}%</td>
-                                        <td>{{ at_over_25_goals_stats.away_over_25_goals_percent }}%</td>
-                                        <td>Over 2.5</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 2.5</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_percent|average:at_over_25_goals_stats.away_over_25_goals_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_25_goals_stats.away_over_25_goals_percent }}%</td>
+                                        <td class="align-middle">Over 2.5</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 2.5 1H</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_1h_percent }}%</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_1h_percent|average:at_over_25_goals_stats.away_over_25_goals_1h_percent }}%</td>
-                                        <td>{{ at_over_25_goals_stats.away_over_25_goals_1h_percent }}%</td>
-                                        <td>Over 2.5 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 2.5 1H</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_1h_percent|average:at_over_25_goals_stats.away_over_25_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_25_goals_stats.away_over_25_goals_1h_percent }}%</td>
+                                        <td class="align-middle">Over 2.5 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 2.5 2H</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_2h_percent }}%</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_2h_percent|average:at_over_25_goals_stats.away_over_25_goals_2h_percent }}%</td>
-                                        <td>{{ at_over_25_goals_stats.away_over_25_goals_2h_percent }}%</td>
-                                        <td>Over 2.5 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 2.5 2H</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_2h_percent|average:at_over_25_goals_stats.away_over_25_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_25_goals_stats.away_over_25_goals_2h_percent }}%</td>
+                                        <td class="align-middle">Over 2.5 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 2.5 BH</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_bh_percent }}%</td>
-                                        <td>{{ ht_over_25_goals_stats.home_over_25_goals_bh_percent|average:at_over_25_goals_stats.away_over_25_goals_bh_percent }}%</td>
-                                        <td>{{ at_over_25_goals_stats.away_over_25_goals_bh_percent }}%</td>
-                                        <td>Over 2.5 BH</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 2.5 BH</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_25_goals_stats.home_over_25_goals_bh_percent|average:at_over_25_goals_stats.away_over_25_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_25_goals_stats.away_over_25_goals_bh_percent }}%</td>
+                                        <td class="align-middle">Over 2.5 BH</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 3.5</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_percent }}%</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_percent|average:at_over_35_goals_stats.away_over_35_goals_percent }}%</td>
-                                        <td>{{ at_over_35_goals_stats.away_over_35_goals_percent }}%</td>
-                                        <td>Over 3.5</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 3.5</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_percent|average:at_over_35_goals_stats.away_over_35_goals_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_35_goals_stats.away_over_35_goals_percent }}%</td>
+                                        <td class="align-middle">Over 3.5</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 3.5 1H</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_1h_percent }}%</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_1h_percent|average:at_over_35_goals_stats.away_over_35_goals_1h_percent }}%</td>
-                                        <td>{{ at_over_35_goals_stats.away_over_35_goals_1h_percent }}%</td>
-                                        <td>Over 3.5 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 3.5 1H</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_1h_percent|average:at_over_35_goals_stats.away_over_35_goals_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_35_goals_stats.away_over_35_goals_1h_percent }}%</td>
+                                        <td class="align-middle">Over 3.5 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 3.5 2H</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_2h_percent }}%</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_2h_percent|average:at_over_35_goals_stats.away_over_35_goals_2h_percent }}%</td>
-                                        <td>{{ at_over_35_goals_stats.away_over_35_goals_2h_percent }}%</td>
-                                        <td>Over 3.5 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 3.5 2H</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_2h_percent|average:at_over_35_goals_stats.away_over_35_goals_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_35_goals_stats.away_over_35_goals_2h_percent }}%</td>
+                                        <td class="align-middle">Over 3.5 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Over 3.5 BH</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_bh_percent }}%</td>
-                                        <td>{{ ht_over_35_goals_stats.home_over_35_goals_bh_percent|average:at_over_35_goals_stats.away_over_35_goals_bh_percent }}%</td>
-                                        <td>{{ at_over_35_goals_stats.away_over_35_goals_bh_percent }}%</td>
-                                        <td>Over 3.5 BH</td>
-                                        <td></td>
+                                        <td class="align-middle">Over 3.5 BH</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ ht_over_35_goals_stats.home_over_35_goals_bh_percent|average:at_over_35_goals_stats.away_over_35_goals_bh_percent }}%</td>
+                                        <td class="align-middle">{{ at_over_35_goals_stats.away_over_35_goals_bh_percent }}%</td>
+                                        <td class="align-middle">Over 3.5 BH</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -386,65 +322,51 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_wdl_percent_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_wdl_percent_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_wdl_percent_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Win %</td>
-                                        <td>{{ ht_wdl_percent_stats.home_win_percent }}%</td>
-                                        <td>{{ ht_wdl_percent_stats.home_win_percent|average:at_wdl_percent_stats.away_loss_percent }}%</td>
-                                        <td>{{ at_wdl_percent_stats.away_loss_percent }}%</td>
-                                        <td>Loss %</td>
-                                        <td></td>
+                                        <td class="align-middle">Win %</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_win_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_win_percent|average:at_wdl_percent_stats.away_loss_percent }}%</td>
+                                        <td class="align-middle">{{ at_wdl_percent_stats.away_loss_percent }}%</td>
+                                        <td class="align-middle">Loss %</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Draw %</td>
-                                        <td>{{ ht_wdl_percent_stats.home_draw_percent }}%</td>
-                                        <td>{{ ht_wdl_percent_stats.home_draw_percent|average:at_wdl_percent_stats.away_draw_percent }}%</td>
-                                        <td>{{ at_wdl_percent_stats.away_draw_percent }}%</td>
-                                        <td>Draw %</td>
-                                        <td></td>
+                                        <td class="align-middle">Draw %</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_draw_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_draw_percent|average:at_wdl_percent_stats.away_draw_percent }}%</td>
+                                        <td class="align-middle">{{ at_wdl_percent_stats.away_draw_percent }}%</td>
+                                        <td class="align-middle">Draw %</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Loss %</td>
-                                        <td>{{ ht_wdl_percent_stats.home_loss_percent }}%</td>
-                                        <td>{{ ht_wdl_percent_stats.home_loss_percent|average:at_wdl_percent_stats.away_win_percent }}%</td>
-                                        <td>{{ at_wdl_percent_stats.away_win_percent }}%</td>
-                                        <td>Win %</td>
-                                        <td></td>
+                                        <td class="align-middle">Loss %</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_loss_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wdl_percent_stats.home_loss_percent|average:at_wdl_percent_stats.away_win_percent }}%</td>
+                                        <td class="align-middle">{{ at_wdl_percent_stats.away_win_percent }}%</td>
+                                        <td class="align-middle">Win %</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -474,139 +396,108 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_team_corners_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_team_corners_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner For 1H Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_1h_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_1h_average|average:at_team_corners_stats.away_corners_against_1h_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_against_1h_average }}</td>
-                                        <td>Corner Against 1H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner For 1H Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_1h_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_1h_average|average:at_team_corners_stats.away_corners_against_1h_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_against_1h_average }}</td>
+                                        <td class="align-middle">Corner Against 1H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner Against 1H Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_1h_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_1h_average|average:at_team_corners_stats.away_corners_for_1h_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_for_1h_average }}</td>
-                                        <td>Corner For 1H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner Against 1H Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_1h_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_1h_average|average:at_team_corners_stats.away_corners_for_1h_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_for_1h_average }}</td>
+                                        <td class="align-middle">Corner For 1H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Match Corner 1H Avg</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_1h_average }}</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_1h_average|average:at_match_corners_stats.away_corners_1h_average }}</td>
-                                        <td>{{ at_match_corners_stats.away_corners_1h_average }}</td>
-                                        <td>Match Corner 1H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Match Corner 1H Avg</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_1h_average }}</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_1h_average|average:at_match_corners_stats.away_corners_1h_average }}</td>
+                                        <td class="align-middle">{{ at_match_corners_stats.away_corners_1h_average }}</td>
+                                        <td class="align-middle">Match Corner 1H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner For 2H Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_2h_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_2h_average|average:at_team_corners_stats.away_corners_against_2h_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_against_2h_average }}</td>
-                                        <td>Corner Against 2H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner For 2H Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_2h_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_2h_average|average:at_team_corners_stats.away_corners_against_2h_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_against_2h_average }}</td>
+                                        <td class="align-middle">Corner Against 2H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner Against 2H Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_2h_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_2h_average|average:at_team_corners_stats.away_corners_for_2h_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_for_2h_average }}</td>
-                                        <td>Corner For 2H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner Against 2H Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_2h_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_2h_average|average:at_team_corners_stats.away_corners_for_2h_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_for_2h_average }}</td>
+                                        <td class="align-middle">Corner For 2H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Match Corner 2H Avg</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_2h_average }}</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_2h_average|average:at_match_corners_stats.away_corners_2h_average }}</td>
-                                        <td>{{ at_match_corners_stats.away_corners_2h_average }}</td>
-                                        <td>Match Corner 2H Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Match Corner 2H Avg</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_2h_average }}</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_2h_average|average:at_match_corners_stats.away_corners_2h_average }}</td>
+                                        <td class="align-middle">{{ at_match_corners_stats.away_corners_2h_average }}</td>
+                                        <td class="align-middle">Match Corner 2H Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner For FT Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_ft_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_for_ft_average|average:at_team_corners_stats.away_corners_against_ft_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_against_ft_average }}</td>
-                                        <td>Corner Against FT Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner For FT Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_ft_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_for_ft_average|average:at_team_corners_stats.away_corners_against_ft_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_against_ft_average }}</td>
+                                        <td class="align-middle">Corner Against FT Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Corner Against FT Avg</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_ft_average }}</td>
-                                        <td>{{ ht_team_corners_stats.home_corners_against_ft_average|average:at_team_corners_stats.away_corners_for_ft_average }}</td>
-                                        <td>{{ at_team_corners_stats.away_corners_for_ft_average }}</td>
-                                        <td>Corner For FT Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Corner Against FT Avg</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_ft_average }}</td>
+                                        <td class="align-middle">{{ ht_team_corners_stats.home_corners_against_ft_average|average:at_team_corners_stats.away_corners_for_ft_average }}</td>
+                                        <td class="align-middle">{{ at_team_corners_stats.away_corners_for_ft_average }}</td>
+                                        <td class="align-middle">Corner For FT Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Match Corner FT Avg</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_ft_average }}</td>
-                                        <td>{{ ht_match_corners_stats.home_corners_ft_average|average:at_match_corners_stats.away_corners_ft_average }}</td>
-                                        <td>{{ at_match_corners_stats.away_corners_ft_average }}</td>
-                                        <td>Match Corner FT Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Match Corner FT Avg</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_ft_average }}</td>
+                                        <td class="align-middle">{{ ht_match_corners_stats.home_corners_ft_average|average:at_match_corners_stats.away_corners_ft_average }}</td>
+                                        <td class="align-middle">{{ at_match_corners_stats.away_corners_ft_average }}</td>
+                                        <td class="align-middle">Match Corner FT Avg</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -635,83 +526,65 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_cards_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_cards_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_cards_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Yellow Cards For Avg</td>
-                                        <td>{{ ht_cards_stats.home_yellow_cards_for_average }}</td>
-                                        <td>{{ ht_cards_stats.home_yellow_cards_for_average|average:at_cards_stats.away_yellow_cards_against_average }}</td>
-                                        <td>{{ at_cards_stats.away_yellow_cards_against_average }}</td>
-                                        <td>Yellow Cards Against Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Yellow Cards For Avg</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_yellow_cards_for_average }}</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_yellow_cards_for_average|average:at_cards_stats.away_yellow_cards_against_average }}</td>
+                                        <td class="align-middle">{{ at_cards_stats.away_yellow_cards_against_average }}</td>
+                                        <td class="align-middle">Yellow Cards Against Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Yellow Cards Againt Avg</td>
-                                        <td>{{ ht_cards_stats.home_yellow_cards_against_average }}</td>
-                                        <td>{{ ht_cards_stats.home_yellow_cards_against_average|average:at_cards_stats.away_yellow_cards_for_average }}</td>
-                                        <td>{{ at_cards_stats.away_yellow_cards_for_average }}</td>
-                                        <td>Yellow Cards For Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Yellow Cards Againt Avg</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_yellow_cards_against_average }}</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_yellow_cards_against_average|average:at_cards_stats.away_yellow_cards_for_average }}</td>
+                                        <td class="align-middle">{{ at_cards_stats.away_yellow_cards_for_average }}</td>
+                                        <td class="align-middle">Yellow Cards For Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Red Cards For Avg</td>
-                                        <td>{{ ht_cards_stats.home_red_cards_for_average }}</td>
-                                        <td>{{ ht_cards_stats.home_red_cards_for_average|average:at_cards_stats.away_red_cards_against_average }}</td>
-                                        <td>{{ at_cards_stats.away_red_cards_against_average }}</td>
-                                        <td>Red Cards Against Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Red Cards For Avg</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_red_cards_for_average }}</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_red_cards_for_average|average:at_cards_stats.away_red_cards_against_average }}</td>
+                                        <td class="align-middle">{{ at_cards_stats.away_red_cards_against_average }}</td>
+                                        <td class="align-middle">Red Cards Against Avg</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Red Cards Againt Avg</td>
-                                        <td>{{ ht_cards_stats.home_red_cards_against_average }}</td>
-                                        <td>{{ ht_cards_stats.home_red_cards_against_average|average:at_cards_stats.away_red_cards_for_average }}</td>
-                                        <td>{{ at_cards_stats.away_red_cards_for_average }}</td>
-                                        <td>Red Cards For Avg</td>
-                                        <td></td>
+                                        <td class="align-middle">Red Cards Againt Avg</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_red_cards_against_average }}</td>
+                                        <td class="align-middle">{{ ht_cards_stats.home_red_cards_against_average|average:at_cards_stats.away_red_cards_for_average }}</td>
+                                        <td class="align-middle">{{ at_cards_stats.away_red_cards_for_average }}</td>
+                                        <td class="align-middle">Red Cards For Avg</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -741,189 +614,155 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_ht_ft_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_ht_ft_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_ht_ft_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_ht_ft_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                     {% with ht_stats=ht_ht_ft_stats.home_win_win|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                     {% with at_stats=at_ht_ft_stats.away_loss_loss|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>WW</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>LL</td>
-                                        <td></td>
+                                        <td class="align-middle">WW</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">LL</td>
                                     {% endwith %}
                                     {% endwith %}
                                     </tr>
                                     <tr>
                                     {% with ht_stats=ht_ht_ft_stats.home_loss_loss|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                     {% with at_stats=at_ht_ft_stats.away_win_win|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>LL</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>WW</td>
-                                        <td></td>
+                                        <td class="align-middle">LL</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">WW</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_win_draw|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_loss_draw|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>WD</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>LD</td>
-                                        <td></td>
+                                        <td class="align-middle">WD</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">LD</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_loss_draw|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_win_draw|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>LD</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>WD</td>
-                                        <td></td>
+                                        <td class="align-middle">LD</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">WD</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_win_loss|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_loss_win|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>WL</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>LW</td>
-                                        <td></td>
+                                        <td class="align-middle">WL</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">LW</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_loss_win|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_win_loss|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>LW</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>WL</td>
-                                        <td></td>
+                                        <td class="align-middle">LW</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">WL</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_draw_win|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_draw_loss|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>DW</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>DL</td>
-                                        <td></td>
+                                        <td class="align-middle">DW</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">DL</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_draw_loss|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_draw_win|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>DL</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>DW</td>
-                                        <td></td>
+                                        <td class="align-middle">DL</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">DW</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_ht_ft_stats.home_draw_draw|get_percentage:ht_ht_ft_stats.home_matches_played %}
                                         {% with at_stats=at_ht_ft_stats.away_draw_draw|get_percentage:at_ht_ft_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>DD</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>DD</td>
-                                        <td></td>
+                                        <td class="align-middle">DD</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">DD</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
@@ -955,56 +794,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_sbh_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_sbh_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_sbh_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_sbh_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Scored Both Halves</td>
-                                        <td>{{ ht_sbh_stats.home_scored_both_halves_percent }}%</td>
-                                        <td>{{ ht_sbh_stats.home_scored_both_halves_percent|average:at_sbh_stats.away_conceded_both_halves_percent }}%</td>
-                                        <td>{{ at_sbh_stats.away_conceded_both_halves_percent }}%</td>
-                                        <td>Conceded Both Halves</td>
-                                        <td></td>
+                                        <td class="align-middle">Scored Both Halves</td>
+                                        <td class="align-middle">{{ ht_sbh_stats.home_scored_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ ht_sbh_stats.home_scored_both_halves_percent|average:at_sbh_stats.away_conceded_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ at_sbh_stats.away_conceded_both_halves_percent }}%</td>
+                                        <td class="align-middle">Conceded Both Halves</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Conceded Both Halves</td>
-                                        <td>{{ ht_sbh_stats.home_conceded_both_halves_percent }}%</td>
-                                        <td>{{ ht_sbh_stats.home_conceded_both_halves_percent|average:at_sbh_stats.away_scored_both_halves_percent }}%</td>
-                                        <td>{{ at_sbh_stats.away_scored_both_halves_percent }}%</td>
-                                        <td>Scored Both Halves</td>
-                                        <td></td>
+                                        <td class="align-middle">Conceded Both Halves</td>
+                                        <td class="align-middle">{{ ht_sbh_stats.home_conceded_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ ht_sbh_stats.home_conceded_both_halves_percent|average:at_sbh_stats.away_scored_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ at_sbh_stats.away_scored_both_halves_percent }}%</td>
+                                        <td class="align-middle">Scored Both Halves</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1034,56 +861,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_wbh_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_wbh_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_wbh_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_wbh_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Won Both Halves</td>
-                                        <td>{{ ht_wbh_stats.home_won_both_halves_percent }}%</td>
-                                        <td>{{ ht_wbh_stats.home_won_both_halves_percent|average:at_wbh_stats.away_lost_both_halves_percent }}%</td>
-                                        <td>{{ at_wbh_stats.away_lost_both_halves_percent }}%</td>
-                                        <td>Lost Both Halves</td>
-                                        <td></td>
+                                        <td class="align-middle">Won Both Halves</td>
+                                        <td class="align-middle">{{ ht_wbh_stats.home_won_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wbh_stats.home_won_both_halves_percent|average:at_wbh_stats.away_lost_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ at_wbh_stats.away_lost_both_halves_percent }}%</td>
+                                        <td class="align-middle">Lost Both Halves</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Lost Both Halves</td>
-                                        <td>{{ ht_wbh_stats.home_lost_both_halves_percent }}%</td>
-                                        <td>{{ ht_wbh_stats.home_lost_both_halves_percent|average:at_wbh_stats.away_won_both_halves_percent }}%</td>
-                                        <td>{{ at_wbh_stats.away_won_both_halves_percent }}%</td>
-                                        <td>Won Both Halves</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost Both Halves</td>
+                                        <td class="align-middle">{{ ht_wbh_stats.home_lost_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wbh_stats.home_lost_both_halves_percent|average:at_wbh_stats.away_won_both_halves_percent }}%</td>
+                                        <td class="align-middle">{{ at_wbh_stats.away_won_both_halves_percent }}%</td>
+                                        <td class="align-middle">Won Both Halves</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1113,139 +928,108 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Scored 1H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_1h_percent }}%</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_1h_percent|average:at_fh_sh_goals_stats.away_goals_conceded_1h_percent }}%</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_conceded_1h_percent }}%</td>
-                                        <td>Goals Conceded 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Scored 1H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_1h_percent|average:at_fh_sh_goals_stats.away_goals_conceded_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_conceded_1h_percent }}%</td>
+                                        <td class="align-middle">Goals Conceded 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Scored 1H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_1h_average }}</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_1h_average|average:at_fh_sh_goals_stats.away_goals_conceded_1h_average }}</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_conceded_1h_average }}</td>
-                                        <td>Goals Conceded 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Scored 1H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_1h_average }}</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_1h_average|average:at_fh_sh_goals_stats.away_goals_conceded_1h_average }}</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_conceded_1h_average }}</td>
+                                        <td class="align-middle">Goals Conceded 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Conceded 1H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_percent }}%</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_percent|average:at_fh_sh_goals_stats.away_goals_scored_1h_percent }}%</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_scored_1h_percent }}%</td>
-                                        <td>Goals Scored 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Conceded 1H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_percent|average:at_fh_sh_goals_stats.away_goals_scored_1h_percent }}%</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_scored_1h_percent }}%</td>
+                                        <td class="align-middle">Goals Scored 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Conceded 1H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_average }}</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_average|average:at_fh_sh_goals_stats.away_goals_scored_1h_average }}</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_scored_1h_average }}</td>
-                                        <td>Goals Scored 1H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Conceded 1H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_average }}</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_1h_average|average:at_fh_sh_goals_stats.away_goals_scored_1h_average }}</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_scored_1h_average }}</td>
+                                        <td class="align-middle">Goals Scored 1H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Scored 2H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_2h_percent }}%</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_2h_percent|average:at_fh_sh_goals_stats.away_goals_conceded_2h_percent }}%</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_conceded_2h_percent }}%</td>
-                                        <td>Goals Conceded 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Scored 2H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_2h_percent|average:at_fh_sh_goals_stats.away_goals_conceded_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_conceded_2h_percent }}%</td>
+                                        <td class="align-middle">Goals Conceded 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Scored 2H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_2h_average }}</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_scored_2h_average|average:at_fh_sh_goals_stats.away_goals_conceded_2h_average }}</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_conceded_2h_average }}</td>
-                                        <td>Goals Conceded 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Scored 2H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_2h_average }}</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_scored_2h_average|average:at_fh_sh_goals_stats.away_goals_conceded_2h_average }}</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_conceded_2h_average }}</td>
+                                        <td class="align-middle">Goals Conceded 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Conceded 2H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_percent }}%</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_percent|average:at_fh_sh_goals_stats.away_goals_scored_2h_percent }}%</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_scored_2h_percent }}%</td>
-                                        <td>Goals Scored 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Conceded 2H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_percent }}%</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_percent|average:at_fh_sh_goals_stats.away_goals_scored_2h_percent }}%</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_scored_2h_percent }}%</td>
+                                        <td class="align-middle">Goals Scored 2H</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Goals Conceded 2H</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_average }}</td>
-                                        <td>{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_average|average:at_fh_sh_goals_stats.away_goals_scored_2h_average }}</td>
-                                        <td>{{ at_fh_sh_goals_stats.away_goals_scored_2h_average }}</td>
-                                        <td>Goals Scored 2H</td>
-                                        <td></td>
+                                        <td class="align-middle">Goals Conceded 2H</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_average }}</td>
+                                        <td class="align-middle">{{ ht_fh_sh_goals_stats.home_goals_conceded_2h_average|average:at_fh_sh_goals_stats.away_goals_scored_2h_average }}</td>
+                                        <td class="align-middle">{{ at_fh_sh_goals_stats.away_goals_scored_2h_average }}</td>
+                                        <td class="align-middle">Goals Scored 2H</td>
                                     </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -1274,56 +1058,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_clean_sheets_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_clean_sheets_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_clean_sheets_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_clean_sheets_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Clean Sheet</td>
-                                        <td>{{ ht_clean_sheets_stats.home_clean_sheet_percent }}%</td>
-                                        <td>{{ ht_clean_sheets_stats.home_clean_sheet_percent|average:at_clean_sheets_stats.away_failed_to_score_percent }}%</td>
-                                        <td>{{ at_clean_sheets_stats.away_failed_to_score_percent }}%</td>
-                                        <td>Failed To Score</td>
-                                        <td></td>
+                                        <td class="align-middle">Clean Sheet</td>
+                                        <td class="align-middle">{{ ht_clean_sheets_stats.home_clean_sheet_percent }}%</td>
+                                        <td class="align-middle">{{ ht_clean_sheets_stats.home_clean_sheet_percent|average:at_clean_sheets_stats.away_failed_to_score_percent }}%</td>
+                                        <td class="align-middle">{{ at_clean_sheets_stats.away_failed_to_score_percent }}%</td>
+                                        <td class="align-middle">Failed To Score</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Failed To Score</td>
-                                        <td>{{ ht_clean_sheets_stats.home_failed_to_score_percent }}%</td>
-                                        <td>{{ ht_clean_sheets_stats.home_failed_to_score_percent|average:at_clean_sheets_stats.away_clean_sheet_percent }}%</td>
-                                        <td>{{ at_clean_sheets_stats.away_clean_sheet_percent }}%</td>
-                                        <td>Clean Sheet</td>
-                                        <td></td>
+                                        <td class="align-middle">Failed To Score</td>
+                                        <td class="align-middle">{{ ht_clean_sheets_stats.home_failed_to_score_percent }}%</td>
+                                        <td class="align-middle">{{ ht_clean_sheets_stats.home_failed_to_score_percent|average:at_clean_sheets_stats.away_clean_sheet_percent }}%</td>
+                                        <td class="align-middle">{{ at_clean_sheets_stats.away_clean_sheet_percent }}%</td>
+                                        <td class="align-middle">Clean Sheet</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1353,56 +1125,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_wtn_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_wtn_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_wtn_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_wtn_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Won To Nil</td>
-                                        <td>{{ ht_wtn_stats.home_won_to_nil_percent }}%</td>
-                                        <td>{{ ht_wtn_stats.home_won_to_nil_percent|average:at_wtn_stats.away_lost_to_nil_percent }}%</td>
-                                        <td>{{ at_wtn_stats.away_lost_to_nil_percent }}%</td>
-                                        <td>Lost To Nil</td>
-                                        <td></td>
+                                        <td class="align-middle">Won To Nil</td>
+                                        <td class="align-middle">{{ ht_wtn_stats.home_won_to_nil_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wtn_stats.home_won_to_nil_percent|average:at_wtn_stats.away_lost_to_nil_percent }}%</td>
+                                        <td class="align-middle">{{ at_wtn_stats.away_lost_to_nil_percent }}%</td>
+                                        <td class="align-middle">Lost To Nil</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Lost To Nil</td>
-                                        <td>{{ ht_wtn_stats.home_lost_to_nil_percent }}%</td>
-                                        <td>{{ ht_wtn_stats.home_lost_to_nil_percent|average:at_wtn_stats.away_won_to_nil_percent }}%</td>
-                                        <td>{{ at_wtn_stats.away_won_to_nil_percent }}%</td>
-                                        <td>Won To Nil</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost To Nil</td>
+                                        <td class="align-middle">{{ ht_wtn_stats.home_lost_to_nil_percent }}%</td>
+                                        <td class="align-middle">{{ ht_wtn_stats.home_lost_to_nil_percent|average:at_wtn_stats.away_won_to_nil_percent }}%</td>
+                                        <td class="align-middle">{{ at_wtn_stats.away_won_to_nil_percent }}%</td>
+                                        <td class="align-middle">Won To Nil</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1432,167 +1192,137 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_wl_margin_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_wl_margin_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_wl_margin_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_wl_margin_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_won_by_1|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_loose_by_1|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Win By 1 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Lost By 1 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Win By 1 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Lost By 1 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_loose_by_1|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_won_by_1|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Lost By 1 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Win By 1 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost By 1 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Win By 1 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_won_by_2|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_loose_by_2|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Win By 2 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Lost By 2 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Win By 2 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Lost By 2 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_loose_by_2|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_won_by_2|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Lost By 2 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Win By 2 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost By 2 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Win By 2 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_won_by_3|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_loose_by_3|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Win By 3 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Lost By 3 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Win By 3 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Lost By 3 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_loose_by_3|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_won_by_3|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Lost By 3 Goal</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Win By 3 Goal</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost By 3 Goal</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Win By 3 Goal</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_won_by_4_or_more|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_loose_by_4_or_more|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Win By 4 Goal Or More</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Lost By 4 Goal Or More</td>
-                                        <td></td>
+                                        <td class="align-middle">Win By 4 Goal Or More</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Lost By 4 Goal Or More</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
                                     <tr>
                                         {% with ht_stats=ht_wl_margin_stats.home_games_loose_by_4_or_more|get_percentage:ht_wl_margin_stats.home_matches_played %}
                                         {% with at_stats=at_wl_margin_stats.away_games_won_by_4_or_more|get_percentage:at_wl_margin_stats.away_matches_played %}
-                                        <td></td>
-                                        <td>Lost By 4 Goal Or More</td>
-                                        <td>{{ ht_stats }}%</td>
-                                        <td>{{ ht_stats|average:at_stats }}%</td>
-                                        <td>{{ at_stats }}%</td>
-                                        <td>Win By 4 Goal Or More</td>
-                                        <td></td>
+                                        <td class="align-middle">Lost By 4 Goal Or More</td>
+                                        <td class="align-middle">{{ ht_stats }}%</td>
+                                        <td class="align-middle">{{ ht_stats|average:at_stats }}%</td>
+                                        <td class="align-middle">{{ at_stats }}%</td>
+                                        <td class="align-middle">Win By 4 Goal Or More</td>
                                         {% endwith %}
                                         {% endwith %}
                                     </tr>
@@ -1624,56 +1354,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td>Played</td>
-                                        <td>{{ ht_scored_first_stats.home_matches_played }}</td>
-                                        <td>Average</td>
-                                        <td>{{ at_scored_first_stats.away_matches_played }}</td>
-                                        <td>Played</td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">Home matches Played</td>
+                                        <td class="align-middle">{{ ht_scored_first_stats.home_matches_played }}</td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle">{{ at_scored_first_stats.away_matches_played }}</td>
+                                        <td class="align-middle">Away matches Played</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Scored First</td>
-                                        <td>{{ ht_scored_first_stats.home_scored_first_percent }}%</td>
-                                        <td>{{ ht_scored_first_stats.home_scored_first_percent|average:at_scored_first_stats.away_conceded_first_percent }}%</td>
-                                        <td>{{ at_scored_first_stats.away_conceded_first_percent }}%</td>
-                                        <td>Conceded First</td>
-                                        <td></td>
+                                        <td class="align-middle">Scored First</td>
+                                        <td class="align-middle">{{ ht_scored_first_stats.home_scored_first_percent }}%</td>
+                                        <td class="align-middle">{{ ht_scored_first_stats.home_scored_first_percent|average:at_scored_first_stats.away_conceded_first_percent }}%</td>
+                                        <td class="align-middle">{{ at_scored_first_stats.away_conceded_first_percent }}%</td>
+                                        <td class="align-middle">Conceded First</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Conceded First</td>
-                                        <td>{{ ht_scored_first_stats.home_conceded_first_percent }}%</td>
-                                        <td>{{ ht_scored_first_stats.home_conceded_first_percent|average:at_scored_first_stats.away_scored_first_percent }}%</td>
-                                        <td>{{ at_scored_first_stats.away_scored_first_percent }}%</td>
-                                        <td>Scored First</td>
-                                        <td></td>
+                                        <td class="align-middle">Conceded First</td>
+                                        <td class="align-middle">{{ ht_scored_first_stats.home_conceded_first_percent }}%</td>
+                                        <td class="align-middle">{{ ht_scored_first_stats.home_conceded_first_percent|average:at_scored_first_stats.away_scored_first_percent }}%</td>
+                                        <td class="align-middle">{{ at_scored_first_stats.away_scored_first_percent }}%</td>
+                                        <td class="align-middle">Scored First</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1703,56 +1421,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Average</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">home matches</td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle">away matches</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>First Goal Scored</td>
-                                        <td>{{ ht_avg_1st_gt_stats.home_first_goal_time_scored_average }}'</td>
-                                        <td>{{ ht_avg_1st_gt_stats.home_first_goal_time_scored_average|average:at_avg_1st_gt_stats.away_first_goal_time_conceded_average }}'</td>
-                                        <td>{{ at_avg_1st_gt_stats.away_first_goal_time_conceded_average }}'</td>
-                                        <td>First Goal Conceded</td>
-                                        <td></td>
+                                        <td class="align-middle">First Goal Scored</td>
+                                        <td class="align-middle">{{ ht_avg_1st_gt_stats.home_first_goal_time_scored_average }}'</td>
+                                        <td class="align-middle">{{ ht_avg_1st_gt_stats.home_first_goal_time_scored_average|average:at_avg_1st_gt_stats.away_first_goal_time_conceded_average }}'</td>
+                                        <td class="align-middle">{{ at_avg_1st_gt_stats.away_first_goal_time_conceded_average }}'</td>
+                                        <td class="align-middle">First Goal Conceded</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>First Goal Conceded</td>
-                                        <td>{{ ht_avg_1st_gt_stats.home_first_goal_time_conceded_average }}'</td>
-                                        <td>{{ ht_avg_1st_gt_stats.home_first_goal_time_conceded_average|average:at_avg_1st_gt_stats.away_first_goal_time_scored_average }}'</td>
-                                        <td>{{ at_avg_1st_gt_stats.away_first_goal_time_scored_average }}'</td>
-                                        <td>First Goal Scored</td>
-                                        <td></td>
+                                        <td class="align-middle">First Goal Conceded</td>
+                                        <td class="align-middle">{{ ht_avg_1st_gt_stats.home_first_goal_time_conceded_average }}'</td>
+                                        <td class="align-middle">{{ ht_avg_1st_gt_stats.home_first_goal_time_conceded_average|average:at_avg_1st_gt_stats.away_first_goal_time_scored_average }}'</td>
+                                        <td class="align-middle">{{ at_avg_1st_gt_stats.away_first_goal_time_scored_average }}'</td>
+                                        <td class="align-middle">First Goal Scored</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -1782,56 +1488,44 @@
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
-                                        <th scope="col" class="col-1"></th>
                                         <th scope="col" class="col-1">{{ fixture.away_team }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td>home matches</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Average</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>away matches</td>
+                                        <td class="align-middle">home matches</td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle">Average</td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle">away matches</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
+                                        <td class="align-middle"></td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Average Goals Scored</td>
-                                        <td>{{ ht_avg_team_goals_stats.home_goals_scored_average }}</td>
-                                        <td>{{ ht_avg_team_goals_stats.home_goals_scored_average|average:at_avg_team_goals_stats.away_goals_conceded_average }}</td>
-                                        <td>{{ at_avg_team_goals_stats.away_goals_conceded_average }}</td>
-                                        <td>Average Goals Conceded</td>
-                                        <td></td>
+                                        <td class="align-middle">Average Goals Scored</td>
+                                        <td class="align-middle">{{ ht_avg_team_goals_stats.home_goals_scored_average }}</td>
+                                        <td class="align-middle">{{ ht_avg_team_goals_stats.home_goals_scored_average|average:at_avg_team_goals_stats.away_goals_conceded_average }}</td>
+                                        <td class="align-middle">{{ at_avg_team_goals_stats.away_goals_conceded_average }}</td>
+                                        <td class="align-middle">Average Goals Conceded</td>
                                     </tr>
                                     <tr>
-                                        <td></td>
-                                        <td>Average Goals Conceded</td>
-                                        <td>{{ ht_avg_team_goals_stats.home_goals_conceded_average }}</td>
-                                        <td>{{ ht_avg_team_goals_stats.home_goals_conceded_average|average:at_avg_team_goals_stats.away_goals_scored_average }}</td>
-                                        <td>{{ at_avg_team_goals_stats.away_goals_scored_average }}</td>
-                                        <td>Average Goals Scored</td>
-                                        <td></td>
+                                        <td class="align-middle">Average Goals Conceded</td>
+                                        <td class="align-middle">{{ ht_avg_team_goals_stats.home_goals_conceded_average }}</td>
+                                        <td class="align-middle">{{ ht_avg_team_goals_stats.home_goals_conceded_average|average:at_avg_team_goals_stats.away_goals_scored_average }}</td>
+                                        <td class="align-middle">{{ at_avg_team_goals_stats.away_goals_scored_average }}</td>
+                                        <td class="align-middle">Average Goals Scored</td>
                                     </tr>
                                     </tbody>
                                 </table>

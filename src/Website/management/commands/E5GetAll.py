@@ -27,6 +27,9 @@ class Command(BaseCommand):
         # # Get Teams
         # call_command(command_name="E5Parser", str_error_context="Get Teams")
         #
+        # # Get Upcoming Fixtures
+        call_command(command_name="E5Parser", str_error_context="Get Upcoming Matches")
+        #
         # #################################################### MONDAY ####################################################
         # if today == 0:
         #     # Parse League Table Iframes
@@ -37,7 +40,7 @@ class Command(BaseCommand):
         #              int_iframe_length=5, str_save_message="BTTS Iframe", str_class="E5BttsIframes")
         #
         #     # Parse BTTS Iframes
-        call_command(command_name="E5ParseBttsIframes")
+        #     call_command(command_name="E5ParseBttsIframes")
         #
         #     # Get Over 0.5 Goals Iframes
         #     call_command(command_name="E5Parser", str_endpoint="over-0-5-goals/",
