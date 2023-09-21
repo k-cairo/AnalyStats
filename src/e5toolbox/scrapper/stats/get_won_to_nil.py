@@ -87,12 +87,14 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wtn_stats.exists():
                         home_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {home_team.name} created")
                     else:
                         home_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=home_team)
                         home_wtn_stats.home_matches_played = home_matches_played
                         home_wtn_stats.home_won_to_nil = home_won_to_nil
                         home_wtn_stats.home_won_to_nil_percent = home_won_to_nil_percent
                         home_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -104,12 +106,14 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wtn_stats.exists():
                         away_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {away_team.name} created")
                     else:
                         away_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=away_team)
                         away_wtn_stats.away_matches_played = away_matches_played
                         away_wtn_stats.away_won_to_nil = away_won_to_nil
                         away_wtn_stats.away_won_to_nil_percent = away_won_to_nil_percent
                         away_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {away_team.name} updated")
 
                     # Create Overall Stats
                     overall_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -121,12 +125,14 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wtn_stats.exists():
                         overall_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {overall_team.name} created")
                     else:
                         overall_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=overall_team)
                         overall_wtn_stats.overall_matches_played = overall_matches_played
                         overall_wtn_stats.overall_won_to_nil = overall_won_to_nil
                         overall_wtn_stats.overall_won_to_nil_percent = overall_won_to_nil_percent
                         overall_wtn_stats.save()
+                        self.log_info(message=f"Parse Won To Nil Stats : {overall_team.name} updated")
 
                 ############################################ Lost To Nil ###############################################
                 # Get Url
@@ -191,12 +197,14 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wtn_stats.exists():
                         home_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {home_team.name} created")
                     else:
                         home_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=home_team)
                         home_wtn_stats.home_matches_played = home_matches_played
                         home_wtn_stats.home_lost_to_nil = home_lost_to_nil
                         home_wtn_stats.home_lost_to_nil_percent = home_lost_to_nil_percent
                         home_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -208,12 +216,14 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wtn_stats.exists():
                         away_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {away_team.name} created")
                     else:
                         away_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=away_team)
                         away_wtn_stats.away_matches_played = away_matches_played
                         away_wtn_stats.away_lost_to_nil = away_lost_to_nil
                         away_wtn_stats.away_lost_to_nil_percent = away_lost_to_nil_percent
                         away_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {away_team.name} updated")
 
                     # Create Overall Stats
                     overall_wtn_stats: E5WonToNilStats = E5WonToNilStats()
@@ -225,9 +235,11 @@ class E5GetWonToNil(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wtn_stats.exists():
                         overall_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {overall_team.name} created")
                     else:
                         overall_wtn_stats: E5WonToNilStats = E5WonToNilStats.objects.get(team=overall_team)
                         overall_wtn_stats.overall_matches_played = overall_matches_played
                         overall_wtn_stats.overall_lost_to_nil = overall_lost_to_nil
                         overall_wtn_stats.overall_lost_to_nil_percent = overall_lost_to_nil_percent
                         overall_wtn_stats.save()
+                        self.log_info(message=f"Parse Lost To Nil Stats : {overall_team.name} updated")

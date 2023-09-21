@@ -71,11 +71,13 @@ class E5GetAverageTeamGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_atg_stats.exists():
                         home_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {home_team.name} created")
                     else:
                         home_atg_stats: E5AverageTeamGoalsStats = E5AverageTeamGoalsStats.objects.get(team=home_team)
                         home_atg_stats.home_goals_scored_average = home_goals_scored_average
                         home_atg_stats.home_goals_conceded_average = home_goals_conceded_average
                         home_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_atg_stats: E5AverageTeamGoalsStats = E5AverageTeamGoalsStats()
@@ -86,11 +88,13 @@ class E5GetAverageTeamGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_atg_stats.exists():
                         away_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {away_team.name} created")
                     else:
                         away_atg_stats: E5AverageTeamGoalsStats = E5AverageTeamGoalsStats.objects.get(team=away_team)
                         away_atg_stats.away_goals_scored_average = away_goals_scored_average
                         away_atg_stats.away_goals_conceded_average = away_goals_conceded_average
                         away_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {away_team.name} updated")
 
                     # Create Overall Stats
                     overall_atg_stats: E5AverageTeamGoalsStats = E5AverageTeamGoalsStats()
@@ -101,9 +105,11 @@ class E5GetAverageTeamGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_atg_stats.exists():
                         overall_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {overall_team.name} created")
                     else:
                         overall_atg_stats: E5AverageTeamGoalsStats = E5AverageTeamGoalsStats.objects.get(
                             team=overall_team)
                         overall_atg_stats.overall_goals_scored_average = overall_goals_scored_average
                         overall_atg_stats.overall_goals_conceded_average = overall_goals_conceded_average
                         overall_atg_stats.save()
+                        self.log_info(message=f"Parse Average Team Goals Stats : {overall_team.name} updated")

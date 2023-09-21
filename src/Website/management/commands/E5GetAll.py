@@ -28,7 +28,7 @@ class Command(BaseCommand):
         # call_command(command_name="E5Parser", str_error_context="Get Teams")
         #
         # # Get Upcoming Fixtures
-        call_command(command_name="E5Parser", str_error_context="Get Upcoming Matches")
+        # call_command(command_name="E5Parser", str_error_context="Get Upcoming Matches")
         #
         # #################################################### MONDAY ####################################################
         # if today == 0:
@@ -67,28 +67,28 @@ class Command(BaseCommand):
         #     call_command(command_name="E5ParseOver25GoalsIframes")
         #
         #     # Get Average Team Goal Iframes
-        #     call_command(command_name="E5Parser", str_endpoint="amr/",
-        #                  str_error_context="Get Average Team Goal Iframes", int_iframe_length=1,
-        #                  str_save_message="Average Team Goal Iframe", str_class="E5AverageTeamGoalsIframe")
+        call_command(command_name="E5Parser", str_endpoint="amr/",
+                     str_error_context="Get Average Team Goal Iframes", int_iframe_length=1,
+                     str_save_message="Average Team Goal Iframe", str_class="E5AverageTeamGoalsIframe")
         #
         #     # Parse Average Team Goal Iframes
-        #     call_command(command_name="E5ParseAverageTeamGoalsIframes")
+        call_command(command_name="E5ParseAverageTeamGoalsIframes")
         #
         # ################################################### TUESDAY ####################################################
         # elif today == 1:  # 17
         #     # Get Corners Iframes
-        #     call_command(command_name="E5Parser", str_endpoint="corners/", str_error_context="Get Corners Iframes",
-        #                  int_iframe_length=9, str_save_message="Corners Iframe", str_class="E5CornersIframes")
+        call_command(command_name="E5Parser", str_endpoint="corners/", str_error_context="Get Corners Iframes",
+                     int_iframe_length=9, str_save_message="Corners Iframe", str_class="E5CornersIframes")
         #
         #     # Parse Corners Iframes
-        #     call_command(command_name="E5ParseCornersIframes")
+        call_command(command_name="E5ParseCornersIframes")
         #
         #     # Get Cards Iframes
-        #     call_command(command_name="E5Parser", str_endpoint="cards/", str_error_context="Get Cards Iframes",
-        #                  int_iframe_length=4, str_save_message="Cards Iframe", str_class="E5CardsIframes")
+        call_command(command_name="E5Parser", str_endpoint="cards/", str_error_context="Get Cards Iframes",
+                     int_iframe_length=4, str_save_message="Cards Iframe", str_class="E5CardsIframes")
         #
         #     # Parse Cards Iframes
-        #     call_command(command_name="E5ParseCardsIframes")
+        call_command(command_name="E5ParseCardsIframes")
         #
         #     # Get Half Time Full Time Iframes
         #     call_command(command_name="E5Parser", str_endpoint="half-time-full-time/",
