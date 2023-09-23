@@ -14,11 +14,12 @@ from .models import (E5League, E5Season, E5TeamRanking, E5Over05GoalsStats, E5Ov
 ######################################################### INDEX ########################################################
 # E5
 def index(request):
-    # Query Teams
-    total_teams: int = E5Team.objects.distinct().count()
+    # Query Active Teams
+    total_teams: int = E5Team.objects.filter(season__active=True).count()
 
-    # Query Leagues
-    total_leagues: int = E5League.objects.all().count()
+    # Query Active Seasons
+    seasons: QuerySet(E5Season) = E5Season.objects.filter(active=True).distinct()
+    total_leagues = len(seasons)
 
     # Context
     context = {'total_leagues': total_leagues, 'total_teams': total_teams}
@@ -30,8 +31,11 @@ def index(request):
 ######################################################## LEAGUES #######################################################
 # E5
 def leagues(request):
-    # Query Leagues
-    leagues: QuerySet(E5League) = E5League.objects.all().order_by('name')
+    # Query Active Seasons
+    seasons: QuerySet(E5Season) = E5Season.objects.filter(active=True).distinct().order_by('league__name')
+
+    # Get Active Leagues
+    leagues: [E5League] = [season.league for season in seasons]
 
     # Context
     context = {'leagues': leagues}

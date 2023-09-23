@@ -87,6 +87,7 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                     # Check if team ranking already exists before saving or updating
                     if not team_ranking.exists():
                         team_ranking.save()
+                        self.log_info(message=f"Team Ranking Created Successfully : {team.name}")
                     else:
                         target_team_ranking: E5TeamRanking = E5TeamRanking.objects.get(team=team)
                         target_team_ranking.ranking = ranking
@@ -99,3 +100,4 @@ class E5GetLeagueTables(E5SeleniumWebDriver):
                         target_team_ranking.goals_difference = goals_difference
                         target_team_ranking.points = points
                         target_team_ranking.save()
+                        self.log_info(message=f"Team Ranking Updated Successfully : {team.name}")

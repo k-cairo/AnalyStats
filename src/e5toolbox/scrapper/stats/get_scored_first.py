@@ -74,12 +74,14 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sf_stats.exists():
                         home_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {home_team.name} created")
                     else:
                         home_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=home_team)
                         home_sf_stats.home_matches_played = home_matches_played
                         home_sf_stats.home_scored_first = home_scored_first
                         home_sf_stats.home_scored_first_percent = home_scored_first_percent
                         home_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {home_team.name} updated")
 
                     # Create Won Both Halves Away Stats
                     away_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats()
@@ -91,12 +93,14 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sf_stats.exists():
                         away_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {away_team.name} created")
                     else:
                         away_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=away_team)
                         away_sf_stats.away_matches_played = away_matches_played
                         away_sf_stats.away_scored_first = away_scored_first
                         away_sf_stats.away_scored_first_percent = away_scored_first_percent
                         away_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {away_team.name} updated")
 
                     # Create Won Both Halves Overall Stats
                     overall_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats()
@@ -108,12 +112,14 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sf_stats.exists():
                         overall_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {overall_team.name} created")
                     else:
                         overall_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=overall_team)
                         overall_sf_stats.overall_matches_played = overall_matches_played
                         overall_sf_stats.overall_scored_first = overall_scored_first
                         overall_sf_stats.overall_scored_first_percent = overall_scored_first_percent
                         overall_sf_stats.save()
+                        self.log_info(message=f"Parse Score First Stats : {overall_team.name} updated")
 
                 ########################################### Conceded First #############################################
                 # Get Url
@@ -165,12 +171,14 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sf_stats.exists():
                         home_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {home_team.name} created")
                     else:
                         home_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=home_team)
                         home_sf_stats.home_matches_played = home_matches_played
                         home_sf_stats.home_conceded_first = home_conceded_first
                         home_sf_stats.home_conceded_first_percent = home_conceded_first_percent
                         home_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {home_team.name} updated")
 
                     # Create Won Both Halves Away Stats
                     away_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats()
@@ -182,12 +190,14 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sf_stats.exists():
                         away_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {away_team.name} created")
                     else:
                         away_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=away_team)
                         away_sf_stats.away_matches_played = away_matches_played
                         away_sf_stats.away_conceded_first = away_conceded_first
                         away_sf_stats.away_conceded_first_percent = away_conceded_first_percent
                         away_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {away_team.name} updated")
 
                     # Create Won Both Halves Overall Stats
                     overall_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats()
@@ -199,9 +209,11 @@ class E5GetScoredFirst(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sf_stats.exists():
                         overall_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {overall_team.name} created")
                     else:
                         overall_sf_stats: E5ScoredFirstStats = E5ScoredFirstStats.objects.get(team=overall_team)
                         overall_sf_stats.overall_matches_played = overall_matches_played
                         overall_sf_stats.overall_conceded_first = overall_conceded_first
                         overall_sf_stats.overall_conceded_first_percent = overall_conceded_first_percent
                         overall_sf_stats.save()
+                        self.log_info(message=f"Parse Conceded First Stats : {overall_team.name} updated")

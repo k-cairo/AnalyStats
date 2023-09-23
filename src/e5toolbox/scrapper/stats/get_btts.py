@@ -39,17 +39,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_team_url: str = table_tr.select(selector='td a[target="_blank"]')[0]['href']
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_btts: int = int(table_tr.find_all('td')[3].text)
                         home_btts_percentage: int = int(table_tr.find_all('td')[4].text.strip('%'))
                         away_team_name: str = table_tr.select(selector='td a[target="_blank"]')[1].text
-                        away_team_url: str = table_tr.select(selector='td a[target="_blank"]')[1]['href']
                         away_matches_played: int = int(table_tr.find_all('td')[7].text)
                         away_btts: int = int(table_tr.find_all('td')[8].text)
                         away_btts_percentage: int = int(table_tr.find_all('td')[9].text.strip('%'))
                         overall_team_name: str = table_tr.select(selector='td a[target="_blank"]')[2].text
-                        overall_team_url: str = table_tr.select(selector='td a[target="_blank"]')[2]['href']
                         overall_matches_played: int = int(table_tr.find_all('td')[12].text)
                         overall_btts: int = int(table_tr.find_all('td')[13].text)
                         overall_btts_percentage: int = int(table_tr.find_all('td')[14].text.strip('%'))
@@ -77,12 +74,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_btts_stats.exists():
                         home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {home_team.name} created")
                     else:
                         target_home_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=home_team)
                         target_home_btts_stats.home_matches_played = home_matches_played
                         target_home_btts_stats.home_btts = home_btts
                         target_home_btts_stats.home_btts_percent = home_btts_percentage
                         target_home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {home_team.name} updated")
 
                     # Create BTTS Away Stats
                     away_btts_stats: E5BttsStats = E5BttsStats()
@@ -94,12 +93,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_btts_stats.exists():
                         away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {away_team.name} created")
                     else:
                         target_away_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=away_team)
                         target_away_btts_stats.away_matches_played = away_matches_played
                         target_away_btts_stats.away_btts = away_btts
                         target_away_btts_stats.away_btts_percent = away_btts_percentage
                         target_away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {away_team.name} updated")
 
                     # Create BTTS Overall Stats
                     overall_btts_stats: E5BttsStats = E5BttsStats()
@@ -111,12 +112,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_btts_stats.exists():
                         overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {overall_team.name} created")
                     else:
                         target_overall_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=overall_team)
                         target_overall_btts_stats.overall_matches_played = overall_matches_played
                         target_overall_btts_stats.overall_btts = overall_btts
                         target_overall_btts_stats.overall_btts_percent = overall_btts_percentage
                         target_overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS : {overall_team.name} updated")
 
                 ############################################### BTTS 1H ################################################
                 # Get Url
@@ -126,24 +129,27 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 1H Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_team_url: str = table_tr.select(selector='td a[target="_blank"]')[0]['href']
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_btts_1h: int = int(table_tr.find_all('td')[3].text)
                         home_btts_1h_percentage: int = int(table_tr.find_all('td')[4].text.strip('%'))
                         away_team_name: str = table_tr.select(selector='td a[target="_blank"]')[1].text
-                        away_team_url: str = table_tr.select(selector='td a[target="_blank"]')[1]['href']
                         away_matches_played: int = int(table_tr.find_all('td')[7].text)
                         away_btts_1h: int = int(table_tr.find_all('td')[8].text)
                         away_btts_1h_percentage: int = int(table_tr.find_all('td')[9].text.strip('%'))
                         overall_team_name: str = table_tr.select(selector='td a[target="_blank"]')[2].text
-                        overall_team_url: str = table_tr.select(selector='td a[target="_blank"]')[2]['href']
                         overall_matches_played: int = int(table_tr.find_all('td')[12].text)
                         overall_btts_1h: int = int(table_tr.find_all('td')[13].text)
                         overall_btts_1h_percentage: int = int(table_tr.find_all('td')[14].text.strip('%'))
@@ -171,12 +177,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_btts_stats.exists():
                         home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {home_team.name} created")
                     else:
                         target_home_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=home_team)
                         target_home_btts_stats.home_matches_played = home_matches_played
                         target_home_btts_stats.home_btts_1h = home_btts_1h
                         target_home_btts_stats.home_btts_1h_percent = home_btts_1h_percentage
                         target_home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {home_team.name} updated")
 
                     # Create BTTS 1H Away Stats
                     away_btts_stats: E5BttsStats = E5BttsStats()
@@ -188,12 +196,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_btts_stats.exists():
                         away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {away_team.name} created")
                     else:
                         target_away_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=away_team)
                         target_away_btts_stats.away_matches_played = away_matches_played
                         target_away_btts_stats.away_btts_1h = away_btts_1h
                         target_away_btts_stats.away_btts_1h_percent = away_btts_1h_percentage
                         target_away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {away_team.name} updated")
 
                     # Create BTTS 1H Overall Stats
                     overall_btts_stats: E5BttsStats = E5BttsStats()
@@ -205,12 +215,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_btts_stats.exists():
                         overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {overall_team.name} created")
                     else:
                         target_overall_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=overall_team)
                         target_overall_btts_stats.overall_matches_played = overall_matches_played
                         target_overall_btts_stats.overall_btts_1h = overall_btts_1h
                         target_overall_btts_stats.overall_btts_1h_percent = overall_btts_1h_percentage
                         target_overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 1H : {overall_team.name} updated")
 
                 ############################################### BTTS 2H ################################################
                 # Get Url
@@ -220,24 +232,27 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 2H Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_team_url: str = table_tr.select(selector='td a[target="_blank"]')[0]['href']
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_btts_2h: int = int(table_tr.find_all('td')[3].text)
                         home_btts_2h_percentage: int = int(table_tr.find_all('td')[4].text.strip('%'))
                         away_team_name: str = table_tr.select(selector='td a[target="_blank"]')[1].text
-                        away_team_url: str = table_tr.select(selector='td a[target="_blank"]')[1]['href']
                         away_matches_played: int = int(table_tr.find_all('td')[7].text)
                         away_btts_2h: int = int(table_tr.find_all('td')[8].text)
                         away_btts_2h_percentage: int = int(table_tr.find_all('td')[9].text.strip('%'))
                         overall_team_name: str = table_tr.select(selector='td a[target="_blank"]')[2].text
-                        overall_team_url: str = table_tr.select(selector='td a[target="_blank"]')[2]['href']
                         overall_matches_played: int = int(table_tr.find_all('td')[12].text)
                         overall_btts_2h: int = int(table_tr.find_all('td')[13].text)
                         overall_btts_2h_percentage: int = int(table_tr.find_all('td')[14].text.strip('%'))
@@ -265,12 +280,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_btts_stats.exists():
                         home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {home_team.name} created")
                     else:
                         target_home_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=home_team)
                         target_home_btts_stats.home_matches_played = home_matches_played
                         target_home_btts_stats.home_btts_2h = home_btts_2h
                         target_home_btts_stats.home_btts_2h_percent = home_btts_2h_percentage
                         target_home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {home_team.name} updated")
 
                     # Create BTTS 2H Away Stats
                     away_btts_stats: E5BttsStats = E5BttsStats()
@@ -282,12 +299,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_btts_stats.exists():
                         away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {away_team.name} created")
                     else:
                         target_away_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=away_team)
                         target_away_btts_stats.away_matches_played = away_matches_played
                         target_away_btts_stats.away_btts_2h = away_btts_2h
                         target_away_btts_stats.away_btts_2h_percent = away_btts_2h_percentage
                         target_away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {away_team.name} updated")
 
                     # Create BTTS 2H Overall Stats
                     overall_btts_stats: E5BttsStats = E5BttsStats()
@@ -299,12 +318,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_btts_stats.exists():
                         overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {overall_team.name} created")
                     else:
                         target_overall_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=overall_team)
                         target_overall_btts_stats.overall_matches_played = overall_matches_played
                         target_overall_btts_stats.overall_btts_2h = overall_btts_2h
                         target_overall_btts_stats.overall_btts_2h_percent = overall_btts_2h_percentage
                         target_overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 2H : {overall_team.name} updated")
 
                 ############################################### BTTS BH ################################################
                 # Get Url
@@ -314,24 +335,27 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS BH Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_team_url: str = table_tr.select(selector='td a[target="_blank"]')[0]['href']
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_btts_bh: int = int(table_tr.find_all('td')[3].text)
                         home_btts_bh_percentage: int = int(table_tr.find_all('td')[4].text.strip('%'))
                         away_team_name: str = table_tr.select(selector='td a[target="_blank"]')[1].text
-                        away_team_url: str = table_tr.select(selector='td a[target="_blank"]')[1]['href']
                         away_matches_played: int = int(table_tr.find_all('td')[7].text)
                         away_btts_bh: int = int(table_tr.find_all('td')[8].text)
                         away_btts_bh_percentage: int = int(table_tr.find_all('td')[9].text.strip('%'))
                         overall_team_name: str = table_tr.select(selector='td a[target="_blank"]')[2].text
-                        overall_team_url: str = table_tr.select(selector='td a[target="_blank"]')[2]['href']
                         overall_matches_played: int = int(table_tr.find_all('td')[12].text)
                         overall_btts_bh: int = int(table_tr.find_all('td')[13].text)
                         overall_btts_bh_percentage: int = int(table_tr.find_all('td')[14].text.strip('%'))
@@ -359,12 +383,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_btts_stats.exists():
                         home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {home_team.name} created")
                     else:
                         target_home_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=home_team)
                         target_home_btts_stats.home_matches_played = home_matches_played
                         target_home_btts_stats.home_btts_bh = home_btts_bh
                         target_home_btts_stats.home_btts_bh_percent = home_btts_bh_percentage
                         target_home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {home_team.name} updated")
 
                     # Create BTTS bh Away Stats
                     away_btts_stats: E5BttsStats = E5BttsStats()
@@ -376,12 +402,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_btts_stats.exists():
                         away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {away_team.name} created")
                     else:
                         target_away_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=away_team)
                         target_away_btts_stats.away_matches_played = away_matches_played
                         target_away_btts_stats.away_btts_bh = away_btts_bh
                         target_away_btts_stats.away_btts_bh_percent = away_btts_bh_percentage
                         target_away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {away_team.name} updated")
 
                     # Create BTTS bh Overall Stats
                     overall_btts_stats: E5BttsStats = E5BttsStats()
@@ -393,12 +421,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_btts_stats.exists():
                         overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {overall_team.name} created")
                     else:
                         target_overall_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=overall_team)
                         target_overall_btts_stats.overall_matches_played = overall_matches_played
                         target_overall_btts_stats.overall_btts_bh = overall_btts_bh
                         target_overall_btts_stats.overall_btts_bh_percent = overall_btts_bh_percentage
                         target_overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS BH : {overall_team.name} updated")
 
                 ############################################### BTTS 25 ################################################
                 # Get Url
@@ -408,24 +438,27 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     continue
 
                 # Get Table Trs
-                table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                try:
+                    table_trs = self.soup.find('table', class_='waffle no-grid').find_all('tr')
+                except Exception as ex:
+                    self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TABLE_TRS_FAILED,
+                                   error_context=f"{self.ERROR_CONTEXT}.parse_iframes()", exception=ex)
+                    self.init_status()
+                    continue
 
                 # Get BTTS 25 Stats
                 for table_tr in table_trs:
                     table_tr: Tag  # Type hinting for Intellij
                     try:
                         home_team_name: str = table_tr.select(selector='td a[target="_blank"]')[0].text
-                        home_team_url: str = table_tr.select(selector='td a[target="_blank"]')[0]['href']
                         home_matches_played: int = int(table_tr.find_all('td')[2].text)
                         home_btts_25: int = int(table_tr.find_all('td')[3].text)
                         home_btts_25_percentage: int = int(table_tr.find_all('td')[4].text.strip('%'))
                         away_team_name: str = table_tr.select(selector='td a[target="_blank"]')[1].text
-                        away_team_url: str = table_tr.select(selector='td a[target="_blank"]')[1]['href']
                         away_matches_played: int = int(table_tr.find_all('td')[7].text)
                         away_btts_25: int = int(table_tr.find_all('td')[8].text)
                         away_btts_25_percentage: int = int(table_tr.find_all('td')[9].text.strip('%'))
                         overall_team_name: str = table_tr.select(selector='td a[target="_blank"]')[2].text
-                        overall_team_url: str = table_tr.select(selector='td a[target="_blank"]')[2]['href']
                         overall_matches_played: int = int(table_tr.find_all('td')[12].text)
                         overall_btts_25: int = int(table_tr.find_all('td')[13].text)
                         overall_btts_25_percentage: int = int(table_tr.find_all('td')[14].text.strip('%'))
@@ -453,12 +486,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_btts_stats.exists():
                         home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {home_team.name} created")
                     else:
                         target_home_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=home_team)
                         target_home_btts_stats.home_matches_played = home_matches_played
                         target_home_btts_stats.home_btts_25 = home_btts_25
                         target_home_btts_stats.home_btts_25_percent = home_btts_25_percentage
                         target_home_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {home_team.name} updated")
 
                     # Create BTTS 25 Away Stats
                     away_btts_stats: E5BttsStats = E5BttsStats()
@@ -470,12 +505,14 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_btts_stats.exists():
                         away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {away_team.name} created")
                     else:
                         target_away_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=away_team)
                         target_away_btts_stats.away_matches_played = away_matches_played
                         target_away_btts_stats.away_btts_25 = away_btts_25
                         target_away_btts_stats.away_btts_25_percent = away_btts_25_percentage
                         target_away_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {away_team.name} updated")
 
                     # Create BTTS 25 Overall Stats
                     overall_btts_stats: E5BttsStats = E5BttsStats()
@@ -487,9 +524,11 @@ class E5GetBTTS(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_btts_stats.exists():
                         overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {overall_team.name} created")
                     else:
                         target_overall_btts_stats: E5BttsStats = E5BttsStats.objects.get(team=overall_team)
                         target_overall_btts_stats.overall_matches_played = overall_matches_played
                         target_overall_btts_stats.overall_btts_25 = overall_btts_25
                         target_overall_btts_stats.overall_btts_25_percent = overall_btts_25_percentage
                         target_overall_btts_stats.save()
+                        self.log_info(message=f"Parse BTTS 25 : {overall_team.name} updated")

@@ -87,12 +87,14 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_cs_stats.exists():
                         home_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {home_team.name} created")
                     else:
                         home_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=home_team)
                         home_cs_stats.home_matches_played = home_matches_played
                         home_cs_stats.home_clean_sheet = home_clean_sheet
                         home_cs_stats.home_clean_sheet_percent = home_clean_sheet_percent
                         home_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {home_team.name} updated")
 
                     # Create Clean Sheet Away Stats
                     away_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -104,12 +106,14 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_cs_stats.exists():
                         away_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {away_team.name} created")
                     else:
                         away_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=away_team)
                         away_cs_stats.away_matches_played = away_matches_played
                         away_cs_stats.away_clean_sheet = away_clean_sheet
                         away_cs_stats.away_clean_sheet_percent = away_clean_sheet_percent
                         away_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {away_team.name} updated")
 
                     # Create Clean Sheet Overall Stats
                     overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -121,12 +125,14 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_cs_stats.exists():
                         overall_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {overall_team.name} created")
                     else:
                         overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=overall_team)
                         overall_cs_stats.overall_matches_played = overall_matches_played
                         overall_cs_stats.overall_clean_sheet = overall_clean_sheet
                         overall_cs_stats.overall_clean_sheet_percent = overall_clean_sheet_percent
                         overall_cs_stats.save()
+                        self.log_info(message=f"Parse Clean Sheets Stats : {overall_team.name} updated")
 
                 ######################################### Failed To Score ###########################################
                 # Get Url
@@ -191,12 +197,14 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_cs_stats.exists():
                         home_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {home_team.name} created")
                     else:
                         home_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=home_team)
                         home_cs_stats.home_matches_played = home_matches_played
                         home_cs_stats.home_failed_to_score = home_failed_to_score
                         home_cs_stats.home_failed_to_score_percent = home_failed_to_score_percent
                         home_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {home_team.name} updated")
 
                     # Create Clean Sheet Away Stats
                     away_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -208,12 +216,14 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_cs_stats.exists():
                         away_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {away_team.name} created")
                     else:
                         away_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=away_team)
                         away_cs_stats.away_matches_played = away_matches_played
                         away_cs_stats.away_failed_to_score = away_failed_to_score
                         away_cs_stats.away_failed_to_score_percent = away_failed_to_score_percent
                         away_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {away_team.name} updated")
 
                     # Create Clean Sheet Overall Stats
                     overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats()
@@ -225,9 +235,11 @@ class E5GetCleanSheets(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_cs_stats.exists():
                         overall_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {overall_team.name} created")
                     else:
                         overall_cs_stats: E5CleanSheetStats = E5CleanSheetStats.objects.get(team=overall_team)
                         overall_cs_stats.overall_matches_played = overall_matches_played
                         overall_cs_stats.overall_failed_to_score = overall_failed_to_score
                         overall_cs_stats.overall_failed_to_score_percent = overall_failed_to_score_percent
                         overall_cs_stats.save()
+                        self.log_info(message=f"Parse Failed To Score Stats : {overall_team.name} updated")

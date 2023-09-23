@@ -95,6 +95,7 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wdlp_stats.exists():
                         home_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {home_team.name} created")
                     else:
                         target_home_wdlp_stats: E5WinDrawLossPercentageStats = E5WinDrawLossPercentageStats.objects.get(
                             team=home_team)
@@ -103,6 +104,7 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                         target_home_wdlp_stats.home_draw_percent = home_draw_percentage
                         target_home_wdlp_stats.home_loss_percent = home_loss_percentage
                         target_home_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {home_team.name} updated")
 
                     # Create Win Draw Loss Percentage Away Stats
                     away_wdlp_stats: E5WinDrawLossPercentageStats = E5WinDrawLossPercentageStats()
@@ -115,6 +117,7 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wdlp_stats.exists():
                         away_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {away_team.name} created")
                     else:
                         target_away_wdlp_stats: E5WinDrawLossPercentageStats = E5WinDrawLossPercentageStats.objects.get(
                             team=away_team)
@@ -123,6 +126,7 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                         target_away_wdlp_stats.away_draw_percent = away_draw_percentage
                         target_away_wdlp_stats.away_loss_percent = away_loss_percentage
                         target_away_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {away_team.name} updated")
 
                     # Create Win Draw Loss Percentage Overall Stats
                     overall_wdlp_stats: E5WinDrawLossPercentageStats = E5WinDrawLossPercentageStats()
@@ -135,6 +139,7 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wdlp_stats.exists():
                         overall_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {overall_team.name} created")
                     else:
                         target_overall_wdlp_stats: E5WinDrawLossPercentageStats = E5WinDrawLossPercentageStats.objects.get(
                             team=overall_team)
@@ -143,3 +148,4 @@ class E5GetWinDrawLossPercentage(E5SeleniumWebDriver):
                         target_overall_wdlp_stats.overall_draw_percent = overall_draw_percentage
                         target_overall_wdlp_stats.overall_loss_percent = overall_loss_percentage
                         target_overall_wdlp_stats.save()
+                        self.log_info(message=f"Parse Win Draw Loss Percentage Stats : {overall_team.name} updated")

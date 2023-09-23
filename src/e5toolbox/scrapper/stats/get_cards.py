@@ -87,12 +87,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} created")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_yellow_cards_for = home_yellow_cards_for
                         target_home_card_stats.home_yellow_cards_for_average = home_yellow_cards_for_average
                         target_home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} updated")
 
                     # Create Yellow Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -104,12 +106,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} created")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_yellow_cards_for = away_yellow_cards_for
                         target_away_card_stats.away_yellow_cards_for_average = away_yellow_cards_for_average
                         target_away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} updated")
 
                     # Create Yellow Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -121,12 +125,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} created")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_yellow_cards_for = overall_yellow_cards_for
                         target_overall_card_stats.overall_yellow_cards_for_average = overall_yellow_cards_for_average
                         target_overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} updated")
 
                 ######################################## Yellow Cards Against ##########################################
                 # Get Url
@@ -191,12 +197,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} created")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_yellow_cards_against = home_yellow_cards_against
                         target_home_card_stats.home_yellow_cards_against_average = home_yellow_cards_against_average
                         target_home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} updated")
 
                     # Create Yellow Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -208,12 +216,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} created")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_yellow_cards_against = away_yellow_cards_against
                         target_away_card_stats.away_yellow_cards_against_average = away_yellow_cards_against_average
                         target_away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} updated")
 
                     # Create Yellow Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -225,6 +235,7 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} created")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
@@ -232,6 +243,7 @@ class E5GetCards(E5SeleniumWebDriver):
                         target_overall_card_stats.overall_yellow_cards_against_average = (
                             overall_yellow_cards_against_average)
                         target_overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} updated")
 
                 ############################################ Red Cards For #############################################
                 # Get Url
@@ -296,12 +308,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} created")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_red_cards_for = home_red_cards_for
                         target_home_card_stats.home_red_cards_for_average = home_red_cards_for_average
                         target_home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} updated")
 
                     # Create Red Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -313,12 +327,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} created")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_red_cards_for = away_red_cards_for
                         target_away_card_stats.away_red_cards_for_average = away_red_cards_for_average
                         target_away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} updated")
 
                     # Create Red Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -330,12 +346,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} created")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_red_cards_for = overall_red_cards_for
                         target_overall_card_stats.overall_red_cards_for_average = overall_red_cards_for_average
                         target_overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} updated")
 
                 ########################################## Red Cards Against ###########################################
                 # Get Url
@@ -400,12 +418,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_card_stats.exists():
                         home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} created")
                     else:
                         target_home_card_stats: E5CardsStats = E5CardsStats.objects.get(team=home_team)
                         target_home_card_stats.home_matches_played = home_matches_played
                         target_home_card_stats.home_red_cards_against = home_red_cards_against
                         target_home_card_stats.home_red_cards_against_average = home_red_cards_against_average
                         target_home_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {home_team.name} updated")
 
                     # Create Red Card Away Stats
                     away_card_stats: E5CardsStats = E5CardsStats()
@@ -417,12 +437,14 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_card_stats.exists():
                         away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} created")
                     else:
                         target_away_card_stats: E5CardsStats = E5CardsStats.objects.get(team=away_team)
                         target_away_card_stats.away_matches_played = away_matches_played
                         target_away_card_stats.away_red_cards_against = away_red_cards_against
                         target_away_card_stats.away_red_cards_against_average = away_red_cards_against_average
                         target_away_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {away_team.name} updated")
 
                     # Create Red Card Overall Stats
                     overall_card_stats: E5CardsStats = E5CardsStats()
@@ -434,9 +456,11 @@ class E5GetCards(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_card_stats.exists():
                         overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} created")
                     else:
                         target_overall_card_stats: E5CardsStats = E5CardsStats.objects.get(team=overall_team)
                         target_overall_card_stats.overall_matches_played = overall_matches_played
                         target_overall_card_stats.overall_red_cards_against = overall_red_cards_against
                         target_overall_card_stats.overall_red_cards_against_average = overall_red_cards_against_average
                         target_overall_card_stats.save()
+                        self.log_info(message=f"Parse Cards Stats : {overall_team.name} updated")
