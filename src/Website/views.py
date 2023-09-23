@@ -233,7 +233,20 @@ def league_details(request, league_slug: str):
     league: E5League = E5League.objects.get(slug=league_slug)
 
     # Query Season
-    season: E5Season = E5Season.objects.get(league=league, active=True)
+    seasons: QuerySet(E5Season) = E5Season.objects.filter(league=league, active=True)
+
+    season: E5Season | None = None
+    if len(seasons) != 1:
+        for element in seasons:
+            element: E5Season
+            if season is None:
+                season = element
+            elif element.date_added > season.date_added:
+                season.active = False
+                season.save()
+                season = element
+    elif len(seasons) == 1:
+        season = seasons[0]
 
     # Query Leagues
     leagues: QuerySet(E5League) = E5League.objects.all().order_by('name')
