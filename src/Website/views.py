@@ -93,8 +93,14 @@ def fixtures(request):
     # Query Fixtures
     fixtures: QuerySet(E5Fixture) = E5Fixture.objects.filter(date__gte=datetime.date.today()).order_by('date')
 
+    # Get fixtures distinct dates
+    dates: [datetime.date] = []
+    for fixture in fixtures:
+        if fixture.date not in dates:
+            dates.append(fixture.date)
+
     # Context
-    context = {'fixtures': fixtures}
+    context = {'fixtures': fixtures, "dates": dates}
 
     # Render
     return render(request=request, template_name='Website/fixtures.html', context=context)
