@@ -7,3 +7,4 @@ management_command.log
 .env
 src/analystat.db
 src/staticfiles/
+src/analystats.sqlite3
