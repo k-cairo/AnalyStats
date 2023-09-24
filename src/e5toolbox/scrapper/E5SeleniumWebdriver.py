@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup, ResultSet, Tag
 from django.db.models import QuerySet, Q
 from django.utils.text import slugify
 from selenium import webdriver
+from unidecode import unidecode
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -416,11 +417,9 @@ class E5SeleniumWebDriver:
                     target_league.url = league_url
                     target_league.slug = slugify(value=league_name)
                     target_league.save()
-                    self.log_info(message=f"League {league_name} updated")
                 else:
                     # Save League
                     new_league.save()
-                    self.log_info(message=f"League {league_name} created")
 
     # E5
     def get_seasons(self, error_context: str) -> None:
@@ -456,13 +455,11 @@ class E5SeleniumWebDriver:
                 # Check if season already exists before saving or updating
                 if not season.exists():
                     season.save()
-                    self.log_info(message=f"Season {league.name} {season.name} created")
                 else:
-                    target_season: E5Season = E5Season.objects.get(league=league,name=season.name)
+                    target_season: E5Season = E5Season.objects.get(league=league, name=season.name)
                     target_season.url = league.url
                     target_season.active = league.name in ACTIVE_CHAMPIONSHIPS
                     target_season.save()
-                    self.log_info(message=f"Season {league.name} {season.name} updated")
 
     # E5
     def get_teams(self, error_context: str) -> None:
@@ -506,18 +503,21 @@ class E5SeleniumWebDriver:
                     # Check if team already exists before saving or updating
                     if not team.exists():
                         team.save()
-                        self.log_info(message=f"Team {team_name} created")
                     else:
                         target_team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
                         target_team.url = team_url
                         target_team.slug = slugify(value=team_name)
                         target_team.save()
-                        self.log_info(message=f"Team {team_name} updated")
 
     # E5
     def get_upcoming_matches(self, error_context: str) -> None:
         # Check connection
         self.check_is_connected()
+
+        # Delete old fixtures
+        old_fixtures: QuerySet(E5Fixture) = E5Fixture.objects.filter(date__lte=datetime.date.today())
+        for old_fixture in old_fixtures:
+            old_fixture.delete()
 
         if self.status.success:
             endpoints: tuple = ("saturday-uk/", "saturday/", "sunday/", "monday/", "tuesday/", "wednesday/",
@@ -568,33 +568,69 @@ class E5SeleniumWebDriver:
                     league_str: str = upcoming_match_tr.select(selector="td")[0].text
                     kick_off: str = upcoming_match_tr.select(selector="td")[1].text
                     home_team_str: str = upcoming_match_tr.select(selector="td")[2].next.text
-                    away_team_str: str = upcoming_match_tr.select(selector="td")[2].next.next.next.text[1:] # Remove space
+                    away_team_str: str = upcoming_match_tr.select(selector="td")[2].next.next.next.text[
+                                         1:]  # Remove space
 
-                    if ("Colombia" in league_str or "Costa Rica" in league_str or "Ecuador" in league_str
-                    or "Honduras" in league_str or "Mexico" in league_str or "Paraguay" in league_str
-                    or "Peru" in league_str or "Tunisia" in league_str or "Uruguay" in league_str
-                    or "England NL" in league_str or "Moldova" in league_str
-                    or "England SL" in league_str or "England Isthmian" in league_str or "Nigeria" in league_str
-                    or "Southern League South" in league_str or "Southern League Central" in league_str):
+                    found: bool = False
+                    target_league: E5League | None = None
+                    for league in ACTIVE_CHAMPIONSHIPS:
+                        if league_str == league.replace("– ", ""):
+                            target_league = E5League.objects.get(name=league)
+                            found = True
+                            break
+
+                    if not found:
                         continue
 
-                    # Get Teams
-                    league_list: list[str] = league_str.split(" ")
-
+                    # Get Home Team
+                    home_team: E5Team | None = None
                     try:
-                        home_team: E5Team | None = E5Team.objects.filter(
-                            Q(name__contains=home_team_str) &
-                            Q(season__league__name__icontains=league_list[0]) &
-                            Q(season__league__name__icontains=league_list[1])).get()
-                        away_team: E5Team | None = E5Team.objects.filter(
-                            Q(name__contains=away_team_str) &
-                            Q(season__league__name__icontains=league_list[0]) &
-                            Q(season__league__name__icontains=league_list[1])).get()
-                    except Exception as ex:
-                        self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
-                                       error_context=error_context, exception=ex)
-                        self.init_status()
-                        continue
+                        home_team = E5Team.objects.get(name=unidecode(home_team_str),season__league=target_league)
+                    except Exception:
+                        pass
+
+                    if home_team is None:
+                        try:
+                            league_list: list[str] = home_team_str.split(" ")
+                            home_team = E5Team.objects.get(name=unidecode(league_list[0]),season__league=target_league)
+                        except Exception:
+                            pass
+
+                    if home_team is None:
+                        try:
+                            league_list: list[str] = home_team_str.split(" ")
+                            home_team = E5Team.objects.get(name__contains=unidecode(league_list[0]),
+                                                           season__league=target_league)
+                        except Exception as ex:
+                            self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
+                                           error_context=error_context, exception=ex)
+                            self.init_status()
+                            continue
+
+                    # Get Away Team
+                    away_team: E5Team | None = None
+                    try:
+                        away_team = E5Team.objects.get(name=unidecode(away_team_str),season__league=target_league)
+                    except Exception:
+                        pass
+
+                    if away_team is None:
+                        try:
+                            league_list: list[str] = away_team_str.split(" ")
+                            away_team = E5Team.objects.get(name=unidecode(league_list[0]),season__league=target_league)
+                        except Exception:
+                            pass
+
+                    if away_team is None:
+                        try:
+                            league_list: list[str] = away_team_str.split(" ")
+                            away_team = E5Team.objects.get(name__contains=unidecode(league_list[0]),
+                                                           season__league=target_league)
+                        except Exception as ex:
+                            self.exception(error_type=E5SeleniumWebdriverError.ERROR_TYPE_GET_TEAM_FAILED,
+                                           error_context=error_context, exception=ex)
+                            self.init_status()
+                            continue
 
                     # Build Upcoming Match
                     fixture: E5Fixture = E5Fixture()
@@ -648,10 +684,8 @@ class E5SeleniumWebDriver:
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"{save_message} : {season.league.name} created")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"{save_message} : {season.league.name} updated")
 
     # E5
     def get_iframe(self, endpoint: str, error_context: str, save_message: str, class_: Any):
@@ -710,7 +744,5 @@ class E5SeleniumWebDriver:
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"{save_message} : {season.league.name} created")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"{save_message} : {season.league.name} updated")

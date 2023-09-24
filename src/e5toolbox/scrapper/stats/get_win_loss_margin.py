@@ -93,7 +93,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wlm_stats.exists():
                         home_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {home_team.name} created")
                     else:
                         home_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=home_team)
                         home_wlm_stats.home_matches_played = home_matches_played
@@ -103,7 +102,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         home_wlm_stats.home_games_won_by_3 = home_games_won_by_3
                         home_wlm_stats.home_games_won_by_4_or_more = home_games_won_by_4_or_more
                         home_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats()
@@ -118,7 +116,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wlm_stats.exists():
                         away_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {away_team.name} created")
                     else:
                         away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=away_team)
                         away_wlm_stats.away_matches_played = away_matches_played
@@ -128,7 +125,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         away_wlm_stats.away_games_won_by_3 = away_games_won_by_3
                         away_wlm_stats.away_games_won_by_4_or_more = away_games_won_by_4_or_more
                         away_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {away_team.name} updated")
 
                 ############################################# Losing Margins ###########################################
                 # Get Url
@@ -199,7 +195,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wlm_stats.exists():
                         home_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {home_team.name} created")
                     else:
                         home_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=home_team)
                         home_wlm_stats.home_matches_played = home_matches_played
@@ -209,7 +204,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         home_wlm_stats.home_games_loose_by_3 = home_games_loose_by_3
                         home_wlm_stats.home_games_loose_by_4_or_more = home_games_loose_by_4_or_more
                         home_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats()
@@ -224,7 +218,6 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wlm_stats.exists():
                         away_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {away_team.name} created")
                     else:
                         away_wlm_stats: E5WinLossMarginStats = E5WinLossMarginStats.objects.get(team=away_team)
                         away_wlm_stats.away_matches_played = away_matches_played
@@ -234,4 +227,3 @@ class E5GetWinLossMargin(E5SeleniumWebDriver):
                         away_wlm_stats.away_games_loose_by_3 = away_games_loose_by_3
                         away_wlm_stats.away_games_loose_by_4_or_more = away_games_loose_by_4_or_more
                         away_wlm_stats.save()
-                        self.log_info(message=f"Parse Win Loss Margin Stats : {away_team.name} updated")

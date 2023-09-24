@@ -91,10 +91,25 @@ def team_details(request, league_slug: str, team_slug: str):
 # E5
 def fixtures(request):
     # Query Fixtures
-    fixtures: QuerySet(E5Fixture) = E5Fixture.objects.filter(date__gte=datetime.date.today()).order_by('date')
+    fixtures: QuerySet(E5Fixture) = E5Fixture.objects.filter(date__gte=datetime.date.today())
+
+    # Get fixtures distinct dates & leagues
+    leagues: dict[datetime.date: list[E5League]] = {}
+    dates: [datetime.date] = []
+    for fixture in fixtures:
+        # Get distinct leagues for each date
+        if fixture.date not in leagues:
+            leagues[fixture.date] = []
+        if fixture.home_team.season.league not in leagues[fixture.date]:
+            leagues[fixture.date].append(fixture.home_team.season.league)
+        # Get fixtures distinct dates
+        if fixture.date not in dates:
+            dates.append(fixture.date)
+
+    dates.sort()
 
     # Context
-    context = {'fixtures': fixtures}
+    context = {'fixtures': fixtures, "dates": dates, "leagues": leagues}
 
     # Render
     return render(request=request, template_name='Website/fixtures.html', context=context)

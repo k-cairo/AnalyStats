@@ -103,7 +103,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_1st_2nd_half_goals_stats.exists():
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} created")
                     else:
                         home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
@@ -116,7 +115,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         home_1st_2nd_half_goals_stats.home_goals_scored_2h_percent = home_goals_scored_2h_percent
                         home_1st_2nd_half_goals_stats.home_goals_scored_2h_average = home_goals_scored_2h_average
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} updated")
 
                     # Create Home Conceded Stats
                     home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
@@ -133,7 +131,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_1st_2nd_half_goals_stats.exists():
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} created")
                     else:
                         home_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
@@ -146,7 +143,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         home_1st_2nd_half_goals_stats.home_goals_conceded_2h_percent = home_goals_conceded_2h_percent
                         home_1st_2nd_half_goals_stats.home_goals_conceded_2h_average = home_goals_conceded_2h_average
                         home_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} updated")
 
                 ########################################## 1st 2nd Half Goals ##########################################
                 # Get Url
@@ -227,7 +223,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_1st_2nd_half_goals_stats.exists():
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} created")
                     else:
                         away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
@@ -240,7 +235,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         away_1st_2nd_half_goals_stats.away_goals_scored_2h_percent = away_goals_scored_2h_percent
                         away_1st_2nd_half_goals_stats.away_goals_scored_2h_average = away_goals_scored_2h_average
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} updated")
 
                     # Create Away Conceded Stats
                     away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
@@ -257,7 +251,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_1st_2nd_half_goals_stats.exists():
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} created")
                     else:
                         away_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
@@ -270,7 +263,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         away_1st_2nd_half_goals_stats.away_goals_conceded_2h_percent = away_goals_conceded_2h_percent
                         away_1st_2nd_half_goals_stats.away_goals_conceded_2h_average = away_goals_conceded_2h_average
                         away_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} updated")
 
                 ########################################## 1st 2nd Half Goals ##########################################
                 # Get Url
@@ -353,7 +345,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_1st_2nd_half_goals_stats.exists():
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} created")
                     else:
                         overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=scored_team)
@@ -366,7 +357,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_2h_percent = overall_goals_scored_2h_percent
                         overall_1st_2nd_half_goals_stats.overall_goals_scored_2h_average = overall_goals_scored_2h_average
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {scored_team.name} updated")
 
                     # Create Overall Conceded Stats
                     overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats()
@@ -383,7 +373,6 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_1st_2nd_half_goals_stats.exists():
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} created")
                     else:
                         overall_1st_2nd_half_goals_stats: E51st2ndHalfGoalsStats = E51st2ndHalfGoalsStats.objects.get(
                             team=conceded_team)
@@ -396,4 +385,3 @@ class E5Get1st2ndHalfGoals(E5SeleniumWebDriver):
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_2h_percent = overall_goals_conceded_2h_percent
                         overall_1st_2nd_half_goals_stats.overall_goals_conceded_2h_average = overall_goals_conceded_2h_average
                         overall_1st_2nd_half_goals_stats.save()
-                        self.log_info(message=f"Parse 1st 2nd Half Goals Stats : {conceded_team.name} updated")
