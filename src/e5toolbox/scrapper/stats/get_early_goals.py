@@ -78,7 +78,6 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_eg_stats.exists():
                         home_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {home_team.name} created")
                     else:
                         home_eg_stats: E5EarlyGoalsStats = E5EarlyGoalsStats.objects.get(team=home_team)
                         home_eg_stats.home_matches_played = home_matches_played
@@ -86,7 +85,6 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                         home_eg_stats.home_conceded_early = home_conceded_early
                         home_eg_stats.home_scored_or_conceded_early = home_scored_or_conceded_early
                         home_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_eg_stats: E5EarlyGoalsStats = E5EarlyGoalsStats()
@@ -99,7 +97,6 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_eg_stats.exists():
                         away_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {away_team.name} created")
                     else:
                         away_eg_stats: E5EarlyGoalsStats = E5EarlyGoalsStats.objects.get(team=away_team)
                         away_eg_stats.away_matches_played = away_matches_played
@@ -107,7 +104,6 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                         away_eg_stats.away_conceded_early = away_conceded_early
                         away_eg_stats.away_scored_or_conceded_early = away_scored_or_conceded_early
                         away_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {away_team.name} updated")
 
                     # Create Overall Stats
                     overall_eg_stats: E5EarlyGoalsStats = E5EarlyGoalsStats()
@@ -120,7 +116,6 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_eg_stats.exists():
                         overall_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {overall_team.name} created")
                     else:
                         overall_eg_stats: E5EarlyGoalsStats = E5EarlyGoalsStats.objects.get(team=overall_team)
                         overall_eg_stats.overall_matches_played = overall_matches_played
@@ -128,4 +123,3 @@ class E5GetEarlyGoals(E5SeleniumWebDriver):
                         overall_eg_stats.overall_conceded_early = overall_conceded_early
                         overall_eg_stats.overall_scored_or_conceded_early = overall_scored_or_conceded_early
                         overall_eg_stats.save()
-                        self.log_info(message=f"Parse Early Goals Stats : {overall_team.name} updated")

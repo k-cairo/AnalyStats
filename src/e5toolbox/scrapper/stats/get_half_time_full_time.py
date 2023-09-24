@@ -114,7 +114,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_ht_ft_stats.exists():
                         home_ht_ft_stats.save()
-                        self.log_info(message=f"Parse Half Time Full Time Stats : {home_team.name} created")
                     else:
                         target_home_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats.objects.get(
                             team=home_team)
@@ -129,7 +128,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                         target_home_ht_ft_stats.home_loss_draw = home_loss_draw
                         target_home_ht_ft_stats.home_loss_loss = home_loss_loss
                         target_home_ht_ft_stats.save()
-                        self.log_info(message=f"Parse Half Time Full Time Stats : {home_team.name} updated")
 
                     # Create Half Time Full Time Away Stats
                     away_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats()
@@ -148,7 +146,6 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_ht_ft_stats.exists():
                         away_ht_ft_stats.save()
-                        self.log_info(message=f"Parse Half Time Full Time Stats : {away_team.name} created")
                     else:
                         target_away_ht_ft_stats: E5HalfTimeFullTimeStats = E5HalfTimeFullTimeStats.objects.get(
                             team=away_team)
@@ -163,4 +160,3 @@ class E5GetHalfTimeFullTime(E5SeleniumWebDriver):
                         target_away_ht_ft_stats.away_loss_draw = away_loss_draw
                         target_away_ht_ft_stats.away_loss_loss = away_loss_loss
                         target_away_ht_ft_stats.save()
-                        self.log_info(message=f"Parse Half Time Full Time Stats : {away_team.name} updated")

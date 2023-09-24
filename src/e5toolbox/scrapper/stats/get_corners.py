@@ -86,14 +86,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_for_1h = home_corners_for_1h
                         target_home_team_corner_stats.home_corners_for_1h_average = home_corners_for_1h_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner 1h Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -105,14 +103,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_for_1h = away_corners_for_1h
                         target_away_team_corner_stats.away_corners_for_1h_average = away_corners_for_1h_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner 1h Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -124,7 +120,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -132,7 +127,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_for_1h = overall_corners_for_1h
                         target_overall_team_corner_stats.overall_corners_for_1h_average = overall_corners_for_1h_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ######################################### Team Corner For 2H ###########################################
                 # Get Url
@@ -196,14 +190,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_for_2h = home_corners_for_2h
                         target_home_team_corner_stats.home_corners_for_2h_average = home_corners_for_2h_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner 2h Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -215,14 +207,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_for_2h = away_corners_for_2h
                         target_away_team_corner_stats.away_corners_for_2h_average = away_corners_for_2h_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner 2h Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -234,7 +224,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -242,7 +231,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_for_2h = overall_corners_for_2h
                         target_overall_team_corner_stats.overall_corners_for_2h_average = overall_corners_for_2h_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ######################################### Team Corner For Ft ###########################################
                 # Get Url
@@ -306,14 +294,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_for_ft = home_corners_for_ft
                         target_home_team_corner_stats.home_corners_for_ft_average = home_corners_for_ft_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner Ft Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -325,14 +311,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_for_ft = away_corners_for_ft
                         target_away_team_corner_stats.away_corners_for_ft_average = away_corners_for_ft_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner Ft Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -344,7 +328,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -352,7 +335,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_for_ft = overall_corners_for_ft
                         target_overall_team_corner_stats.overall_corners_for_ft_average = overall_corners_for_ft_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ####################################### Team Corner Against 1H #########################################
                 # Get Url
@@ -416,14 +398,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_against_1h = home_corners_against_1h
                         target_home_team_corner_stats.home_corners_against_1h_average = home_corners_against_1h_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner 1h Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -435,14 +415,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_against_1h = away_corners_against_1h
                         target_away_team_corner_stats.away_corners_against_1h_average = away_corners_against_1h_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner 1h Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -454,7 +432,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -462,7 +439,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_against_1h = overall_corners_against_1h
                         target_overall_team_corner_stats.overall_corners_against_1h_average = overall_corners_against_1h_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ######################################### Team Corner Against 2H ###########################################
                 # Get Url
@@ -526,14 +502,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_against_2h = home_corners_against_2h
                         target_home_team_corner_stats.home_corners_against_2h_average = home_corners_against_2h_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner 2h Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -545,14 +519,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_against_2h = away_corners_against_2h
                         target_away_team_corner_stats.away_corners_against_2h_average = away_corners_against_2h_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner 2h Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -564,7 +536,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -572,7 +543,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_against_2h = overall_corners_against_2h
                         target_overall_team_corner_stats.overall_corners_against_2h_average = overall_corners_against_2h_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ######################################### Team Corner Against Ft ###########################################
                 # Get Url
@@ -636,14 +606,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_team_corner_stats.exists():
                         home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=home_team)
                         target_home_team_corner_stats.home_matches_played = home_matches_played
                         target_home_team_corner_stats.home_corners_against_ft = home_corners_against_ft
                         target_home_team_corner_stats.home_corners_against_ft_average = home_corners_against_ft_average
                         target_home_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Team Corner Ft Away Stats
                     away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -655,14 +623,12 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_team_corner_stats.exists():
                         away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(team=away_team)
                         target_away_team_corner_stats.away_matches_played = away_matches_played
                         target_away_team_corner_stats.away_corners_against_ft = away_corners_against_ft
                         target_away_team_corner_stats.away_corners_against_ft_average = away_corners_against_ft_average
                         target_away_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Team Corner Ft Overall Stats
                     overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats()
@@ -674,7 +640,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_team_corner_stats.exists():
                         overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_team_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -682,7 +647,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_team_corner_stats.overall_corners_against_ft = overall_corners_against_ft
                         target_overall_team_corner_stats.overall_corners_against_ft_average = overall_corners_against_ft_average
                         target_overall_team_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ########################################### Match Corner 1H ############################################
                 # Get Url
@@ -746,7 +710,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_match_corner_stats.exists():
                         home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=home_team)
@@ -754,7 +717,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_home_match_corner_stats.home_corners_1h = home_corners_1h
                         target_home_match_corner_stats.home_corners_1h_average = home_corners_1h_average
                         target_home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Match Corner 1h Away Stats
                     away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -766,7 +728,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_match_corner_stats.exists():
                         away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=away_team)
@@ -774,7 +735,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_away_match_corner_stats.away_corners_1h = away_corners_1h
                         target_away_match_corner_stats.away_corners_1h_average = away_corners_1h_average
                         target_away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Match Corner 1h Overall Stats
                     overall_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -786,7 +746,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_match_corner_stats.exists():
                         overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_match_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -794,7 +753,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_match_corner_stats.overall_corners_1h = overall_corners_1h
                         target_overall_match_corner_stats.overall_corners_1h_average = overall_corners_1h_average
                         target_overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ########################################### Match Corner 2H ############################################
                 # Get Url
@@ -858,7 +816,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_match_corner_stats.exists():
                         home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=home_team)
@@ -866,7 +823,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_home_match_corner_stats.home_corners_2h = home_corners_2h
                         target_home_match_corner_stats.home_corners_2h_average = home_corners_2h_average
                         target_home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Match Corner 2h Away Stats
                     away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -878,7 +834,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_match_corner_stats.exists():
                         away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=away_team)
@@ -886,7 +841,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_away_match_corner_stats.away_corners_2h = away_corners_2h
                         target_away_match_corner_stats.away_corners_2h_average = away_corners_2h_average
                         target_away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Match Corner 2h Overall Stats
                     overall_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -898,7 +852,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_match_corner_stats.exists():
                         overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_match_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -906,7 +859,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_match_corner_stats.overall_corners_2h = overall_corners_2h
                         target_overall_match_corner_stats.overall_corners_2h_average = overall_corners_2h_average
                         target_overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")
 
                 ########################################### Match Corner Ft ############################################
                 # Get Url
@@ -970,7 +922,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_match_corner_stats.exists():
                         home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} created")
                     else:
                         target_home_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=home_team)
@@ -978,7 +929,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_home_match_corner_stats.home_corners_ft = home_corners_ft
                         target_home_match_corner_stats.home_corners_ft_average = home_corners_ft_average
                         target_home_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {home_team.name} updated")
 
                     # Create Match Corner Ft Away Stats
                     away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -990,7 +940,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_match_corner_stats.exists():
                         away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} created")
                     else:
                         target_away_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats.objects.get(
                             team=away_team)
@@ -998,7 +947,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_away_match_corner_stats.away_corners_ft = away_corners_ft
                         target_away_match_corner_stats.away_corners_ft_average = away_corners_ft_average
                         target_away_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {away_team.name} updated")
 
                     # Create Match Corner Ft Overall Stats
                     overall_match_corner_stats: E5MatchCornerStats = E5MatchCornerStats()
@@ -1010,7 +958,6 @@ class E5GetCorners(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_match_corner_stats.exists():
                         overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} created")
                     else:
                         target_overall_match_corner_stats: E5TeamCornerStats = E5TeamCornerStats.objects.get(
                             team=overall_team)
@@ -1018,4 +965,3 @@ class E5GetCorners(E5SeleniumWebDriver):
                         target_overall_match_corner_stats.overall_corners_ft = overall_corners_ft
                         target_overall_match_corner_stats.overall_corners_ft_average = overall_corners_ft_average
                         target_overall_match_corner_stats.save()
-                        self.log_info(message=f"Parse Corners Stats : {overall_team.name} updated")

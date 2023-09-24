@@ -71,14 +71,12 @@ class E5GetAverageFirstGoalTime(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_a1gt_stats.exists():
                         home_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {home_team.name} created")
                     else:
                         home_a1gt_stats: E5Average1stGoalTimeStats = E5Average1stGoalTimeStats.objects.get(
                             team=home_team)
                         home_a1gt_stats.home_first_goal_time_scored_average = home_first_goal_time_scored_average
                         home_a1gt_stats.home_first_goal_time_conceded_average = home_first_goal_time_conceded_average
                         home_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {home_team.name} updated")
 
                     # Create Away Stats
                     away_a1gt_stats: E5Average1stGoalTimeStats = E5Average1stGoalTimeStats()
@@ -89,14 +87,12 @@ class E5GetAverageFirstGoalTime(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_a1gt_stats.exists():
                         away_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {away_team.name} created")
                     else:
                         away_a1gt_stats: E5Average1stGoalTimeStats = E5Average1stGoalTimeStats.objects.get(
                             team=away_team)
                         away_a1gt_stats.away_first_goal_time_scored_average = away_first_goal_time_scored_average
                         away_a1gt_stats.away_first_goal_time_conceded_average = away_first_goal_time_conceded_average
                         away_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {away_team.name} updated")
 
                     # Create Overall Stats
                     overall_a1gt_stats: E5Average1stGoalTimeStats = E5Average1stGoalTimeStats()
@@ -107,11 +103,9 @@ class E5GetAverageFirstGoalTime(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_a1gt_stats.exists():
                         overall_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {overall_team.name} created")
                     else:
                         overall_a1gt_stats: E5Average1stGoalTimeStats = E5Average1stGoalTimeStats.objects.get(
                             team=overall_team)
                         overall_a1gt_stats.overall_first_goal_time_scored_average = overall_first_goal_time_scored_average
                         overall_a1gt_stats.overall_first_goal_time_conceded_average = overall_first_goal_time_conceded_average
                         overall_a1gt_stats.save()
-                        self.log_info(message=f"Parse Average First Goal Time Stats : {overall_team.name} updated")

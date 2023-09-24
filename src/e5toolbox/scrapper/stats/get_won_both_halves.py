@@ -88,14 +88,12 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wbh_stats.exists():
                         home_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {home_team.name} created")
                     else:
                         home_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=home_team)
                         home_wbh_stats.home_matches_played = home_matches_played
                         home_wbh_stats.home_won_both_halves = home_won_both_halves
                         home_wbh_stats.home_won_both_halves_percent = home_won_both_halves_percent
                         home_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {home_team.name} updated")
 
                     # Create Won Both Halves Away Stats
                     away_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats()
@@ -107,14 +105,12 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wbh_stats.exists():
                         away_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {away_team.name} created")
                     else:
                         away_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=away_team)
                         away_wbh_stats.away_matches_played = away_matches_played
                         away_wbh_stats.away_won_both_halves = away_won_both_halves
                         away_wbh_stats.away_won_both_halves_percent = away_won_both_halves_percent
                         away_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {away_team.name} updated")
 
                     # Create Won Both Halves Overall Stats
                     overall_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats()
@@ -126,14 +122,12 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wbh_stats.exists():
                         overall_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {overall_team.name} created")
                     else:
                         overall_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=overall_team)
                         overall_wbh_stats.overall_matches_played = overall_matches_played
                         overall_wbh_stats.overall_won_both_halves = overall_won_both_halves
                         overall_wbh_stats.overall_won_both_halves_percent = overall_won_both_halves_percent
                         overall_wbh_stats.save()
-                        self.log_info(message=f"Parse Won Both Halves Stats : {overall_team.name} updated")
 
                 ######################################### Lost Both Halves ###########################################
                 # Get Url
@@ -198,14 +192,12 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_wbh_stats.exists():
                         home_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {home_team.name} created")
                     else:
                         home_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=home_team)
                         home_wbh_stats.home_matches_played = home_matches_played
                         home_wbh_stats.home_lost_both_halves = home_lost_both_halves
                         home_wbh_stats.home_lost_both_halves_percent = home_lost_both_halves_percent
                         home_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {home_team.name} updated")
 
                     # Create Won Both Halves Away Stats
                     away_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats()
@@ -217,14 +209,12 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_wbh_stats.exists():
                         away_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {away_team.name} created")
                     else:
                         away_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=away_team)
                         away_wbh_stats.away_matches_played = away_matches_played
                         away_wbh_stats.away_lost_both_halves = away_lost_both_halves
                         away_wbh_stats.away_lost_both_halves_percent = away_lost_both_halves_percent
                         away_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {away_team.name} updated")
 
                     # Create Won Both Halves Overall Stats
                     overall_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats()
@@ -236,11 +226,9 @@ class E5GetWonBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_wbh_stats.exists():
                         overall_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {overall_team.name} created")
                     else:
                         overall_wbh_stats: E5WonBothHalfStats = E5WonBothHalfStats.objects.get(team=overall_team)
                         overall_wbh_stats.overall_matches_played = overall_matches_played
                         overall_wbh_stats.overall_lost_both_halves = overall_lost_both_halves
                         overall_wbh_stats.overall_lost_both_halves_percent = overall_lost_both_halves_percent
                         overall_wbh_stats.save()
-                        self.log_info(message=f"Parse Lost Both Halves Stats : {overall_team.name} updated")

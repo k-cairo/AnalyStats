@@ -88,14 +88,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sbh_stats.exists():
                         home_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {home_team.name} created")
                     else:
                         home_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=home_team)
                         home_sbh_stats.home_matches_played = home_matches_played
                         home_sbh_stats.home_scored_both_halves = home_scored_both_halves
                         home_sbh_stats.home_scored_both_halves_percent = home_scored_both_halves_percent
                         home_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {home_team.name} updated")
 
                     # Create Scored Both Halves Away Stats
                     away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -107,14 +105,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sbh_stats.exists():
                         away_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {away_team.name} created")
                     else:
                         away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=away_team)
                         away_sbh_stats.away_matches_played = away_matches_played
                         away_sbh_stats.away_scored_both_halves = away_scored_both_halves
                         away_sbh_stats.away_scored_both_halves_percent = away_scored_both_halves_percent
                         away_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {away_team.name} updated")
 
                     # Create Scored Both Halves Overall Stats
                     overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -126,14 +122,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sbh_stats.exists():
                         overall_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {overall_team.name} created")
                     else:
                         overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=overall_team)
                         overall_sbh_stats.overall_matches_played = overall_matches_played
                         overall_sbh_stats.overall_scored_both_halves = overall_scored_both_halves
                         overall_sbh_stats.overall_scored_both_halves_percent = overall_scored_both_halves_percent
                         overall_sbh_stats.save()
-                        self.log_info(message=f"Parse Scored Both Halves Stats : {overall_team.name} updated")
 
                 ######################################### Conceded Both Halves ###########################################
                 # Get Url
@@ -198,14 +192,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if home stats already exists before saving or updating
                     if not home_sbh_stats.exists():
                         home_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {home_team.name} created")
                     else:
                         home_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=home_team)
                         home_sbh_stats.home_matches_played = home_matches_played
                         home_sbh_stats.home_conceded_both_halves = home_conceded_both_halves
                         home_sbh_stats.home_conceded_both_halves_percent = home_conceded_both_halves_percent
                         home_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {home_team.name} updated")
 
                     # Create Scored Both Halves Away Stats
                     away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -217,14 +209,12 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if away stats already exists before saving or updating
                     if not away_sbh_stats.exists():
                         away_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {away_team.name} created")
                     else:
                         away_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=away_team)
                         away_sbh_stats.away_matches_played = away_matches_played
                         away_sbh_stats.away_conceded_both_halves = away_conceded_both_halves
                         away_sbh_stats.away_conceded_both_halves_percent = away_conceded_both_halves_percent
                         away_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {away_team.name} updated")
 
                     # Create Scored Both Halves Overall Stats
                     overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats()
@@ -236,11 +226,9 @@ class E5GetScoredBothHalves(E5SeleniumWebDriver):
                     # Check if overall stats already exists before saving or updating
                     if not overall_sbh_stats.exists():
                         overall_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {overall_team.name} created")
                     else:
                         overall_sbh_stats: E5ScoredBothHalfStats = E5ScoredBothHalfStats.objects.get(team=overall_team)
                         overall_sbh_stats.overall_matches_played = overall_matches_played
                         overall_sbh_stats.overall_conceded_both_halves = overall_conceded_both_halves
                         overall_sbh_stats.overall_conceded_both_halves_percent = overall_conceded_both_halves_percent
                         overall_sbh_stats.save()
-                        self.log_info(message=f"Parse Conceded Both Halves Stats : {overall_team.name} updated")
