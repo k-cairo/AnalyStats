@@ -417,11 +417,9 @@ class E5SeleniumWebDriver:
                     target_league.url = league_url
                     target_league.slug = slugify(value=league_name)
                     target_league.save()
-                    self.log_info(message=f"League {league_name} updated")
                 else:
                     # Save League
                     new_league.save()
-                    self.log_info(message=f"League {league_name} created")
 
     # E5
     def get_seasons(self, error_context: str) -> None:
@@ -457,13 +455,11 @@ class E5SeleniumWebDriver:
                 # Check if season already exists before saving or updating
                 if not season.exists():
                     season.save()
-                    self.log_info(message=f"Season {league.name} {season.name} created")
                 else:
                     target_season: E5Season = E5Season.objects.get(league=league, name=season.name)
                     target_season.url = league.url
                     target_season.active = league.name in ACTIVE_CHAMPIONSHIPS
                     target_season.save()
-                    self.log_info(message=f"Season {league.name} {season.name} updated")
 
     # E5
     def get_teams(self, error_context: str) -> None:
@@ -507,13 +503,11 @@ class E5SeleniumWebDriver:
                     # Check if team already exists before saving or updating
                     if not team.exists():
                         team.save()
-                        self.log_info(message=f"Team {team_name} created")
                     else:
                         target_team: E5Team = E5Team.objects.get(name=team_name, season=league_table.season)
                         target_team.url = team_url
                         target_team.slug = slugify(value=team_name)
                         target_team.save()
-                        self.log_info(message=f"Team {team_name} updated")
 
     # E5
     def get_upcoming_matches(self, error_context: str) -> None:
@@ -690,10 +684,8 @@ class E5SeleniumWebDriver:
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"{save_message} : {season.league.name} created")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"{save_message} : {season.league.name} updated")
 
     # E5
     def get_iframe(self, endpoint: str, error_context: str, save_message: str, class_: Any):
@@ -752,7 +744,5 @@ class E5SeleniumWebDriver:
                 # Save Iframe
                 if not iframe.exists():
                     iframe.save()
-                    self.log_info(message=f"{save_message} : {season.league.name} created")
                 else:
                     class_.update_iframe(season=season, iframe=iframe)
-                    self.log_info(message=f"{save_message} : {season.league.name} updated")
