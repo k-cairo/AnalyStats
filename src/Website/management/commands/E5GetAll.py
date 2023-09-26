@@ -24,6 +24,9 @@ class Command(BaseCommand):
         call_command(command_name="E5Parser", str_endpoint="/", str_error_context="Get League Table Iframes",
                      int_iframe_length=1, str_save_message="League Table Iframe", str_class="E5LeagueTableIframe")
 
+        # Parse League Table Iframes
+        call_command(command_name="E5ParseLeagueTableIframes")
+
         # Get Teams
         call_command(command_name="E5Parser", str_error_context="Get Teams")
 
@@ -32,12 +35,9 @@ class Command(BaseCommand):
 
         #################################################### MONDAY ####################################################
         if today == 0:
-            # Parse League Table Iframes
-            call_command(command_name="E5ParseLeagueTableIframes")
-
             # Get BTTS Iframes
             call_command(command_name="E5Parser", str_endpoint="btts/", str_error_context="Get BTTS Iframes",
-                     int_iframe_length=5, str_save_message="BTTS Iframe", str_class="E5BttsIframes")
+                         int_iframe_length=5, str_save_message="BTTS Iframe", str_class="E5BttsIframes")
 
             # Parse BTTS Iframes
             call_command(command_name="E5ParseBttsIframes")
@@ -206,9 +206,6 @@ class Command(BaseCommand):
 
         ################################################### THURSDAY ###################################################
         elif today == 3:
-            # Parse League Table Iframes
-            call_command(command_name="E5ParseLeagueTableIframes")
-
             # Get BTTS Iframes
             call_command(command_name="E5Parser", str_endpoint="btts/", str_error_context="Get BTTS Iframes",
                          int_iframe_length=5, str_save_message="BTTS Iframe", str_class="E5BttsIframes")
