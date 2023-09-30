@@ -556,7 +556,7 @@ class E5SeleniumWebDriver:
                     continue
 
                 # Get Upcoming Matches
-                time.sleep(15)
+                time.sleep(30)
                 table_upcoming_matchs = self.soup.select(selector="table.supsystic-table")[1]
                 if table_upcoming_matchs is None:
                     self.log_warning(message=f"Table upcoming matches not found for date {date}")
