@@ -541,6 +541,7 @@ class E5SeleniumWebDriver:
                     pass
 
                 # Get Soup
+                time.sleep(30)
                 self.get_soup(error_context=error_context)
                 if not self.status.success:
                     self.init_status()
@@ -568,8 +569,7 @@ class E5SeleniumWebDriver:
                     league_str: str = upcoming_match_tr.select(selector="td")[0].text
                     kick_off: str = upcoming_match_tr.select(selector="td")[1].text
                     home_team_str: str = upcoming_match_tr.select(selector="td")[2].next.text
-                    away_team_str: str = upcoming_match_tr.select(selector="td")[2].next.next.next.text[
-                                         1:]  # Remove space
+                    away_team_str: str = upcoming_match_tr.select(selector="td")[2].next.next.next.text[1:]  # Remove space
 
                     found: bool = False
                     target_league: E5League | None = None
